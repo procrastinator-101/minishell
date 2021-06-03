@@ -18,6 +18,7 @@
 typedef struct s_scmd
 {
 	t_token			*tokens;
+	char			**args;
 	struct s_scmd	*next;
 }					t_scmd;
 
