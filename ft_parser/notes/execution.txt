@@ -1,0 +1,10 @@
+-----------------------------------------------------------------------------
+The  return value of a simple command is its exit status, or 128+n if the
+command is terminated by signal n.
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+The  standard  output  of command is connected via a pipe to the standard
+input of command2.  This connection is performed before any  redirections
+specified by the command
+-----------------------------------------------------------------------------

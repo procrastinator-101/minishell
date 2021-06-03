@@ -1,0 +1,9 @@
+int	ft_echo(int argc, char **argv);
+int ft_pwd(int argc, char **argv, char **env);
+{
+	argv[0] = pwd;
+	argv[1] = path;
+	env = environment varibvales (internal and system);
+}
+
+int	ft_cd(int argc, char **argv, char **env);

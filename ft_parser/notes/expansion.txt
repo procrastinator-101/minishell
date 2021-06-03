@@ -1,0 +1,163 @@
+--------------------------------------------------------------------------------
+l= or l="" or l=''
+
+$l		-> removed
+"$l"	-> empty string
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+l has no value
+
+$l		-> removed
+"$l"	-> empty string
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+l=d''
+
+$l		-> removed
+"$l"	-> removed
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+-	If a parameter with no value is expanded within double quotes, a null
+	argument results and is retained and passed to	a command as an empty string.
+	EX: "$var" and var has no value; an empty string is passed to the command.
+
+-	When a quoted null argument appears as part of a word whose expansion is
+	non-null, the null argument is removed.
+	EX1: $var and var=-d''; only -d is retained
+	EX2: "$var" and var="-d''"; only -d is retained
+
+-	Unquoted implicit null arguments, resulting from the expansion of
+	parameters that have no values, are removed.
+	EX: $var and var has no value; the argument is removed;
+
+
+IN DOCUMENTATION BUT NOT CONFIRMED :
+-	Explicit null arguments ("" or '') are retained and passed to commands as
+	empty strings.
+	EX: $var and var=""; an empty string is passed to the command.
+
+
+
+word spliting occurs only if an expansion occurs
+--------------------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------------
+The special parameters * and @ have special meaning when in double quotes
+
+
+-	Words of the form $'string' are treated specially.  The word  expands  to
+	string,  with  backslash-escaped  characters replaced as specified by the
+	ANSI C standard.
+-	If  the  string  is translated and replaced, the replacement is 
+	double-quoted.
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+A parameter is set if it has been assigned a value.
+-----------------------------------------------------------------------------
+
+
+export :
+-----------------------------------------------------------------------------
+A variable may be assigned to by a statement of the form : 
+	name=[value]
+
+-	If  value  is  not  given, the variable is assigned the null string.
+
+-	All values undergo tilde expansion, parameter and variable expansion, command 
+	substitution,  arithmetic  expansion,  and  quote  removal.
+-	If the variable has its integer attribute  set,  then  value  is 
+	evaluated  as  an arithmetic expression even if the $((...)) expansion is
+	not used.
+-	Word splitting  is  not  performed,  with  the  exception  of  "$@".
+-	Pathname expansion is not performed.
+
+
+-	name+=value2 append value2 to the last value of name if there is one, 
+	otherwise it is assigned to it.
+	EX :	export var+=abc		=> var=abc
+			export var+=0123	=>var=abc0123
+
+-	after expansion and word spliting :
+	*	the first word after expansion is appended to the left part of the 
+		original word.
+	*	the last word after expansion is appended to the right part of the
+		original word.
+-----------------------------------------------------------------------------
+
+SPECIAL PARAMETERS
+======================================================================================
+-----------------------------------------------------------------------------
+?
+Expands to the status of the  most  recently  executed  foreground pipeline.
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+0
+Expands to the name of the shell or shell script.
+=>	argv[0] in main
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+#
+Expands to the number of positional parameters in decimal.
+=>	argc in main
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+_
+At the shell startup, it is equivalent to $0.
+It is set to the the full pathname used to invoke each command executed 
+and placed in the environment exported to that command.
+Subsequently, expands to the last argument to the previous command, after 
+expansion.
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+$* 
+Expands to the positional parameters, starting from one. 
+
+When the expansion is not within double quotes, each positional parameter 
+expands to a separate word. In contexts where it is performed, those words 
+are subject to further word splitting and filename expansion. 
+
+When the expansion occurs within double quotes, it expands to a single word 
+with the value of each parameter separated by the first character of the 
+IFS special variable. That is, "$*" is equivalent to "$1c$2c…", where c 
+is the first character of the value of the IFS variable. If IFS is unset, 
+the parameters are separated by spaces. If IFS is null, the parameters 
+are joined without intervening separators.
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+$@ Expands to the positional parameters, starting from one. 
+
+In contexts where word splitting is performed, this expands each positional 
+parameter to a separate word; 
+
+if not within double quotes, these words are subject to word splitting. 
+
+In contexts where word splitting is not performed, this expands to a single 
+word with each positional parameter separated by a space. 
+
+When the expansion occurs within double quotes, and word splitting 
+is performed, each parameter expands to a separate word. That is, "$@" is 
+equivalent to "$1" "$2" …. 
+
+If the double-quoted expansion occurs within a word, the expansion of 
+the first parameter is joined with the beginning part of the original 
+word, and the expansion of the last parameter is joined with the last 
+part of the original word. 
+
+When there are no positional parameters, "$@" and $@ expand to 
+nothing (i.e., they are removed).
+-----------------------------------------------------------------------------
+
+
+for other special parameters :
+	https://www.gnu.org/software/bash/manual/html_node/Special-Parameters.html
+======================================================================================

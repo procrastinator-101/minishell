@@ -1,0 +1,3 @@
+ls -a | echo abc > file2 | pwd; exit | ll | pwd > file2;
+
+ls -a | echo abc > file2 | pwd; exit | ll | pwd > file2;p;o;i;u;y;t;r;e;w;q;a;s;d;f;g;h;h;k;z;x;c;v;b;
