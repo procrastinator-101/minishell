@@ -35,9 +35,17 @@ int ft_indexchr(const char *s, char a)
 	return (i);
 }
 
+static char	*join_free_s1(char *s1, char *s2)
+{
+	char	*str;
+
+	str = ft_strjoin(s1, s2);
+	free(s1);
+	return (str);
+}
+
 char	**list_to_tab(void)
 {
-	char	*tmp;
 	char	*line;
 	t_envp	*tmp_env;
 	char	**envp;
@@ -46,20 +54,13 @@ char	**list_to_tab(void)
 	line = ft_strdup("");
 	while (tmp_env)
 	{
-		tmp = line;
-		line = ft_strjoin(line, tmp_env->name);
-		free(tmp);
-		tmp = line;
-		line = ft_strjoin(line, "=");
-		free(tmp);
-		tmp = line;
-		line = ft_strjoin(line, tmp_env->value);
-		free(tmp);
-		tmp = line;
-		line = ft_strjoin(line, "\n");
-		free(tmp);
+		line = join_free_s1(line, tmp_env->name);
+		line = join_free_s1(line, "=");
+		line = join_free_s1(line, tmp_env->value);
+		line = join_free_s1(line, "\n");
 		tmp_env = tmp_env->next;
 	}
-	envp = ft_split(line, '/n');
+	envp = ft_split(line, '\n');
+	free(line);
 	return (envp);
 }
