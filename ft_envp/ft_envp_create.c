@@ -12,7 +12,7 @@
 
 #include "ft_envp.h"
 
-t_envp	*ft_envp_create(char *name, char *value)
+t_envp	*ft_envp_create(char *name, char *value, int isenv)
 {
 	t_envp	*envp;
 
@@ -21,6 +21,7 @@ t_envp	*ft_envp_create(char *name, char *value)
 		return (0);
 	envp->name = name;
 	envp->value = value;
+	envp->isenv = isenv;
 	envp->next = 0;
 	envp->previous = 0;
 	return (envp);

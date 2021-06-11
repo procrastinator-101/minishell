@@ -8,7 +8,7 @@ typedef struct s_pipeline
 typedef struct s_scmd
 {
 	t_token			*tokens;
-	char			**args;
+	char			**args;  // args
 	struct s_scmd	*next;
 }					t_scmd;
 
@@ -19,4 +19,21 @@ typedef struct s_token
 	struct s_token	*next;
 	char			type;
 }					t_token;
+
+
+// unset PWD OLDPWD 
+
+// cd -
+// bash: cd: OLDPWD not set
+
+
+
+typedef struct s_envp
+{
+	char			*name;
+	char			*value;
+	int				isenv;	// to check
+	struct s_envp	*next;
+	struct s_envp	*previous;
+}					t_envp;
 
