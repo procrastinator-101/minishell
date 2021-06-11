@@ -14,7 +14,7 @@
 
 void	free_2d(char **tabl)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tabl[i])
@@ -33,4 +33,33 @@ int ft_indexchr(const char *s, char a)
 		if (s[i] == a)
 			return (i);
 	return (i);
+}
+
+char	**list_to_tab(void)
+{
+	char	*tmp;
+	char	*line;
+	t_envp	*tmp_env;
+	char	**envp;
+
+	tmp_env = g_env;
+	line = ft_strdup("");
+	while (tmp_env)
+	{
+		tmp = line;
+		line = ft_strjoin(line, tmp_env->name);
+		free(tmp);
+		tmp = line;
+		line = ft_strjoin(line, "=");
+		free(tmp);
+		tmp = line;
+		line = ft_strjoin(line, tmp_env->value);
+		free(tmp);
+		tmp = line;
+		line = ft_strjoin(line, "\n");
+		free(tmp);
+		tmp_env = tmp_env->next;
+	}
+	envp = ft_split(line, '/n');
+	return (envp);
 }

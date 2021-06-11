@@ -20,5 +20,6 @@ t_envp  *g_env;
 void	free_2d(char **tabl);
 int     ft_indexchr(const char *s, char a);
 int     builtin(t_scmd  *scmd);
+char	**list_to_tab(void);
 
 #endif
