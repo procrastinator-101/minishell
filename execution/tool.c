@@ -35,7 +35,7 @@ int ft_indexchr(const char *s, char a)
 	return (i);
 }
 
-static char	*join_free_s1(char *s1, char *s2)
+char	*join_free_s1(char *s1, char *s2)
 {
 	char	*str;
 
@@ -44,7 +44,7 @@ static char	*join_free_s1(char *s1, char *s2)
 	return (str);
 }
 
-char	**list_to_tab(void)
+char	**listenvp_to_tab(void)
 {
 	char	*line;
 	t_envp	*tmp_env;
@@ -63,4 +63,30 @@ char	**list_to_tab(void)
 	envp = ft_split(line, '\n');
 	free(line);
 	return (envp);
+}
+
+char	*tab_to_line(char **tabl)
+{
+	int		i;
+	char	*line;
+
+	i = -1;
+	line = ft_strdup("");
+	while (tabl[++i])
+	{
+		line = join_free_s1(line, tabl[i]);
+		if (tabl[i + 1])
+			line = join_free_s1(line, " ");
+	}
+	return (line);
+}
+
+int	tablen(char **tabl)
+{
+	int	i;
+
+	i = 0;
+	while (tabl[i])
+		i++;
+	return (i);
 }

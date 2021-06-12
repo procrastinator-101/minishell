@@ -18,17 +18,19 @@ void	copy_env(t_envp **env, char **envp)
 	}
 }
 
-int main(int ac, char **av, char **envp)
+int	main(int ac, char **av, char **envp)
 {
 	t_envp	*env;
 	t_scmd	*ar;
 
 	copy_env(&env, envp);
-	ar = malloc(sizeof(t_scmd));
-	ar->args = ft_split(ft_strdup("pwd"), ' ');
 	g_env = env;
-	builtin(ar);
-	ar->args = ft_split(ft_strdup("env"), ' ');
+	ar = malloc(sizeof(t_scmd));
+	ar->args = ft_split(ft_strdup("echo"), ' ');
+	//builtin(ar);
+		//chdir("//Users/hhoummad/Desktop");
+		//printf("%d\n", chdir(""));
+	ar->args = ft_split(ft_strdup("pwd"), ' ');
 	//builtin(ar);
 	return (0);
 }

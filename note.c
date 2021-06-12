@@ -37,3 +37,6 @@ typedef struct s_envp
 	struct s_envp	*previous;
 }					t_envp;
 
+// cd || env HOME
+// cd - || env OLDPWD (carful -asfvjb)
+// path || chdir

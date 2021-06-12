@@ -14,12 +14,21 @@
 # define EXECUTION_H
 
 # include "../ft_parser/ft_parser.h"
+# include <sys/stat.h>
 
-t_envp  *g_env;
+t_envp	*g_env;	// remove
 
+int		echo_built(t_scmd  *scmd);
+int		pwd_built(void);
+int		env_built(t_scmd *scmd);
+int		check_path(char *path);
+char	*get_env_value(char *name);
 void	free_2d(char **tabl);
-int     ft_indexchr(const char *s, char a);
-int     builtin(t_scmd  *scmd);
-char	**list_to_tab(void);
+char	*join_free_s1(char *s1, char *s2);
+int		ft_indexchr(const char *s, char a);
+int		builtin(t_scmd  *scmd);
+char	**listenvp_to_tab(void);
+char	*tab_to_line(char **tabl);
+int		tablen(char **tabl);
 
 #endif
