@@ -1,0 +1,44 @@
+algorithm
+--------------------------------------------------------------------------------
+-	split line to words and operators using metacharacters
+-	check syntax
+-	
+-	expansions
+	*	parameter expansion
+	*	word spilting
+	*	filename expansion
+	*	quotes removal
+-	Performs any necessary redirections and removes the redirection operators 
+	and their operands from the argument list.
+--------------------------------------------------------------------------------
+
+tokenization
+--------------------------------------------------------------------------------
+tokenise => split by metacharacters into :
+	*	cntl_operators :
+		-	;
+		-	newline
+	*	redirection operators
+		-	>
+		-	<
+		-	>>
+	*	non operator metacharcters
+		-	space
+		-	tab
+	*	words
+
+identify redirection operators and remove blanks : words are then of the types:
+		-	word (simple word)
+		-	redirection left operand
+		-	redirection right operand
+--------------------------------------------------------------------------------
+
+
+syntax check
+--------------------------------------------------------------------------------
+check if there is :
+-	a control operator that is not a newline at the begining
+-	a redirection that is followed by an operator
+-	a control operator followed an non newline control operator
+-	a redirection operator or a pipe at the end (multiple line editing disabled);
+--------------------------------------------------------------------------------

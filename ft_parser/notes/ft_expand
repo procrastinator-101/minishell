@@ -1,0 +1,12 @@
+look for $
+if encountred and is active then :
+	if it is followed by ?
+		expand it to the last exit status
+	if it is followed by '
+		handle it as a cstring expansion
+	if it is followed by \
+		handle it a backslash expansion (non standard)
+	if it is followed by "
+		handle it a double quote exapnsion (non standard)
+	else
+		expand normaly that is get the name following it and get it value
