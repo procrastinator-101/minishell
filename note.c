@@ -40,3 +40,4 @@ typedef struct s_envp
 // cd || env HOME
 // cd - || env OLDPWD (carful -asfvjb)
 // path || chdir
+// test with open first // fd = open("", O_RDONLY); close fd

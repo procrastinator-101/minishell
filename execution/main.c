@@ -29,8 +29,10 @@ int	main(int ac, char **av, char **envp)
 	ar->args = ft_split(ft_strdup("echo"), ' ');
 	//builtin(ar);
 		//chdir("//Users/hhoummad/Desktop");
-		//printf("%d\n", chdir(""));
-	ar->args = ft_split(ft_strdup("pwd"), ' ');
-	//builtin(ar);
+			open("/Users/hhoummad/Desktop/mini_work/testdir2", O_RDONLY);
+			printf("%s\n", strerror(errno));
+		printf("%d\n", chdir("/Users/hhoummad/Desktop/mini_work/testdir"));
+	ar->args = ft_split(ft_strdup("ls ../testdir"), ' ');
+	builtin(ar);
 	return (0);
 }
