@@ -6,7 +6,7 @@
 #    By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 21:04:47 by yarroubi          #+#    #+#              #
-#    Updated: 2021/06/08 18:54:54 by yarroubi         ###   ########.fr        #
+#    Updated: 2021/06/13 14:57:51 by hhoummad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,6 @@ FT_EXPAND_SRC = $(FT_EXPAND_PATH)/ft_append_escape_sequence.c \
 				$(FT_EXPAND_PATH)/ft_expand_singlequote_construct.c \
 				$(FT_EXPAND_PATH)/ft_expand_special_parameters.c \
 				$(FT_EXPAND_PATH)/ft_expand_token.c \
-				$(FT_EXPAND_PATH)/ft_get_uniquotes.c \
 				$(FT_EXPAND_PATH)/ft_handle_character_escape_sequence.c \
 				$(FT_EXPAND_PATH)/ft_handle_control_escape_sequence.c \
 				$(FT_EXPAND_PATH)/ft_handle_hex_escape_sequence.c \
