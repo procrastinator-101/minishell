@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 14:31:50 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/06/07 17:09:40 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/06/27 18:23:51 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ t_scmd	*ft_scmd_create(t_token *tokens, char **args, t_redirection *rdcs)
 	scmd->tokens = tokens;
 	scmd->redirections = rdcs;
 	scmd->next = 0;
+	scmd->previous = 0;
 	return (scmd);
 }

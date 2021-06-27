@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 13:28:50 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/06/07 17:10:35 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/06/27 18:22:48 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@
 
 typedef struct s_scmd
 {
+	int				pipe[2];
 	char			**args;
 	t_token			*tokens;
 	t_redirection	*redirections;
 	struct s_scmd	*next;
+	struct s_scmd	*previous;
 }					t_scmd;
 
 t_scmd				*ft_scmd_create(t_token *tokens, char **args, \
