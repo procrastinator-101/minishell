@@ -22,6 +22,7 @@ typedef struct s_envp
 {
 	char			*name;
 	char			*value;
+	int				isenv;
 	struct s_envp	*next;
 	struct s_envp	*previous;
 }					t_envp;
@@ -31,8 +32,8 @@ void				ft_envp_print(t_envp *tail);
 void				ft_envp_clear(t_envp **tail);
 void				ft_envp_addback(t_envp **envp, t_envp *node);
 char				*ft_envp_getvalue(t_envp *envp, char *name);
-t_envp				*ft_envp_create(char *name, char *value);
-t_envp				*ft_char_to_envp(char *str, int *error);
+t_envp				*ft_envp_create(char *name, char *value, int isenv);
+t_envp				*ft_char_to_envp(char *str, int *error, int isenv);
 t_envp				*ft_load_sys_envp(char **sys_envp, int *error);
 
 #endif

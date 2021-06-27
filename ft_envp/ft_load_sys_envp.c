@@ -23,7 +23,7 @@ t_envp	*ft_load_sys_envp(char **sys_envp, int *error)
 	*error = 0;
 	while (sys_envp[++i])
 	{
-		node = ft_char_to_envp(sys_envp[i], error);
+		node = ft_char_to_envp(sys_envp[i], error, 1);
 		if (*error)
 		{
 			ft_envp_clear(&envp);

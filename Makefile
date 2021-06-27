@@ -148,10 +148,14 @@ FT_SUPPORT_FUNCTIONS_SRC = $(FT_SUPPORT_FUNCTIONS_PATH)/ft_append_character.c \
 						   $(FT_SUPPORT_FUNCTIONS_PATH)/ft_strnappend.c \
 						   $(FT_SUPPORT_FUNCTIONS_PATH)/ft_traverse_spaces.c
 
+EXECUTION =	execution/builtin.c	execution/env.c	execution/tool.c	\
+			execution/echo.c	execution/exec_ve.c	execution/pwd.c	\
+			execution/start_execution.c
+
 SRC = $(FT_PARSER_SRC) $(FT_LEXER_SRC) $(FT_EXPAND_SRC) $(FT_ERROR_SRC) \
 	  $(FT_PIPELINE_SRC) \
 	  $(FT_SCMD_SRC) $(FT_TOKEN_SRC) $(FT_METADATA_SRC) $(FT_REDIRECTION_SRC) \
-	  $(FT_ENVP_SRC) $(FT_SUPPORT_FUNCTIONS_SRC)
+	  $(FT_ENVP_SRC) $(FT_SUPPORT_FUNCTIONS_SRC) $(EXECUTION)
 
 OBJ = $(SRC:.c=.o)
 

@@ -35,6 +35,7 @@ int	ft_parser(char *line, int size)
 	}
 	ft_pipeline_print(pipelines);
 	/**/
+	start_execution(pipelines);
 	//ft_pipeline_clear(&pipelines);
 	return (error);
 }

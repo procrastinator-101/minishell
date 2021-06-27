@@ -12,7 +12,7 @@
 
 #include "ft_envp.h"
 
-t_envp	*ft_char_to_envp(char *str, int *error)
+t_envp	*ft_char_to_envp(char *str, int *error, int isenv)
 {
 	char	*name;
 	char	*value;
@@ -30,7 +30,7 @@ t_envp	*ft_char_to_envp(char *str, int *error)
 		free(name);
 		return (0);
 	}
-	envp = ft_envp_create(name, value);
+	envp = ft_envp_create(name, value, isenv);
 	if (!envp)
 	{
 		free(name);
