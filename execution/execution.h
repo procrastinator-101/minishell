@@ -29,5 +29,7 @@ char	**listenvp_to_tab(void);
 char	*tab_to_line(char **tabl);
 int		tablen(char **tabl);
 void	start_execution(t_pipeline *pipeline);
+int		run_normal(t_scmd *scmd, int cmd_n);
+int		run_infork(t_scmd *scmd);
 
 #endif

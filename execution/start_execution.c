@@ -12,15 +12,43 @@
 
 #include "execution.h"
 
+static int	which_cmd(t_scmd *scmd)
+{
+	if (!ft_strcmp(scmd->args[0], "echo"))
+			return (1);
+		else if (!ft_strcmp(scmd->args[0], "cd"))
+			return (2);
+		else if (!ft_strcmp(scmd->args[0], "pwd"))
+			return (3);
+		else if (!ft_strcmp(scmd->args[0], "export"))
+			return (4);
+		else if (!ft_strcmp(scmd->args[0], "unset"))
+			return (5);
+		else if (!ft_strcmp(scmd->args[0], "env"))
+			return (6);
+		else if (!ft_strcmp(scmd->args[0], "exit"))
+			return (7);
+		else
+			return (0);
+}
+
 void	start_execution(t_pipeline *pipeline)
 {
-	while (pipeline)
+	int		cmd_n;
+
+	while (pipeline->scmd)
 	{
-		while (pipeline->scmd)
-		{
-			builtin(pipeline->scmd);
-			pipeline->scmd = pipeline->scmd->next;
-		}
-		pipeline = pipeline->next;
+		cmd_n = which_cmd(pipeline->scmd);
+		if (!pipeline->scmd->previous && !pipeline->scmd->next)
+			run_normal(pipeline->scmd, cmd_n);
+		else
+			run_infork(pipeline->scmd);
+		pipeline->scmd = pipeline->scmd->next;
 	}
 }
+
+
+// scmd.p and scmd.n = Null : run normal
+// else : run in fork
+// execve : run in fork
+// done

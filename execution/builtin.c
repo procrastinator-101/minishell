@@ -71,9 +71,12 @@ int	exec_check_slash(char *path, char **args)
 
 	ret = check_path(path);
 	if (ret == 0)
-		execve(path, args, listenvp_to_tab());
+		return (execve(path, args, listenvp_to_tab()));
 	else
+	{
 		printf("error %d\n", ret); //exit error // if ret -1 path: No such file or directory // if ret -2 path: is a directory
+		return (ret);
+	}
 	return (0);
 }
 
