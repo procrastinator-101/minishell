@@ -19,6 +19,7 @@
 int		echo_built(t_scmd *scmd);
 int		pwd_built(void);
 int		env_built(t_scmd *scmd);
+int		unset_built(t_scmd *scmd);
 int		check_path(char *path);
 char	*get_env_value(char *name);
 void	free_2d(char **tabl);
@@ -31,6 +32,8 @@ int		tablen(char **tabl);
 void	start_execution(t_pipeline *pipeline);
 int		run_normal(t_scmd *scmd, int cmd_n);
 int		run_infork(t_scmd *scmd);
+void	def_in_out(void);
+void	reset_in_out(void);
 
 int		exec_ve(t_scmd  *scmd);		// to ckeck
 

@@ -156,7 +156,9 @@ EXECUTION =	execution/builtin.c			\
 			execution/pwd.c				\
 			execution/start_execution.c	\
 			execution/run_normal.c		\
-			execution/run_infork.c
+			execution/run_infork.c		\
+			execution/unset.c			\
+			execution/dup_tools.c
 
 SRC = $(FT_PARSER_SRC) $(FT_LEXER_SRC) $(FT_EXPAND_SRC) $(FT_ERROR_SRC) \
 	  $(FT_PIPELINE_SRC) \
@@ -173,7 +175,7 @@ CFLAGS = -Wall -Werror -Wextra
 all: $(NAME)
 
 $(NAME):$(OBJ) $(LIB)
-	@gcc -o $@ $(OBJ) $(LIB)
+	@gcc -o $@ $(OBJ) $(LIB) -fsanitize=address -g
 
 %.o: %.c
 	@$(CC) -o $@ -c $< $(CFLAGS)

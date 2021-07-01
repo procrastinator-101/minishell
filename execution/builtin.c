@@ -16,55 +16,6 @@
 // {	
 // }
 
-t_envp	*del_env(t_envp *env, t_envp **head)
-{
-	t_envp	*tmp_ret;
-
-	tmp_ret = env->next;
-	if (env->previous)
-		env->previous->next = env->next;
-	else
-		*head = (*head)->next;
-	if (env->next)
-		env->next->previous = env->previous;
-	free(env->name);
-	free(env->value);
-	free(env);
-	return (tmp_ret);
-}
-
-int	check_if_exist(t_scmd *scmd, char *name)
-{
-	int	i;
-
-	i = 1;
-	while (scmd->args[i])
-	{
-		if (ft_strcmp(scmd->args[i], name) == 0)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-int	unset_built(t_scmd *scmd)
-{
-	t_envp	*head;
-
-	head = g_shell.envp;
-	while (g_shell.envp)
-	{
-		if (check_if_exist(scmd, g_shell.envp->name) == 1)
-		{
-			g_shell.envp = del_env(g_shell.envp, &head);
-			continue ;
-		}
-		g_shell.envp = g_shell.envp->next;
-	}
-	g_shell.envp = head;
-	return (0);
-}
-
 int	exec_check_slash(char *path, char **args)
 {
 	int	ret;
@@ -75,7 +26,7 @@ int	exec_check_slash(char *path, char **args)
 	else
 	{
 		printf("error %d\n", ret); //exit error // if ret -1 path: No such file or directory // if ret -2 path: is a directory
-		write(2, "error\n", 4);
+		write(2, "error\n", 6);
 		return (ret);
 	}
 	return (0);
@@ -95,7 +46,7 @@ int	exec_check_paths(t_scmd *scmd)
 		if (check_path(paths[i]) == 0)
 			break ;
 	}
-	if (paths[i])
+	if (i > -1 && paths[i])
 		i = exec_check_slash(paths[i], scmd->args);
 	else
 		i = exec_check_slash(scmd->args[0], scmd->args);

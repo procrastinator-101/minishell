@@ -65,7 +65,7 @@ char	**listenvp_to_tab(void)
 	return (envp);
 }
 
-char	*tab_to_line(char **tabl)
+char	*tab_to_line(char **tabl)	// unused
 {
 	int		i;
 	char	*line;
