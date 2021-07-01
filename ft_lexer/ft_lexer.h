@@ -35,6 +35,8 @@ typedef struct s_shell
 	char			*rdc_operand;
 	int				scmd_status;
 	int				pipeline_status;
+	int				def_in;
+	int				def_out;
 }					t_shell;
 
 int					ft_isrdc_operator(t_token *token);

@@ -32,4 +32,6 @@ void	start_execution(t_pipeline *pipeline);
 int		run_normal(t_scmd *scmd, int cmd_n);
 int		run_infork(t_scmd *scmd);
 
+int		exec_ve(t_scmd  *scmd);		// to ckeck
+
 #endif

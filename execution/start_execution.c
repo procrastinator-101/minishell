@@ -12,6 +12,12 @@
 
 #include "execution.h"
 
+static void	reset_in_out(void)
+{
+	dup2(g_shell.def_in, STDIN_FILENO);
+	dup2(g_shell.def_out, STDOUT_FILENO);
+}
+
 static int	which_cmd(t_scmd *scmd)
 {
 	if (!ft_strcmp(scmd->args[0], "echo"))
@@ -36,6 +42,8 @@ void	start_execution(t_pipeline *pipeline)
 {
 	int		cmd_n;
 
+	g_shell.def_in = dup(STDIN_FILENO);
+	g_shell.def_out = dup(STDOUT_FILENO);
 	while (pipeline->scmd)
 	{
 		cmd_n = which_cmd(pipeline->scmd);
@@ -44,6 +52,7 @@ void	start_execution(t_pipeline *pipeline)
 		else
 			run_infork(pipeline->scmd);
 		pipeline->scmd = pipeline->scmd->next;
+		reset_in_out();
 	}
 }
 

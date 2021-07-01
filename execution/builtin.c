@@ -75,6 +75,7 @@ int	exec_check_slash(char *path, char **args)
 	else
 	{
 		printf("error %d\n", ret); //exit error // if ret -1 path: No such file or directory // if ret -2 path: is a directory
+		write(2, "error\n", 4);
 		return (ret);
 	}
 	return (0);
