@@ -53,7 +53,7 @@ static int	check_options(t_scmd *scmd)
 		if (scmd->args[i][0] == '-')
 		{
 			ft_display_error_msg(0);
-			ft_putstr_fd("unset: No options allowed\n", 2);
+			ft_putstr_fd("unset: Options not allowed\n", 2);
 			g_shell.scmd_status = 1;	// to check
 			return (1);
 		}
