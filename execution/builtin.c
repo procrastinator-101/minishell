@@ -67,17 +67,17 @@ int	builtin(t_scmd  *scmd)
 {
 	if (scmd->args[0])
 	{
-		if (!ft_strcmp(scmd->args[0], "echo"))
+		if (!ft_strcmp(scmd->args[0], "echo"))	//done
 			return (echo_built(scmd));
 		else if (!ft_strcmp(scmd->args[0], "cd"))
 			;
-		else if (!ft_strcmp(scmd->args[0], "pwd"))
-			return (pwd_built());
+		else if (!ft_strcmp(scmd->args[0], "pwd"))	//done
+			return (pwd_built(scmd));
 		else if (!ft_strcmp(scmd->args[0], "export"))
 			;
-		else if (!ft_strcmp(scmd->args[0], "unset"))
+		else if (!ft_strcmp(scmd->args[0], "unset"))	//done
 			return (unset_built(scmd));
-		else if (!ft_strcmp(scmd->args[0], "env"))
+		else if (!ft_strcmp(scmd->args[0], "env"))	//done
 			return (env_built(scmd));
 		else if (!ft_strcmp(scmd->args[0], "exit"))
 			;

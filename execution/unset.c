@@ -43,11 +43,32 @@ static int	check_if_same(t_scmd *scmd, char *name)
 	return (0);
 }
 
+static int	check_options(t_scmd *scmd)
+{
+	int	i;
+
+	i = 1;
+	while (scmd->args[i])
+	{
+		if (scmd->args[i][0] == '-')
+		{
+			ft_display_error_msg(0);
+			ft_putstr_fd("unset: No options allowed\n", 2);
+			g_shell.scmd_status = 1;	// to check
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
 int	unset_built(t_scmd *scmd)
 {
 	t_envp	*head;
 
 	head = g_shell.envp;
+	if (check_options(scmd) == 1)
+		return (1);
 	while (g_shell.envp)
 	{
 		if (check_if_same(scmd, g_shell.envp->name) == 1)

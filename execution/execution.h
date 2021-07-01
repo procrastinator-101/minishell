@@ -17,7 +17,7 @@
 # include <sys/stat.h>
 
 int		echo_built(t_scmd *scmd);
-int		pwd_built(void);
+int		pwd_built(t_scmd *scmd);
 int		env_built(t_scmd *scmd);
 int		unset_built(t_scmd *scmd);
 int		check_path(char *path);

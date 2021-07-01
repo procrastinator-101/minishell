@@ -47,8 +47,6 @@ int	run_infork(t_scmd *scmd)
 		else
 			wait(NULL);
 	}
-	// dup2(g_shell.def_in, STDIN_FILENO);
-	// dup2(g_shell.def_out, STDOUT_FILENO);
 	if (scmd->previous)
 		close(scmd->previous->pipe[0]);
 	if (!scmd->next)

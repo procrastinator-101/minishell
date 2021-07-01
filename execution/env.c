@@ -34,8 +34,10 @@ int	env_built(t_scmd *scmd)
 
 	if (tablen(scmd->args) != 1)
 	{
-		printf("error not valid\n"); // not valid
-		exit(1);
+		ft_display_error_msg(0);
+		ft_putstr_fd("env: No options or arguments allowed\n", 2);
+		g_shell.scmd_status = 1;	// to check
+		return (1);
 	}
 	env = g_shell.envp;
 	while (env)

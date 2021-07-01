@@ -19,7 +19,7 @@ void	ft_display_error_msg(int error)
 
 	minor = error >> 8;
 	major = error & 0xff;
-	ft_putstr_fd("minishell : ", STDERR_FILENO);
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
 	if (major == ECCO || major == ENCQ)
 	{
 		ft_putstr_fd("syntax error near unexpected token ", STDERR_FILENO);
