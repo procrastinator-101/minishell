@@ -15,6 +15,7 @@
 
 # include "../ft_parser/ft_parser.h"
 # include <sys/stat.h>
+# include <dirent.h>
 
 int		echo_built(t_scmd *scmd);
 int		pwd_built(t_scmd *scmd);
@@ -34,7 +35,7 @@ int		run_normal(t_scmd *scmd, int cmd_n);
 int		run_infork(t_scmd *scmd);
 void	def_in_out(void);
 void	reset_in_out(void);
-
-int		exec_ve(t_scmd  *scmd);		// to ckeck
+int		exec_ve(t_scmd *scmd);
+void    print_error(char *path, char *er, int err_num);
 
 #endif

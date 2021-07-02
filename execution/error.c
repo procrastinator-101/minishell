@@ -1,0 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/02 17:06:29 by hhoummad          #+#    #+#             */
+/*   Updated: 2021/07/02 17:06:31 by hhoummad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "execution.h"
+
+void	print_error(char *path, char *er, int err_num)
+{
+	ft_display_error_msg(0);
+	ft_putstr_fd(path, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(er, 2);
+	ft_putstr_fd("\n", 2);
+	g_shell.scmd_status = err_num;
+}

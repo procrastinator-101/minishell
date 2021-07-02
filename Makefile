@@ -114,13 +114,14 @@ FT_METADATA_SRC = $(FT_METADATA_PATH)/ft_get_unimetadata.c \
 				  $(FT_METADATA_PATH)/ft_metadata_ndup.c \
 				  $(FT_METADATA_PATH)/ft_metadata_print.c
 
-FT_ENVP_SRC = $(FT_ENVP_PATH)/ft_char_to_envp.c \
-			  $(FT_ENVP_PATH)/ft_envp_addback.c \
-			  $(FT_ENVP_PATH)/ft_envp_clear.c \
-			  $(FT_ENVP_PATH)/ft_envp_create.c \
-			  $(FT_ENVP_PATH)/ft_envp_del.c \
-			  $(FT_ENVP_PATH)/ft_envp_getvalue.c \
-			  $(FT_ENVP_PATH)/ft_envp_print.c \
+FT_ENVP_SRC = $(FT_ENVP_PATH)/ft_char_to_envp.c		\
+			  $(FT_ENVP_PATH)/ft_envp_addback.c		\
+			  $(FT_ENVP_PATH)/ft_envp_clear.c		\
+			  $(FT_ENVP_PATH)/ft_envp_create.c		\
+			  $(FT_ENVP_PATH)/ft_envp_del.c			\
+			  $(FT_ENVP_PATH)/ft_envp_getvalue.c	\
+			  $(FT_ENVP_PATH)/ft_envp_print.c		\
+			  $(FT_ENVP_PATH)/ft_envp_setvalue.c	\
 			  $(FT_ENVP_PATH)/ft_load_sys_envp.c
 
 FT_SCMD_SRC = $(FT_SCMD_PATH)/ft_scmd_addback.c \
@@ -158,6 +159,7 @@ EXECUTION =	execution/builtin.c			\
 			execution/run_normal.c		\
 			execution/run_infork.c		\
 			execution/unset.c			\
+			execution/error.c			\
 			execution/dup_tools.c
 
 SRC = $(FT_PARSER_SRC) $(FT_LEXER_SRC) $(FT_EXPAND_SRC) $(FT_ERROR_SRC) \

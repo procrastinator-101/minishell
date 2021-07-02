@@ -40,7 +40,7 @@ int	pwd_built(t_scmd *scmd)
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
 	{
-		pwd = get_env_value("PWD");
+		pwd = ft_strdup(get_env_value("PWD"));
 	}
 	ft_putstr_fd(pwd, 1);
 	ft_putstr_fd("\n", 1);

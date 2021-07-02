@@ -12,56 +12,77 @@
 
 #include "execution.h"
 
-// int	cd_built(t_scmd  *scmd)
-// {	
-// }
-
-int	exec_check_slash(char *path, char **args)
+char	*safe_dup(char *value)
 {
-	int	ret;
+	if (!value)
+	{
+		ft_display_error_msg(0);
+		ft_putstr_fd("cd: error retrieving current directory: getcwd: cannot \
+access parent directories: No such file or directory\n", 2);
+		return (ft_strjoin(ft_envp_getvalue(g_shell.envp, "PWD"), "/."));
+	}
+	return (value);
+}
 
-	ret = check_path(path);
-	if (ret == 0)
-		return (execve(path, args, listenvp_to_tab()));
+int	cd_error(char *path)
+{
+	ft_display_error_msg(0);
+	ft_putstr_fd("cd: ", 2);
+	ft_putstr_fd(path, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(strerror(errno), 2);
+	ft_putstr_fd("\n", 2);
+	return (1);
+}
+
+int	only_cd(char *path)
+{
+	DIR	*dd;
+
+	if (path && !path[0])
+	{
+		ft_display_error_msg(0);
+		ft_putstr_fd("cd: HOME not set\n", 2);
+	}
 	else
 	{
-		printf("error %d\n", ret); //exit error // if ret -1 path: No such file or directory // if ret -2 path: is a directory
-		write(2, "error\n", 6);
-		return (ret);
+		dd = opendir(path);
+		if (dd == NULL)
+			return (cd_error(path));
+		else
+		{
+			closedir(dd);
+			chdir(path);
+			ft_envp_setvalue(g_shell.envp, "OLDPWD", ft_strdup(ft_envp_getvalue(g_shell.envp, "PWD")));
+			ft_envp_setvalue(g_shell.envp, "PWD", safe_dup(getcwd(NULL, 0)));
+		}
 	}
 	return (0);
 }
 
-int	exec_check_paths(t_scmd *scmd)
+int	cd_built(t_scmd *scmd)
 {
-	char	**paths;
-	int		i;
+	DIR	*dd;
 
-	paths = ft_split(get_env_value("PATH"), ':');
-	i = -1;
-	while (paths && paths[++i])
+	if (scmd->args[1] == NULL)
+		only_cd(get_env_value("HOME"));
+	else
 	{
-		paths[i] = join_free_s1(paths[i], "/");
-		paths[i] = join_free_s1(paths[i], scmd->args[0]);
-		if (check_path(paths[i]) == 0)
-			break ;
+		dd = opendir(scmd->args[1]);
+		if (dd == NULL)
+			return (cd_error(scmd->args[1]));
+		else
+		{
+			closedir(dd);
+			chdir(scmd->args[1]);
+			ft_envp_setvalue(g_shell.envp, "OLDPWD", ft_strdup(ft_envp_getvalue(g_shell.envp, "PWD")));
+			ft_envp_setvalue(g_shell.envp, "PWD", safe_dup(getcwd(NULL, 0)));
+		}
 	}
-	if (i > -1 && paths[i])
-		i = exec_check_slash(paths[i], scmd->args);
-	else
-		i = exec_check_slash(scmd->args[0], scmd->args);
-	free_2d(paths);
-	return (i);
-}
-
-int	exec_ve(t_scmd  *scmd)
-{
-	if (scmd->args[0][0] == '/')
-		return (exec_check_slash(scmd->args[0], scmd->args));
-	else
-		return (exec_check_paths(scmd));
 	return (0);
 }
+
+
 
 int	builtin(t_scmd  *scmd)
 {
@@ -69,15 +90,15 @@ int	builtin(t_scmd  *scmd)
 	{
 		if (!ft_strcmp(scmd->args[0], "echo"))	//done
 			return (echo_built(scmd));
-		else if (!ft_strcmp(scmd->args[0], "cd"))
-			;
+		else if (!ft_strcmp(scmd->args[0], "cd"))	//done
+			return (cd_built(scmd));
 		else if (!ft_strcmp(scmd->args[0], "pwd"))	//done
 			return (pwd_built(scmd));
 		else if (!ft_strcmp(scmd->args[0], "export"))
 			;
 		else if (!ft_strcmp(scmd->args[0], "unset"))	//done
 			return (unset_built(scmd));
-		else if (!ft_strcmp(scmd->args[0], "env"))	//done
+		else if (!ft_strcmp(scmd->args[0], "env"))	//done // tartib
 			return (env_built(scmd));
 		else if (!ft_strcmp(scmd->args[0], "exit"))
 			;
