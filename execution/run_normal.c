@@ -17,15 +17,26 @@ int	run_normal(t_scmd *scmd, int cmd_n)
 	pid_t	f_pid;
 	int		status;
 
+	if (redirection_dup(scmd->redirections) == 1)
+	{
+		g_shell.scmd_status = 1;
+		return (1);
+	}
 	if (cmd_n > 0)
 		builtin(scmd);
 	else
 	{
 		f_pid = fork();
 		if (f_pid < 0)
-			printf("error");	// to check
+		{
+			print_error("fork", "Resource temporarily unavailable", 1);
+			ft_manage_parsing_error(0);
+		}
 		else if (f_pid == 0)
-			exec_ve(scmd);
+		{
+			status = exec_ve(scmd);
+			exit(status);
+		}
 		else
 			waitpid(f_pid, &status, 0);
 	}

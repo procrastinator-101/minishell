@@ -18,9 +18,9 @@ int	check_path(char *path)
 	int			ret;
 
 	ret = stat(path, &st);
-	if (ret == 0 && st.st_mode / 10000 != 3) // look for another method
+	if (ret == 0 && st.st_mode / 10000 != 3)
 	{
-		if (path[0] == '/')
+		if (path[0] == '/' || path[0] == '.')
 			ret = -2;
 		else
 			ret = -3;
@@ -37,8 +37,8 @@ static int	exec_check_slash(char *path, char **args)
 	ret = check_path(path);
 	if (ret == 0)
 	{
-			ret = execve(path, args, listenvp_to_tab());
-			print_error(path, strerror(errno), 126);
+		execve(path, args, listenvp_to_tab());
+		ret = print_error(path, strerror(errno), 126);
 	}
 	else
 	{
@@ -77,9 +77,12 @@ static int	exec_check_paths(t_scmd *scmd)
 
 int	exec_ve(t_scmd *scmd)
 {
-	if (scmd->args[0][0] == '/')
-		return (exec_check_slash(scmd->args[0], scmd->args));
-	else
-		return (exec_check_paths(scmd));
-	return (0);
+	if (scmd->args && scmd->args[0])
+	{
+		if (scmd->args[0][0] == '/')
+			return (exec_check_slash(scmd->args[0], scmd->args));
+		else
+			return (exec_check_paths(scmd));
+	}
+	return (1);
 }

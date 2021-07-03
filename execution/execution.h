@@ -36,6 +36,7 @@ int		run_infork(t_scmd *scmd);
 void	def_in_out(void);
 void	reset_in_out(void);
 int		exec_ve(t_scmd *scmd);
-void    print_error(char *path, char *er, int err_num);
+int		print_error(char *path, char *er, int err_num);
+int		redirection_dup(t_redirection *redi);
 
 #endif

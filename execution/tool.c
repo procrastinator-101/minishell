@@ -40,6 +40,11 @@ char	*join_free_s1(char *s1, char *s2)
 	char	*str;
 
 	str = ft_strjoin(s1, s2);
+	if (!str)
+	{
+		print_error("MALLOC", strerror(errno), 1);
+		ft_manage_parsing_error(0);
+	}
 	free(s1);
 	return (str);
 }

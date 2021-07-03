@@ -12,45 +12,64 @@
 
 #include "execution.h"
 
-void	change_inout(t_scmd *scmd)
+static void	change_inout(t_scmd *scmd)
 {
 	if (scmd->previous)
+	{
 		dup2(scmd->previous->pipe[0], STDIN_FILENO);
+		close(scmd->previous->pipe[0]);
+	}
 	if (scmd->next)
 		dup2(scmd->pipe[1], STDOUT_FILENO);
 	close(scmd->pipe[0]);
+	close(scmd->pipe[1]);
+	if (scmd->redirections)
+	{
+		if (redirection_dup(scmd->redirections) == 1)
+			exit(1);
+	}
+}
+
+static void	close_pipes(t_scmd *scmd)
+{
+	if (scmd->previous)
+		close(scmd->previous->pipe[0]);
+	if (!scmd->next)
+		close(scmd->pipe[0]);
 	close(scmd->pipe[1]);
 }
 
 int	run_infork(t_scmd *scmd)
 {
 	pid_t	f_pid;
+	pid_t	ret;
+	int		tmp;
 	int		ex_st;
 
 	pipe(scmd->pipe);
+	ex_st = 0;
 	f_pid = fork();
 	if (f_pid < 0)
-		printf("error");	// to check
+	{
+		print_error("fork", "Resource temporarily unavailable", 1);
+		ft_manage_parsing_error(0);
+	}
 	else if (f_pid == 0)
 	{
 		change_inout(scmd);
 		ex_st = builtin(scmd);
 		exit(ex_st);
 	}
-	else
-	{
-		if (!scmd->next)
-		{
-			while (waitpid(f_pid, &ex_st, 0) == 0)	// to check
-				;
-		}
-		else
-			wait(NULL);
-	}
-	if (scmd->previous)
-		close(scmd->previous->pipe[0]);
 	if (!scmd->next)
-		close(scmd->pipe[0]);
-	close(scmd->pipe[1]);
+	{
+		ret = 0;
+		while (ret != -1)
+		{
+			ret = waitpid(-1, &tmp, 0);
+			if (ret == f_pid)
+				ex_st = tmp;
+		}
+	}
+	close_pipes(scmd);
 	return (0);
 }

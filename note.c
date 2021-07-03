@@ -1,3 +1,6 @@
+#include "ft_lexer/ft_lexer.h"
+#include <fcntl.h>
+
 typedef struct s_pipeline
 {
 	t_scmd				*scmd;
@@ -41,3 +44,19 @@ typedef struct s_envp
 			// cd - || env OLDPWD (carful -asfvjb)
 // path || chdir
 // test with open first // fd = open("", O_RDONLY); close fd
+
+// APPEND: open("our", O_CREAT | O_APPEND | O_WRONLY); >>
+// READ: open ("our", O_RDONLY) <
+// WRITE: open ("our", O_CREAT | O_WRONLY, 0644) >
+
+int main ()
+{
+	char *file;
+	int fd = open("our", O_CREAT | O_WRONLY, 0644);
+	write(fd, "hello", 5);
+	close(fd);
+	return (0);
+}
+
+// open(name, )
+// < sdg < sdg
