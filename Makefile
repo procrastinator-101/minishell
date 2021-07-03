@@ -149,17 +149,18 @@ FT_SUPPORT_FUNCTIONS_SRC = $(FT_SUPPORT_FUNCTIONS_PATH)/ft_append_character.c \
 						   $(FT_SUPPORT_FUNCTIONS_PATH)/ft_strnappend.c \
 						   $(FT_SUPPORT_FUNCTIONS_PATH)/ft_traverse_spaces.c
 
-EXECUTION =	execution/builtin.c			\
-			execution/env.c				\
-			execution/tool.c			\
-			execution/echo.c			\
-			execution/exec_ve.c			\
-			execution/pwd.c				\
-			execution/start_execution.c	\
-			execution/run_normal.c		\
-			execution/run_infork.c		\
-			execution/unset.c			\
-			execution/error.c			\
+EXECUTION =	execution/builtin.c				\
+			execution/env.c					\
+			execution/tool.c				\
+			execution/echo.c				\
+			execution/exec_ve.c				\
+			execution/pwd.c					\
+			execution/start_execution.c		\
+			execution/run_normal.c			\
+			execution/run_infork.c			\
+			execution/unset.c				\
+			execution/error.c				\
+			execution/redirections_tools.c	\
 			execution/dup_tools.c
 
 SRC = $(FT_PARSER_SRC) $(FT_LEXER_SRC) $(FT_EXPAND_SRC) $(FT_ERROR_SRC) \
@@ -177,7 +178,7 @@ CFLAGS = -Wall -Werror -Wextra
 all: $(NAME)
 
 $(NAME):$(OBJ) $(LIB)
-	@gcc -o $@ $(OBJ) $(LIB) -fsanitize=address -g
+	@gcc -o $@ $(OBJ) $(LIB) -fsanitize=address -g -lreadline
 
 %.o: %.c
 	@$(CC) -o $@ -c $< $(CFLAGS)

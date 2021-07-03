@@ -60,6 +60,7 @@ int	run_infork(t_scmd *scmd)
 		ex_st = builtin(scmd);
 		exit(ex_st);
 	}
+	close_pipes(scmd);
 	if (!scmd->next)
 	{
 		ret = 0;
@@ -70,6 +71,5 @@ int	run_infork(t_scmd *scmd)
 				ex_st = tmp;
 		}
 	}
-	close_pipes(scmd);
 	return (0);
 }

@@ -15,6 +15,7 @@
 
 # include "../ft_parser/ft_parser.h"
 # include <sys/stat.h>
+# include <readline/readline.h>
 # include <dirent.h>
 
 int		echo_built(t_scmd *scmd);

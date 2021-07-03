@@ -47,7 +47,7 @@ typedef struct s_envp
 
 // APPEND: open("our", O_CREAT | O_APPEND | O_WRONLY); >>
 // READ: open ("our", O_RDONLY) <
-// WRITE: open ("our", O_CREAT | O_WRONLY, 0644) >
+// WRITE: open ("our", O_CREAT | O_WRONLY | O_TRUNC, 0644) >
 
 int main ()
 {

@@ -17,8 +17,7 @@ int	print_error(char *path, char *er, int err_num)
 	ft_display_error_msg(0);
 	ft_putstr_fd(path, 2);
 	ft_putstr_fd(": ", 2);
-	ft_putstr_fd(er, 2);
-	ft_putstr_fd("\n", 2);
+	ft_putendl_fd(er, 2);
 	g_shell.scmd_status = err_num;
 	return (1);
 }
