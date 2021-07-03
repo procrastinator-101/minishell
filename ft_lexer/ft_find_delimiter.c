@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 18:09:25 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/05/29 12:46:51 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/03 19:08:39 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_find_delimiter(char *str, char **delimiters)
 	i = 0;
 	while (++i < DELIM_SIZE)
 	{
-		if (i < SEMICOLON)
+		if (i < PIPE)
 		{
 			if (!ft_strncmp(str, delimiters[i], 2))
 				return (i);

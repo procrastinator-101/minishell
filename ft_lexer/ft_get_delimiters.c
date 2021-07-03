@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/26 19:09:57 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/06/01 09:24:03 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/03 19:05:21 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**ft_get_delimiters(void)
 		return (0);
 	delimiters[0] = 0;
 	delimiters[DBR_RDC] = ">>";
-	delimiters[SEMICOLON] = ";";
+	delimiters[DBL_RDC] = "<<";
 	delimiters[PIPE] = "|";
 	delimiters[NEW_LINE] = "\n";
 	delimiters[L_RDC] = "<";

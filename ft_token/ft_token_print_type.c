@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 20:56:22 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/06/08 18:54:04 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/03 19:05:05 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	ft_print_operator(int type)
 {
 	if (type == DBR_RDC)
 		printf("DBR_RDC\n");
+	else if (type == DBL_RDC)
+		printf("DBL_RDC\n");
 	else if (type == SEMICOLON)
 		printf("SEMICOLON\n");
 	else if (type == PIPE)

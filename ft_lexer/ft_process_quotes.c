@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 10:15:02 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/06/08 11:01:37 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/03 19:11:11 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ t_metadata	*ft_process_quotes(char *str, int size, int *error)
 			i = ft_process_single_quotes(str, meda, i);
 		else if (str[i] == '"')
 			i = ft_process_double_quotes(str, meda, i);
-		else if (str[i] == '\\')
-			i = ft_process_backslash(str, meda, i);
 		else if (str[i] == '$')
 			i = ft_process_cstyle_quoting(str, meda, i);
 		else

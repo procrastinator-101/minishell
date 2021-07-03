@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 17:09:51 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/06/08 18:20:24 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/03 19:04:24 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_TOKEN_H
 
 # define DBR_RDC			1
-# define SEMICOLON			2
+# define DBL_RDC			2
 # define PIPE				3
 # define NEW_LINE			4
 # define L_RDC				5
@@ -25,6 +25,7 @@
 # define RDC_ROPERAND		10
 # define RDC_LOPERAND		11
 # define ENDL				12
+# define SEMICOLON			13
 
 # include <stdio.h>
 # include <stdlib.h>

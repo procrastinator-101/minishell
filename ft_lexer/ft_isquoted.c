@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 08:53:37 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/06/08 14:26:54 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/03 19:14:32 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_isquoted(char c, t_metadata meda)
 {
-	if (c == '$' || c == '`')
+	if (c == '$')
 	{
 		if (meda.uq || meda.dq)
 			return (0);
