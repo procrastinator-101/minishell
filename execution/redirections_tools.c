@@ -6,7 +6,7 @@
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 17:25:47 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/07/03 17:25:48 by hhoummad         ###   ########.fr       */
+/*   Updated: 2021/07/03 20:01:38 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ int	redirection_dup(t_redirection *redi)
 			fd = open(redi->right_operand, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 		else if (redi->type == DBR_RDC)
 			fd = open(redi->right_operand, O_CREAT | O_APPEND | O_WRONLY, 0644);
-		// else if (redi->type == L_RDC)
-		// 	fd = open(redi->right_operand, O_RDONLY);
 		else if (redi->type == L_RDC)
+		 	fd = open(redi->right_operand, O_RDONLY);
+		else if (redi->type == DBL_RDC)
 			return (here_doc_red(redi));
 		if (fd < 0)
 		{
