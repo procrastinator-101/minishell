@@ -29,7 +29,7 @@ static char	*check_dollar(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '$')	//check leacks
+		if (str[i] == '$' && str[i + 1] && str[i + 1] != ' ' && str[i + 1] != '$' && str[i + 1] != '"' && str[i + 1] != '\'')	//check leacks //$?
 		{
 			// printf("**%s\n", str);
 			i++;
@@ -45,7 +45,7 @@ static char	*check_dollar(char *str)
 			tmp = ft_strjoin(tmp, ft_substr(str, i, ft_strlen(str)));
 			// printf("4 %s\n", tmp);
 			// printf("..\n");
-			i = 0;
+			i = j;
 			str = tmp;
 			continue ;
 		}
@@ -59,6 +59,7 @@ static int	here_doc_red(t_redirection *redi)
 	char	*line;
 	int		fd;
 
+	dup2(g_shell.def_out, STDOUT_FILENO);
 	fd = open("/tmp/tmp_hdoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd < 0)
 	{
