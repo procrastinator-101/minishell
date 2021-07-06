@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse.h                                         :+:      :+:    :+:   */
+/*   ft_parser.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/24 13:17:54 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/06 13:50:28 by yarroubi         ###   ########.fr       */
+/*   Created: 2021/07/06 17:04:54 by yarroubi          #+#    #+#             */
+/*   Updated: 2021/07/06 17:05:57 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PARSE_H
-# define FT_PARSE_H
+#ifndef FT_PARSER_H
+# define FT_PARSER_H
 
 # include <stdio.h>
 # include <fcntl.h>
@@ -27,14 +27,14 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 
-#include <term.h>
-#include <curses.h>
+# include <term.h>
+# include <curses.h>
 
 # include "../ft_error/ft_error.h"
 # include "../ft_lexer/ft_lexer.h"
 
-#include <readline/history.h>
-#include <readline/readline.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 
 # include "../libft/libft.h"
 # include "../ft_envp/ft_envp.h"
@@ -46,8 +46,10 @@
 # include "../execution/execution.h"
 
 void		ft_cleanup(void);
-void		ft_install_signal_handlers(void);
 void		ft_initialise_shell(char **argv, char **sys_envp);
+
+void		ft_install_child_signal_handlers(void);
+void		ft_install_parent_signal_handlers(void);
 
 int			ft_parser(char *line, int size);
 int			ft_pipeline_finalise(t_pipeline *pipeline);
@@ -66,7 +68,8 @@ char		*ft_handle_hex_escape_sequence(char *cstring, int *len);
 char		*ft_handle_octal_escape_sequence(char *cstring, int *len);
 char		*ft_handle_control_escape_sequence(char *cstring, int *len);
 
-char		*ft_substitute_parameter(char *str, char quote, int *error, int *len);
+char		*ft_substitute_parameter(char *str, char quote, int *error, \
+			int *len);
 
 char		*ft_get_uniquotes(int size, char type);
 char		*ft_remove_quoted_null_arguments(char *src, int *error);

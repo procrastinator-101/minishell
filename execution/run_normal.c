@@ -6,7 +6,7 @@
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 18:16:05 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/06/30 18:16:06 by hhoummad         ###   ########.fr       */
+/*   Updated: 2021/07/06 18:01:05 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,16 @@ int	run_normal(t_scmd *scmd, int cmd_n)
 		}
 		else if (f_pid == 0)
 		{
+			ft_install_child_signal_handlers();
 			status = exec_ve(scmd);
 			exit(status);
 		}
 		else
+		{
+			g_shell.ischild_signal = 1;
 			waitpid(f_pid, &status, 0);
+			g_shell.ischild_signal = 0;
+		}
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 17:01:35 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/06/13 17:01:37 by hhoummad         ###   ########.fr       */
+/*   Updated: 2021/07/06 18:52:05 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static int	which_cmd(t_scmd *scmd)
 
 void	start_execution(t_pipeline *pipeline)
 {
+	int			ret;
+	int			status;
 	int			cmd_n;
 	t_scmd		*scmd;
 	t_pipeline	*head;
@@ -47,18 +49,22 @@ void	start_execution(t_pipeline *pipeline)
 	while (head)
 	{
 		scmd = head->scmd;
+		ret = 0;
 		while (scmd)
 		{
 			cmd_n = which_cmd(scmd);
 			if (!scmd->previous && !scmd->next)
-				run_normal(scmd, cmd_n);
+				status = run_normal(scmd, cmd_n);
 			else
-				run_infork(scmd);
+				status = run_infork(scmd);
+			ret |= status;
 			scmd = scmd->next;
 			reset_in_out();
 		}
+		if (ret && WIFSIGNALED(ret))
+			write(1, "\n", 1);
 		head = head->next;
+		g_shell.pipeline_status = g_shell.scmd_status;
 	}
-	g_shell.pipeline_status = g_shell.scmd_status;
 	ft_pipeline_clear(&pipeline);
 }

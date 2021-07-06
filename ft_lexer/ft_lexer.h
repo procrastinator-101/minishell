@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 11:49:23 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/05 15:18:50 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/06 16:59:08 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_shell
 	char			*rdc_operand;
 	int				scmd_status;
 	int				pipeline_status;
+	int				ischild_signal;
 	int				def_in;
 	int				def_out;
 }					t_shell;
