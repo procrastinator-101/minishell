@@ -6,7 +6,7 @@
 #    By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 21:04:47 by yarroubi          #+#    #+#              #
-#    Updated: 2021/07/06 16:10:52 by yarroubi         ###   ########.fr        #
+#    Updated: 2021/07/06 18:55:36 by yarroubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -174,8 +174,8 @@ OBJ = $(SRC:.c=.o)
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
-LIBS = /Users/yarroubi/.brew/opt/readline/lib
-INCLUDES = /Users/yarroubi/.brew/opt/readline/include
+LIBS = /Users/$(USER)/.brew/opt/readline/lib
+INCLUDES = /Users/$(USER)/.brew/opt/readline/include
 
 all: $(NAME)
 
