@@ -6,7 +6,7 @@
 #    By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 21:04:47 by yarroubi          #+#    #+#              #
-#    Updated: 2021/07/03 19:15:12 by yarroubi         ###   ########.fr        #
+#    Updated: 2021/07/06 12:36:05 by yarroubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ FT_SUPPORT_FUNCTIONS_PATH = ft_support_functions
 FT_PARSER_SRC = $(FT_PARSER_PATH)/ft_cleanup.c \
 				$(FT_PARSER_PATH)/ft_get_cmd_tree.c \
 				$(FT_PARSER_PATH)/ft_initialise_shell.c \
+				$(FT_PARSER_PATH)/ft_install_signal_handlers.c \
 				$(FT_PARSER_PATH)/ft_parser.c \
 				$(FT_PARSER_PATH)/ft_pipeline_extract_redirections.c \
 				$(FT_PARSER_PATH)/ft_pipeline_finalise.c \
@@ -169,18 +170,19 @@ SRC = $(FT_PARSER_SRC) $(FT_LEXER_SRC) $(FT_EXPAND_SRC) $(FT_ERROR_SRC) \
 
 OBJ = $(SRC:.c=.o)
 
-LIB = $(LIBFT)
-
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
+LIBS = /Users/yarroubi/.brew/opt/readline/lib
+INCLUDES = /Users/yarroubi/.brew/opt/readline/include
+
 all: $(NAME)
 
-$(NAME):$(OBJ) $(LIB)
-	@gcc -o $@ $(OBJ) $(LIB) -fsanitize=address -g -lreadline
+$(NAME):$(OBJ) $(LIBFT)
+	@$(CC) -o $@ $(OBJ) $(LIBFT) -lreadline -L $(LIBS) -I$(INCLUDES)
 
 %.o: %.c
-	@$(CC) -o $@ -c $< $(CFLAGS)
+	@$(CC) $(CFLAGS) -o $@ -c $< -I$(INCLUDES)
 
 $(LIBFT) :
 	@$(MAKE) -C libft

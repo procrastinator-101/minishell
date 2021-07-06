@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 13:17:54 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/06/07 17:51:16 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/06 12:36:08 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,8 @@
 # include "../ft_support_functions/ft_support_functions.h"
 # include "../execution/execution.h"
 
-#define ESC					27
-
 void		ft_cleanup(void);
+void		ft_install_signal_handlers(void);
 void		ft_initialise_shell(char **argv, char **sys_envp);
 
 int			ft_parser(char *line, int size);

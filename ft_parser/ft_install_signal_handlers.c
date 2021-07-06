@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quotes.c                                           :+:      :+:    :+:   */
+/*   ft_install_signal_handlers.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/25 13:03:04 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/05 16:46:45 by yarroubi         ###   ########.fr       */
+/*   Created: 2021/07/05 15:22:11 by yarroubi          #+#    #+#             */
+/*   Updated: 2021/07/06 11:34:15 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
-t_shell g_shell;
-
-int main(int argc, char **argv, char **sys_envp)
+static void ft_handle_signal(int signal)
 {
-	int		error;
-	char	*line;
-
-	if (argc > 1)
-		ft_manage_parsing_error(0);
-	ft_initialise_shell(argv, sys_envp);
-	ft_install_signal_handlers();
-	while (1)
+	if (signal)
 	{
-		line = readline(g_shell.prompt);
-		if (!line)
-			break ;
-		error = ft_parser(line, ft_strlen(line) + 1);
-		if (error)
-			ft_manage_parsing_error(error);
-		free(line);
+		rl_replace_line(g_shell.prompt, 0);
+		rl_on_new_line();
 	}
-	ft_cleanup();
-	return (EXIT_SUCCESS);
+	//write(1, "h\n", 2);
+}
+
+void	ft_install_signal_handlers(void)
+{
+	signal(SIGINT, ft_handle_signal);
+	signal(SIGQUIT, SIG_IGN);
 }

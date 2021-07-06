@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 11:49:23 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/06/08 18:42:45 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/05 15:18:50 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 typedef struct s_shell
 {
 	char			*ifs;
+	char			*prompt;
 	t_envp			*envp;
 	char			**argv;
 	char			**delimiters;
