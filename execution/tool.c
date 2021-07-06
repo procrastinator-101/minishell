@@ -70,6 +70,13 @@ char	*free_return(char *to_ret, char *to_free)
 	return (to_ret);
 }
 
+char	*catch_null_ordup(char *str)
+{
+	if (str)
+		return (ft_strdup2(str));
+	return (str);
+}
+
 char	**listenvp_to_tab(void)
 {
 	char	*line;
@@ -80,10 +87,13 @@ char	**listenvp_to_tab(void)
 	line = ft_strdup("");
 	while (tmp_env)
 	{
-		line = join_free_s1(line, tmp_env->name);
-		line = join_free_s1(line, "=");
-		line = join_free_s1(line, tmp_env->value);
-		line = join_free_s1(line, "\n");
+		if (tmp_env->value)
+		{
+			line = join_free_s1(line, tmp_env->name);
+			line = join_free_s1(line, "=");
+			line = join_free_s1(line, tmp_env->value);
+			line = join_free_s1(line, "\n");
+		}
 		tmp_env = tmp_env->next;
 	}
 	envp = ft_split(line, '\n');

@@ -14,19 +14,24 @@
 
 static void	export_print(char **env_sorted)
 {
-	int	i;
+	int		i;
+	char	*tmp;
 
 	i = 0;
 	while (env_sorted[i])
 	{
 		if (ft_isenv(env_sorted[i]) == 1)
 		{
+			tmp = get_env_value(env_sorted[i]);
 			ft_putstr_fd("declare -x ", 1);
 			ft_putstr_fd(env_sorted[i], 1);
-			ft_putstr_fd("=", 1);
-			ft_putstr_fd("\"", 1);
-			ft_putstr_fd(get_env_value(env_sorted[i]), 1);
-			ft_putstr_fd("\"", 1);
+			if (tmp)
+			{
+				ft_putstr_fd("=", 1);
+				ft_putstr_fd("\"", 1);
+				ft_putstr_fd(tmp, 1);
+				ft_putstr_fd("\"", 1);
+			}
 			ft_putstr_fd("\n", 1);
 		}
 		i++;
@@ -54,9 +59,30 @@ static void	export_only(int env_size)
 	free(env_sorted);
 }
 
+void	export_add(char *data)
+{
+	(void)data;
+	// cut // isname // ft_char_to_envp
+}
+
+int	look_for_equal(char *data)
+{
+	int i;
+
+	i = 0;
+	while (data[i])
+	{
+		if (data[i] == '=')
+			return (i);
+		i++;
+	}
+	return (0);
+}
+
 int	export_built(t_scmd *scmd)
 {
 	int	i;
+	int	index;
 
 	i = 1;
 	if (tablen(scmd->args) == 1)
@@ -65,9 +91,23 @@ int	export_built(t_scmd *scmd)
 	{
 		while (scmd->args[i])
 		{
-			
+			index = look_for_equal(scmd->args[i]);
+			if (index != 0)
+			{
+				export_add(scmd->args[i]);
+			}
+			else
+			{
+				if (ft_isname(scmd->args[i]) == 0)
+					print_error_2("export",scmd->args[i], "not a valid identifier", 1);
+				else
+				{
+					ft_envp_setvalue(g_shell.envp, scmd->args[i], catch_null_ordup(ft_envp_getvalue(g_shell.envp, scmd->args[i])));
+					ft_set_isenv(scmd->args[i], 1);
+				}
+			}
 			i++;
 		}
 	}
-	return (0);
+	return (g_shell.scmd_status);
 }

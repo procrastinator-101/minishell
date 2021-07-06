@@ -46,5 +46,8 @@ int		export_built(t_scmd *scmd);
 void	sort_table(char **table, int table_size);
 char	*ft_strdup2(const char *src);
 int		ft_isenv(char *name);
+void	ft_set_isenv(char *name, int isenv);
+int 	print_error_2(char *path, char *data, char *er, int err_num);
+char	*catch_null_ordup(char *str);
 
 #endif

@@ -30,7 +30,7 @@ int	run_normal(t_scmd *scmd, int cmd_n)
 		if (f_pid < 0)
 		{
 			print_error("fork", "Resource temporarily unavailable", 1);
-			ft_manage_parsing_error(0);
+			ft_manage_parsing_error(0); // to fix
 		}
 		else if (f_pid == 0)
 		{
@@ -43,6 +43,7 @@ int	run_normal(t_scmd *scmd, int cmd_n)
 			g_shell.ischild_signal = 1;
 			waitpid(f_pid, &status, 0);
 			g_shell.ischild_signal = 0;
+			// catch exit status
 		}
 	}
 	return (0);

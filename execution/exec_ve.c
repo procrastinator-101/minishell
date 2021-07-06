@@ -38,7 +38,7 @@ static int	exec_check_slash(char *path, char **args)
 	if (ret == 0)
 	{
 		execve(path, args, listenvp_to_tab());
-		ret = print_error(path, strerror(errno), 126);
+		print_error(path, strerror(errno), 126);
 	}
 	else
 	{
@@ -48,9 +48,8 @@ static int	exec_check_slash(char *path, char **args)
 			print_error(path, "is a directory", 126);
 		else if (ret == -3)
 			print_error(path, "command not found", 127);
-		return (ret);
 	}
-	return (ret);
+	return (g_shell.scmd_status);
 }
 
 static int	exec_check_paths(t_scmd *scmd)

@@ -85,6 +85,7 @@ int	builtin(t_scmd  *scmd)
 {
 	if (scmd->args && scmd->args[0])
 	{
+		g_shell.scmd_status = 0;
 		if (!ft_strcmp(scmd->args[0], "echo"))	//done (I guess)
 			return (echo_built(scmd));
 		else if (!ft_strcmp(scmd->args[0], "cd"))	//done
