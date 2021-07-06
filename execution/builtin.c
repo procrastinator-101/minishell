@@ -19,7 +19,7 @@ char	*safe_dup(char *value)
 		ft_display_error_msg(0);
 		ft_putstr_fd("cd: error retrieving current directory: getcwd: cannot \
 access parent directories: No such file or directory\n", 2);
-		return (ft_strjoin(ft_envp_getvalue(g_shell.envp, "PWD"), "/."));
+		return (ft_strjoin(get_env_value("PWD"), "/."));
 	}
 	return (value);
 }
@@ -52,7 +52,7 @@ int	only_cd(char *path)
 		{
 			closedir(dd);
 			chdir(path);
-			ft_envp_setvalue(g_shell.envp, "OLDPWD", ft_strdup(ft_envp_getvalue(g_shell.envp, "PWD")));
+			ft_envp_setvalue(g_shell.envp, "OLDPWD", ft_strdup2(get_env_value("PWD")));
 			ft_envp_setvalue(g_shell.envp, "PWD", safe_dup(getcwd(NULL, 0)));
 		}
 	}
@@ -74,14 +74,12 @@ int	cd_built(t_scmd *scmd)
 		{
 			closedir(dd);
 			chdir(scmd->args[1]);
-			ft_envp_setvalue(g_shell.envp, "OLDPWD", ft_strdup(ft_envp_getvalue(g_shell.envp, "PWD")));
+			ft_envp_setvalue(g_shell.envp, "OLDPWD", ft_strdup2(get_env_value("PWD")));
 			ft_envp_setvalue(g_shell.envp, "PWD", safe_dup(getcwd(NULL, 0)));
 		}
 	}
 	return (0);
 }
-
-
 
 int	builtin(t_scmd  *scmd)
 {
@@ -94,7 +92,7 @@ int	builtin(t_scmd  *scmd)
 		else if (!ft_strcmp(scmd->args[0], "pwd"))	//done (I guess)
 			return (pwd_built(scmd));
 		else if (!ft_strcmp(scmd->args[0], "export"))
-			;
+			return (export_built(scmd));
 		else if (!ft_strcmp(scmd->args[0], "unset"))	//done
 			return (unset_built(scmd));
 		else if (!ft_strcmp(scmd->args[0], "env"))	//done (I guess)

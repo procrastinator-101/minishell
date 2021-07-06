@@ -61,3 +61,8 @@ int main ()
 // open(name, )
 // < sdg < sdg
 // while [ 1 ] ; do leaks minishell ; sleep 0.5 ; done
+
+// name 
+// name=
+// name=value
+

@@ -41,5 +41,10 @@ void	reset_in_out(void);
 int		exec_ve(t_scmd *scmd);
 int		print_error(char *path, char *er, int err_num);
 int		redirection_dup(t_redirection *redi);
+int		env_size(void);
+int		export_built(t_scmd *scmd);
+void	sort_table(char **table, int table_size);
+char	*ft_strdup2(const char *src);
+int		ft_isenv(char *name);
 
 #endif

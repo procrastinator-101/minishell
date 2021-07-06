@@ -12,6 +12,38 @@
 
 #include "execution.h"
 
+void	ft_set_isenv(char *name, int isenv)
+{
+	t_envp *env;
+
+	env = g_shell.envp;
+	while (env)
+	{
+		if (ft_strcmp(name, env->name) == 0)
+		{
+			env->isenv = isenv;
+			return ;
+		}
+		env = env->next;
+	}
+}
+
+int	ft_isenv(char *name)
+{
+	t_envp *env;
+
+	env = g_shell.envp;
+	while (env)
+	{
+		if (ft_strcmp(name, env->name) == 0)
+		{
+			return (env->isenv);
+		}
+		env = env->next;
+	}
+	return (2);
+}
+
 char	*get_env_value(char *name)
 {
 	t_envp *env;
@@ -36,13 +68,13 @@ int	env_built(t_scmd *scmd)
 	{
 		ft_display_error_msg(0);
 		ft_putstr_fd("env: No options or arguments allowed\n", 2);
-		g_shell.scmd_status = 1;	// to check
+		g_shell.scmd_status = 1;
 		return (1);
 	}
 	env = g_shell.envp;
 	while (env)
 	{
-		if (env->isenv == 1)
+		if (env->isenv == 1 && env->value)
 		{
 			ft_putstr_fd(env->name, 1);
 			ft_putstr_fd("=", 1);

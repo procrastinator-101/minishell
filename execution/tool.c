@@ -22,7 +22,7 @@ void	free_2d(char **tabl)
 	free(tabl);
 }
 
-int	ft_indexchr(const char *s, char a)
+int	ft_indexchr(const char *s, char a)	//unused
 {
 	int	i;
 	int	len;
@@ -116,3 +116,65 @@ int	tablen(char **tabl)
 		i++;
 	return (i);
 }
+
+int	env_size(void)
+{
+	t_envp	*env;
+	int		i;
+
+	env = g_shell.envp;
+	i = 0;
+	while (env)
+	{
+		i++;
+		env = env->next;
+	}
+	return (i);
+}
+
+void	sort_table(char **table, int table_size)
+{
+	char	*tmp;
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < table_size - 1)
+	{
+		j = i + 1;
+		while (j < table_size)
+		{
+			if (ft_strcmp(table[i], table[j]) > 0)
+			{
+				tmp = table[i];
+				table[i] = table[j];
+				table[j] = tmp;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+char	*ft_strdup2(const char *src)
+{
+	int		s;
+	char	*dest;
+	int		i;
+
+	if (src == NULL)
+		return (ft_strdup2(""));
+	i = 0;
+	s = 0;
+	while (src[s] != '\0')
+		s++;
+	if (!(dest = (char *)malloc(sizeof(dest) * (s + 1))))
+		return (NULL);
+	while (i <= s)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	return (dest);
+}
+

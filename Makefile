@@ -161,6 +161,7 @@ EXECUTION =	execution/builtin.c				\
 			execution/unset.c				\
 			execution/error.c				\
 			execution/redirections_tools.c	\
+			execution/export.c				\
 			execution/dup_tools.c
 
 SRC = $(FT_PARSER_SRC) $(FT_LEXER_SRC) $(FT_EXPAND_SRC) $(FT_ERROR_SRC) \
