@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 13:17:54 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/06 12:36:08 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/06 13:50:28 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 
 # include "../ft_error/ft_error.h"
 # include "../ft_lexer/ft_lexer.h"
+
+#include <readline/history.h>
+#include <readline/readline.h>
 
 # include "../libft/libft.h"
 # include "../ft_envp/ft_envp.h"

@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 13:03:04 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/05 16:46:45 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/06 13:44:24 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int main(int argc, char **argv, char **sys_envp)
 		line = readline(g_shell.prompt);
 		if (!line)
 			break ;
+		if (*line)
+			add_history(line);
 		error = ft_parser(line, ft_strlen(line) + 1);
 		if (error)
 			ft_manage_parsing_error(error);

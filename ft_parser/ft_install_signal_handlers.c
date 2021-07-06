@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 15:22:11 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/06 11:34:15 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/06 13:34:20 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 static void ft_handle_signal(int signal)
 {
-	if (signal)
+	if (signal == SIGINT)
 	{
-		rl_replace_line(g_shell.prompt, 0);
+		write(1, "\n", 1);
 		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
 	}
-	//write(1, "h\n", 2);
 }
 
 void	ft_install_signal_handlers(void)
