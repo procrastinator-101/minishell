@@ -6,7 +6,7 @@
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 18:30:25 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/06/30 18:30:27 by hhoummad         ###   ########.fr       */
+/*   Updated: 2021/07/06 18:01:13 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	run_infork(t_scmd *scmd)
 	}
 	else if (f_pid == 0)
 	{
+		ft_install_child_signal_handlers();
 		change_inout(scmd);
 		ex_st = builtin(scmd);
 		exit(ex_st);
@@ -64,12 +65,14 @@ int	run_infork(t_scmd *scmd)
 	if (!scmd->next)
 	{
 		ret = 0;
+		g_shell.ischild_signal = 1;
 		while (ret != -1)
 		{
 			ret = waitpid(-1, &tmp, 0);
 			if (ret == f_pid)
 				ex_st = tmp;
 		}
+		g_shell.ischild_signal = 0;
 	}
 	return (0);
 }
