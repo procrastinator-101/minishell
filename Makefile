@@ -6,7 +6,7 @@
 #    By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 21:04:47 by yarroubi          #+#    #+#              #
-#    Updated: 2021/07/06 13:55:19 by hhoummad         ###   ########.fr        #
+#    Updated: 2021/07/06 19:05:52 by yarroubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ FT_SUPPORT_FUNCTIONS_PATH = ft_support_functions
 FT_PARSER_SRC = $(FT_PARSER_PATH)/ft_cleanup.c \
 				$(FT_PARSER_PATH)/ft_get_cmd_tree.c \
 				$(FT_PARSER_PATH)/ft_initialise_shell.c \
-				$(FT_PARSER_PATH)/ft_install_signal_handlers.c \
+				$(FT_PARSER_PATH)/ft_install_child_signal_handlers.c \
+				$(FT_PARSER_PATH)/ft_install_parent_signal_handlers.c \
 				$(FT_PARSER_PATH)/ft_parser.c \
 				$(FT_PARSER_PATH)/ft_pipeline_extract_redirections.c \
 				$(FT_PARSER_PATH)/ft_pipeline_finalise.c \
