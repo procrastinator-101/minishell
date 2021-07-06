@@ -26,6 +26,8 @@ int		check_path(char *path);
 char	*get_env_value(char *name);
 void	free_2d(char **tabl);
 char	*join_free_s1(char *s1, char *s2);
+char	*join_free_all(char *s1, char *s2);
+char	*free_return(char *to_ret, char *to_free);
 int		ft_indexchr(const char *s, char a);
 int		builtin(t_scmd *scmd);
 char	**listenvp_to_tab(void);

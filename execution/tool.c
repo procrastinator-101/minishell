@@ -49,6 +49,27 @@ char	*join_free_s1(char *s1, char *s2)
 	return (str);
 }
 
+char	*join_free_all(char *s1, char *s2)
+{
+	char	*str;
+
+	str = ft_strjoin(s1, s2);
+	if (!str)
+	{
+		print_error("MALLOC", strerror(errno), 1);
+		ft_manage_parsing_error(0);
+	}
+	free(s1);
+	free(s2);
+	return (str);
+}
+
+char	*free_return(char *to_ret, char *to_free)
+{
+	free(to_free);
+	return (to_ret);
+}
+
 char	**listenvp_to_tab(void)
 {
 	char	*line;

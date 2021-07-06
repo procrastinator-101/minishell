@@ -20,6 +20,26 @@ static void	redi_dup2(t_redirection *redi, int fd)
 		dup2(fd, STDIN_FILENO);
 }
 
+static char	*found_dollar(char *str, char *tmp, int i, int j)
+{
+	if (str[i] == '?')
+	{
+		tmp = ft_itoa(g_shell.scmd_status);
+		i++;
+	}
+	else
+	{
+		while (str && str[i] && str[i] != ' ' && str[i] != '$' && str[i] != '"'
+			&& str[i] != '\'' && str[i] != ';')
+			i++;
+		tmp = ft_substr(str, j, i - j);
+		tmp = free_return(ft_strdup(get_env_value(tmp)), tmp);
+	}
+	tmp = join_free_all(ft_substr(str, 0, j - 1), tmp);
+	tmp = join_free_all(tmp, ft_substr(str, i, ft_strlen(str)));
+	return (tmp);
+}
+
 static char	*check_dollar(char *str)
 {
 	int		i;
@@ -27,26 +47,16 @@ static char	*check_dollar(char *str)
 	char	*tmp;
 
 	i = 0;
-	while (str[i])
+	while (str && str[i])
 	{
-		if (str[i] == '$' && str[i + 1] && str[i + 1] != ' ' && str[i + 1] != '$' && str[i + 1] != '"' && str[i + 1] != '\'')	//check leacks //$?
+		if (str[i] == '$' && str[i + 1] && str[i + 1] != ' '
+			&& str[i + 1] != '$' && str[i + 1] != '"'
+			&& str[i + 1] != '\'' && str[i + 1] != ';')
 		{
-			// printf("**%s\n", str);
 			i++;
 			j = i;
-			while (str[i] && str[i] != ' ' && str[i] != '$')
-				i++;
-			tmp = ft_substr(str, j, i - j);
-			// printf("1 %s| %d j=%d\n", tmp, i, j);
-			tmp = get_env_value(tmp);
-			// printf("2 %s\n", tmp);
-			tmp = ft_strjoin(ft_substr(str, 0, j - 1), tmp);
-			// printf("3 %s\n", tmp);
-			tmp = ft_strjoin(tmp, ft_substr(str, i, ft_strlen(str)));
-			// printf("4 %s\n", tmp);
-			// printf("..\n");
-			i = j;
-			str = tmp;
+			tmp = found_dollar(str, tmp, i, j);
+			str = free_return(tmp, str);
 			continue ;
 		}
 		i++;
@@ -62,10 +72,7 @@ static int	here_doc_red(t_redirection *redi)
 	dup2(g_shell.def_out, STDOUT_FILENO);
 	fd = open("/tmp/tmp_hdoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd < 0)
-	{
-		print_error("/tmp/tmp_hdoc", strerror(errno), 1);
-		return (1);
-	}
+		return (print_error("/tmp/tmp_hdoc", strerror(errno), 1));
 	while (1)
 	{
 		line = readline("> ");
@@ -97,7 +104,7 @@ int	redirection_dup(t_redirection *redi)
 		else if (redi->type == DBR_RDC)
 			fd = open(redi->right_operand, O_CREAT | O_APPEND | O_WRONLY, 0644);
 		else if (redi->type == L_RDC)
-		 	fd = open(redi->right_operand, O_RDONLY);
+			fd = open(redi->right_operand, O_RDONLY);
 		else if (redi->type == DBL_RDC)
 			return (here_doc_red(redi));
 		if (fd < 0)

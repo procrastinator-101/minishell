@@ -38,17 +38,27 @@ static int	which_cmd(t_scmd *scmd)
 
 void	start_execution(t_pipeline *pipeline)
 {
-	int		cmd_n;
+	int			cmd_n;
+	t_scmd		*scmd;
+	t_pipeline	*head;
 
 	def_in_out();
-	while (pipeline && pipeline->scmd)
+	head = pipeline;
+	while (head)
 	{
-		cmd_n = which_cmd(pipeline->scmd);
-		if (!pipeline->scmd->previous && !pipeline->scmd->next)
-			run_normal(pipeline->scmd, cmd_n);
-		else
-			run_infork(pipeline->scmd);
-		pipeline->scmd = pipeline->scmd->next;
-		reset_in_out();
+		scmd = head->scmd;
+		while (scmd)
+		{
+			cmd_n = which_cmd(scmd);
+			if (!scmd->previous && !scmd->next)
+				run_normal(scmd, cmd_n);
+			else
+				run_infork(scmd);
+			scmd = scmd->next;
+			reset_in_out();
+		}
+		head = head->next;
 	}
+	g_shell.pipeline_status = g_shell.scmd_status;
+	ft_pipeline_clear(&pipeline);
 }
