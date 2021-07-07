@@ -33,3 +33,15 @@ int	print_error_2(char *path, char *data, char *er, int err_num)
 	g_shell.scmd_status = err_num;
 	return (1);
 }
+
+int	print_error_3(char *path, char *data, char *er, int err_num)
+{
+	ft_display_error_msg(0);
+	ft_putstr_fd(path, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(data, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putendl_fd(er, 2);
+	g_shell.scmd_status = err_num;
+	return (1);
+}

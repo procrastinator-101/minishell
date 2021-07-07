@@ -1,30 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _pwd.c                                             :+:      :+:    :+:   */
+/*   ft_protect_tools.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/12 12:44:26 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/07/07 17:19:38 by hhoummad         ###   ########.fr       */
+/*   Created: 2021/07/07 17:55:22 by hhoummad          #+#    #+#             */
+/*   Updated: 2021/07/07 17:55:24 by hhoummad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
 
-int	pwd_built(t_scmd *scmd)
+char	*catch_null_ordup(char *str)
 {
-	char	*pwd;
+	if (str)
+		return (ft_strdup2(str));
+	return (str);
+}
 
-	if (check_options(scmd) == 1)
-		return (1);
-	pwd = getcwd(NULL, 0);
-	if (!pwd)
+char	*ft_strdup2(const char *src)
+{
+	int		s;
+	char	*dest;
+	int		i;
+
+	if (src == NULL)
+		return (ft_strdup2(""));
+	i = 0;
+	s = 0;
+	while (src[s] != '\0')
+		s++;
+	dest = (char *)malloc(sizeof(dest) * (s + 1));
+	if (!dest)
+		return (NULL);
+	while (i <= s)
 	{
-		pwd = ft_strdup2(get_env_value("PWD"));
+		dest[i] = src[i];
+		i++;
 	}
-	ft_putstr_fd(pwd, 1);
-	ft_putstr_fd("\n", 1);
-	free(pwd);
-	return (0);
+	return (dest);
 }

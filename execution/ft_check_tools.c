@@ -1,30 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   _pwd.c                                             :+:      :+:    :+:   */
+/*   ft_check_tools.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/12 12:44:26 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/07/07 17:19:38 by hhoummad         ###   ########.fr       */
+/*   Created: 2021/07/07 17:53:07 by hhoummad          #+#    #+#             */
+/*   Updated: 2021/07/07 17:53:09 by hhoummad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
 
-int	pwd_built(t_scmd *scmd)
+int	check_options(t_scmd *scmd)
 {
-	char	*pwd;
+	int	i;
 
-	if (check_options(scmd) == 1)
-		return (1);
-	pwd = getcwd(NULL, 0);
-	if (!pwd)
+	i = 1;
+	while (scmd->args[i])
 	{
-		pwd = ft_strdup2(get_env_value("PWD"));
+		if (scmd->args[i][0] == '-' && scmd->args[i][1] != '\0')
+		{
+			print_error_3(scmd->args[0], scmd->args[i],
+				": Options not allowed", 1);
+			return (1);
+		}
+		i++;
 	}
-	ft_putstr_fd(pwd, 1);
-	ft_putstr_fd("\n", 1);
-	free(pwd);
+	return (0);
+}
+
+int	look_for_equal(char *data)
+{
+	int	i;
+
+	i = 0;
+	while (data[i])
+	{
+		if (data[i] == '=')
+			return (i);
+		i++;
+	}
 	return (0);
 }

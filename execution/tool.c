@@ -12,16 +12,6 @@
 
 #include "execution.h"
 
-void	free_2d(char **tabl)
-{
-	int	i;
-
-	i = 0;
-	while (tabl[i])
-		free(tabl[i++]);
-	free(tabl);
-}
-
 int	ft_indexchr(const char *s, char a)	//unused
 {
 	int	i;
@@ -33,48 +23,6 @@ int	ft_indexchr(const char *s, char a)	//unused
 		if (s[i] == a)
 			return (i);
 	return (i);
-}
-
-char	*join_free_s1(char *s1, char *s2)
-{
-	char	*str;
-
-	str = ft_strjoin(s1, s2);
-	if (!str)
-	{
-		print_error("MALLOC", strerror(errno), 1);
-		ft_manage_parsing_error(0);
-	}
-	free(s1);
-	return (str);
-}
-
-char	*join_free_all(char *s1, char *s2)
-{
-	char	*str;
-
-	str = ft_strjoin(s1, s2);
-	if (!str)
-	{
-		print_error("MALLOC", strerror(errno), 1);
-		ft_manage_parsing_error(0);
-	}
-	free(s1);
-	free(s2);
-	return (str);
-}
-
-char	*free_return(char *to_ret, char *to_free)
-{
-	free(to_free);
-	return (to_ret);
-}
-
-char	*catch_null_ordup(char *str)
-{
-	if (str)
-		return (ft_strdup2(str));
-	return (str);
 }
 
 char	**listenvp_to_tab(void)
@@ -164,40 +112,4 @@ void	sort_table(char **table, int table_size)
 		}
 		i++;
 	}
-}
-
-char	*ft_strdup2(const char *src)
-{
-	int		s;
-	char	*dest;
-	int		i;
-
-	if (src == NULL)
-		return (ft_strdup2(""));
-	i = 0;
-	s = 0;
-	while (src[s] != '\0')
-		s++;
-	if (!(dest = (char *)malloc(sizeof(dest) * (s + 1))))
-		return (NULL);
-	while (i <= s)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	return (dest);
-}
-
-int	look_for_equal(char *data)
-{
-	int	i;
-
-	i = 0;
-	while (data[i])
-	{
-		if (data[i] == '=')
-			return (i);
-		i++;
-	}
-	return (0);
 }

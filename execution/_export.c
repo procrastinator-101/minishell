@@ -106,6 +106,9 @@ int	export_built(t_scmd *scmd)
 	if (tablen(scmd->args) == 1)
 		export_only(env_size());
 	else
-		export_with_args(scmd);
+	{
+		if (check_options(scmd) == 0)
+			export_with_args(scmd);
+	}
 	return (g_shell.scmd_status);
 }

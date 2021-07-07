@@ -157,6 +157,9 @@ EXECUTION =	execution/builtin.c				\
 			execution/_pwd.c				\
 			execution/_export.c				\
 			execution/_unset.c				\
+			execution/ft_anti_leak_tools.c	\
+			execution/ft_check_tools.c		\
+			execution/ft_protect_tools.c	\
 			execution/tool.c				\
 			execution/exec_ve.c				\
 			execution/start_execution.c		\
