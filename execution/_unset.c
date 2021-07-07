@@ -43,20 +43,15 @@ static int	check_if_same(t_scmd *scmd, char *name)
 	return (0);
 }
 
-static int	check_options(t_scmd *scmd)
+static int	check_args(char	**data)
 {
 	int	i;
 
 	i = 1;
-	while (scmd->args[i])
+	while (data[i])
 	{
-		if (scmd->args[i][0] == '-')
-		{
-			ft_display_error_msg(0);
-			ft_putstr_fd("unset: Options not allowed\n", 2);
-			g_shell.scmd_status = 1;	// to check
-			return (1);
-		}
+		if (ft_isname(data[i]) == 0)
+			print_error_2(data[0], data[i], "not a valid identifier", 1);
 		i++;
 	}
 	return (0);
@@ -67,7 +62,7 @@ int	unset_built(t_scmd *scmd)
 	t_envp	*head;
 
 	head = g_shell.envp;
-	if (check_options(scmd) == 1)
+	if (check_options(scmd) == 1 || check_args(scmd->args))
 		return (1);
 	while (g_shell.envp)
 	{

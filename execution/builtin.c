@@ -12,19 +12,19 @@
 
 #include "execution.h"
 
-int	exit_built(t_scmd *scmd)
-{
-	if (tablen(scmd->args) == 2)
-	{
-		// % 256
-		// if no arg use g_sell.pipelinestatus
-	}
-	else
-	{
-		// if first num : exit: too many arguments // do nothing // $? 1
-		// else exit: --456: numeric argument required // exit // $? 255
-	}
-}
+// int	exit_built(t_scmd *scmd)
+// {
+// 	if (tablen(scmd->args) == 2)
+// 	{
+// 		// % 256
+// 		// if no arg use g_sell.pipelinestatus
+// 	}
+// 	else
+// 	{
+// 		// if first num : exit: too many arguments // do nothing // $? 1
+// 		// else exit: --456: numeric argument required // exit // $? 255
+// 	}
+// }
 
 int	builtin(t_scmd *scmd)
 {
