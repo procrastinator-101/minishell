@@ -51,5 +51,6 @@ int 	print_error_2(char *path, char *data, char *er, int err_num);
 char	*catch_null_ordup(char *str);
 void	catch_child_proc_exit_status(int wstatus);
 int		look_for_equal(char *data);
+int		cd_built(t_scmd *scmd);
 
 #endif

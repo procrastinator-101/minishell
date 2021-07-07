@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 21:04:47 by yarroubi          #+#    #+#              #
-#    Updated: 2021/07/06 19:05:52 by yarroubi         ###   ########.fr        #
+#    Updated: 2021/07/07 17:22:22 by hhoummad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -151,18 +151,19 @@ FT_SUPPORT_FUNCTIONS_SRC = $(FT_SUPPORT_FUNCTIONS_PATH)/ft_append_character.c \
 						   $(FT_SUPPORT_FUNCTIONS_PATH)/ft_traverse_spaces.c
 
 EXECUTION =	execution/builtin.c				\
-			execution/env.c					\
+			execution/_env.c				\
+			execution/_cd.c					\
+			execution/_echo.c				\
+			execution/_pwd.c				\
+			execution/_export.c				\
+			execution/_unset.c				\
 			execution/tool.c				\
-			execution/echo.c				\
 			execution/exec_ve.c				\
-			execution/pwd.c					\
 			execution/start_execution.c		\
 			execution/run_normal.c			\
 			execution/run_infork.c			\
-			execution/unset.c				\
 			execution/error.c				\
 			execution/redirections_tools.c	\
-			execution/export.c				\
 			execution/dup_tools.c
 
 SRC = $(FT_PARSER_SRC) $(FT_LEXER_SRC) $(FT_EXPAND_SRC) $(FT_ERROR_SRC) \
