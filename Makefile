@@ -181,7 +181,7 @@ INCLUDES = /Users/$(USER)/.brew/opt/readline/include
 all: $(NAME)
 
 $(NAME):$(OBJ) $(LIBFT)
-	@$(CC) -o $@ $(OBJ) $(LIBFT) -lreadline -L $(LIBS) -I$(INCLUDES)
+	@$(CC) -o $@ $(OBJ) $(LIBFT)  -fsanitize=address -g -lreadline -L $(LIBS) -I$(INCLUDES)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -o $@ -c $< -I$(INCLUDES)

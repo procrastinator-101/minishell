@@ -43,7 +43,6 @@ int	run_infork(t_scmd *scmd)
 {
 	pid_t	f_pid;
 	pid_t	ret;
-	int		tmp;
 	int		ex_st;
 
 	pipe(scmd->pipe);
@@ -68,9 +67,9 @@ int	run_infork(t_scmd *scmd)
 		g_shell.ischild_signal = 1;
 		while (ret != -1)
 		{
-			ret = waitpid(-1, &tmp, 0);
+			ret = waitpid(-1, &ex_st, 0);
 			if (ret == f_pid)
-				ex_st = tmp;
+				catch_child_proc_exit_status(ex_st);
 		}
 		g_shell.ischild_signal = 0;
 	}

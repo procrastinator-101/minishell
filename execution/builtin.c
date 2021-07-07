@@ -31,6 +31,7 @@ int	cd_error(char *path)
 	ft_putstr_fd(path, 2);
 	ft_putstr_fd(": ", 2);
 	ft_putendl_fd(strerror(errno), 2);
+	g_shell.scmd_status = 1;
 	return (1);
 }
 
@@ -92,7 +93,7 @@ int	builtin(t_scmd  *scmd)
 			return (cd_built(scmd));
 		else if (!ft_strcmp(scmd->args[0], "pwd"))	//done (I guess)
 			return (pwd_built(scmd));
-		else if (!ft_strcmp(scmd->args[0], "export"))
+		else if (!ft_strcmp(scmd->args[0], "export"))	//done (I guess)
 			return (export_built(scmd));
 		else if (!ft_strcmp(scmd->args[0], "unset"))	//done
 			return (unset_built(scmd));

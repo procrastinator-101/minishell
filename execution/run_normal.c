@@ -12,6 +12,25 @@
 
 #include "execution.h"
 
+void	catch_child_proc_exit_status(int wstatus)
+{
+	int	signal;
+
+	if (WIFEXITED(wstatus))
+		g_shell.scmd_status = WEXITSTATUS(wstatus);
+	else if (WIFSIGNALED(wstatus))
+	{
+		signal = WTERMSIG(wstatus);
+		if (signal == SIGQUIT)
+		{
+			ft_putstr_fd("Quit: ", 2);
+			ft_putnbr_fd(signal, 2);
+			ft_putstr_fd("\n", 2);
+		}
+		g_shell.scmd_status = signal + 128;
+	}
+}
+
 int	run_normal(t_scmd *scmd, int cmd_n)
 {
 	pid_t	f_pid;
@@ -43,7 +62,7 @@ int	run_normal(t_scmd *scmd, int cmd_n)
 			g_shell.ischild_signal = 1;
 			waitpid(f_pid, &status, 0);
 			g_shell.ischild_signal = 0;
-			// catch exit status
+			catch_child_proc_exit_status(status);
 		}
 	}
 	return (0);

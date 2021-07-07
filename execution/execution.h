@@ -49,5 +49,7 @@ int		ft_isenv(char *name);
 void	ft_set_isenv(char *name, int isenv);
 int 	print_error_2(char *path, char *data, char *er, int err_num);
 char	*catch_null_ordup(char *str);
+void	catch_child_proc_exit_status(int wstatus);
+int		look_for_equal(char *data);
 
 #endif

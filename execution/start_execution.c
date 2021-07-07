@@ -61,8 +61,8 @@ void	start_execution(t_pipeline *pipeline)
 			scmd = scmd->next;
 			reset_in_out();
 		}
-		if (ret && WIFSIGNALED(ret))
-			write(1, "\n", 1);
+		// if (ret && WIFSIGNALED(ret)) 				// try rdfg < rsgf // you will get an extra "/n"
+		// 	write(1, "\n", 1);
 		head = head->next;
 		g_shell.pipeline_status = g_shell.scmd_status;
 	}

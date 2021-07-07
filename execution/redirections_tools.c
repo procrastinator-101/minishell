@@ -76,7 +76,7 @@ static int	here_doc_red(t_redirection *redi)
 	while (1)
 	{
 		line = readline("> ");
-		if (!ft_strcmp(line, redi->right_operand))
+		if (line && !ft_strcmp(line, redi->right_operand))
 		{
 			free(line);
 			break ;
@@ -87,6 +87,8 @@ static int	here_doc_red(t_redirection *redi)
 	}
 	close(fd);
 	fd = open("/tmp/tmp_hdoc", O_RDONLY);
+	if (fd < 0)
+		return (print_error("/tmp/tmp_hdoc", strerror(errno), 1));
 	dup2(fd, STDIN_FILENO);
 	close(fd);
 	return (0);

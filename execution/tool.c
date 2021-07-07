@@ -188,3 +188,16 @@ char	*ft_strdup2(const char *src)
 	return (dest);
 }
 
+int	look_for_equal(char *data)
+{
+	int	i;
+
+	i = 0;
+	while (data[i])
+	{
+		if (data[i] == '=')
+			return (i);
+		i++;
+	}
+	return (0);
+}
