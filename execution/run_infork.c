@@ -12,17 +12,25 @@
 
 #include "execution.h"
 
+static void	close_inout_child(t_scmd *scmd)
+{
+	if (scmd->previous)
+		close(scmd->previous->pipe[0]);
+	close(scmd->pipe[0]);
+	close(scmd->pipe[1]);
+}
+
 static void	change_inout(t_scmd *scmd)
 {
 	if (scmd->previous)
 	{
 		dup2(scmd->previous->pipe[0], STDIN_FILENO);
-		close(scmd->previous->pipe[0]);
+		// close(scmd->previous->pipe[0]);
 	}
 	if (scmd->next)
 		dup2(scmd->pipe[1], STDOUT_FILENO);
-	close(scmd->pipe[0]);
-	close(scmd->pipe[1]);
+	// close(scmd->pipe[0]);
+	// close(scmd->pipe[1]);
 	if (scmd->redirections)
 	{
 		if (redirection_dup(scmd->redirections) == 1)
@@ -59,6 +67,7 @@ int	run_infork(t_scmd *scmd)
 	else if (f_pid == 0)
 	{
 		ft_install_child_signal_handlers();
+		close_inout_child(scmd);
 		ex_st = builtin(scmd);
 		exit(ex_st);
 	}

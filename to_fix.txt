@@ -4,3 +4,4 @@ heredoc
 ^C
 test leak
 norm
+^C should kill all childs pro
