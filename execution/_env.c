@@ -14,7 +14,7 @@
 
 void	ft_set_isenv(char *name, int isenv)
 {
-	t_envp *env;
+	t_envp	*env;
 
 	env = g_shell.envp;
 	while (env)
@@ -30,7 +30,7 @@ void	ft_set_isenv(char *name, int isenv)
 
 int	ft_isenv(char *name)
 {
-	t_envp *env;
+	t_envp	*env;
 
 	env = g_shell.envp;
 	while (env)
@@ -46,7 +46,7 @@ int	ft_isenv(char *name)
 
 char	*get_env_value(char *name)
 {
-	t_envp *env;
+	t_envp	*env;
 
 	env = g_shell.envp;
 	while (env)
@@ -62,7 +62,7 @@ char	*get_env_value(char *name)
 
 int	env_built(t_scmd *scmd)
 {
-	t_envp *env;
+	t_envp	*env;
 
 	if (tablen(scmd->args) != 1)
 	{

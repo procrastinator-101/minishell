@@ -19,10 +19,7 @@ int	run_normal(t_scmd *scmd, int cmd_n)
 	int		status;
 
 	if (redirection_dup(scmd->redirections) == 1)
-	{
-		g_shell.scmd_status = 1;
 		return (1);
-	}
 	if (cmd_n > 0)
 		builtin(scmd);
 	else

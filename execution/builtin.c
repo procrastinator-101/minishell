@@ -12,41 +12,27 @@
 
 #include "execution.h"
 
-// int	exit_built(t_scmd *scmd)
-// {
-// 	if (tablen(scmd->args) == 2)
-// 	{
-// 		// % 256
-// 		// if no arg use g_sell.pipelinestatus
-// 	}
-// 	else
-// 	{
-// 		// if first num : exit: too many arguments // do nothing // $? 1
-// 		// else exit: --456: numeric argument required // exit // $? 255
-// 	}
-// }
-
 int	builtin(t_scmd *scmd)
 {
 	if (scmd->args && scmd->args[0])
 	{
 		g_shell.scmd_status = 0;
-		if (!ft_strcmp(scmd->args[0], "echo"))	//done (I guess)
+		if (!ft_strcmp(scmd->args[0], "echo"))
 			return (echo_built(scmd));
-		else if (!ft_strcmp(scmd->args[0], "cd"))	//done
+		else if (!ft_strcmp(scmd->args[0], "cd"))
 			return (cd_built(scmd));
-		else if (!ft_strcmp(scmd->args[0], "pwd"))	//done (I guess)
+		else if (!ft_strcmp(scmd->args[0], "pwd"))
 			return (pwd_built(scmd));
-		else if (!ft_strcmp(scmd->args[0], "export"))	//done (I guess)
+		else if (!ft_strcmp(scmd->args[0], "export"))
 			return (export_built(scmd));
-		else if (!ft_strcmp(scmd->args[0], "unset"))	//done
+		else if (!ft_strcmp(scmd->args[0], "unset"))
 			return (unset_built(scmd));
-		else if (!ft_strcmp(scmd->args[0], "env"))	//done (I guess)
+		else if (!ft_strcmp(scmd->args[0], "env"))
 			return (env_built(scmd));
 		else if (!ft_strcmp(scmd->args[0], "exit"))
-			;
+			return (exit_built(scmd));
 		else
-			return (exec_ve(scmd));	//done (I guess)
+			return (exec_ve(scmd));
 	}
 	return (0);
 }

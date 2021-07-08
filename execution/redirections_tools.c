@@ -68,7 +68,9 @@ static int	here_doc_red(t_redirection *redi)
 {
 	char	*line;
 	int		fd;
+	int		out;
 
+	out = dup(STDOUT_FILENO);
 	dup2(g_shell.def_out, STDOUT_FILENO);
 	fd = open("/tmp/tmp_hdoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd < 0)
@@ -76,6 +78,8 @@ static int	here_doc_red(t_redirection *redi)
 	while (1)
 	{
 		line = readline("> ");
+		if (!line)
+			break ;
 		if (line && !ft_strcmp(line, redi->right_operand))
 		{
 			free(line);
@@ -90,6 +94,7 @@ static int	here_doc_red(t_redirection *redi)
 	if (fd < 0)
 		return (print_error("/tmp/tmp_hdoc", strerror(errno), 1));
 	dup2(fd, STDIN_FILENO);
+	dup2(out, STDOUT_FILENO);
 	close(fd);
 	return (0);
 }

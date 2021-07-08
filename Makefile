@@ -153,25 +153,26 @@ FT_SUPPORT_FUNCTIONS_SRC = $(FT_SUPPORT_FUNCTIONS_PATH)/ft_append_character.c \
 						   $(FT_SUPPORT_FUNCTIONS_PATH)/ft_strnappend.c \
 						   $(FT_SUPPORT_FUNCTIONS_PATH)/ft_traverse_spaces.c
 
-EXECUTION_SRC =	$(EXECUTION_PATH)/_cd.c \
-			$(EXECUTION_PATH)/_echo.c \
-			$(EXECUTION_PATH)/_env.c \
-			$(EXECUTION_PATH)/_export.c \
-			$(EXECUTION_PATH)/_pwd.c \
-			$(EXECUTION_PATH)/_unset.c \
-			$(EXECUTION_PATH)/builtin.c \
-			$(EXECUTION_PATH)/catch_child_exitstatus.c \
-			$(EXECUTION_PATH)/dup_tools.c \
-			$(EXECUTION_PATH)/error.c \
-			$(EXECUTION_PATH)/exec_ve.c \
-			$(EXECUTION_PATH)/ft_anti_leak_tools.c \
-			$(EXECUTION_PATH)/ft_check_tools.c \
-			$(EXECUTION_PATH)/ft_manage_signal_output.c \
-			$(EXECUTION_PATH)/ft_protect_tools.c \
-			$(EXECUTION_PATH)/redirections_tools.c \
-			$(EXECUTION_PATH)/run_infork.c \
-			$(EXECUTION_PATH)/run_normal.c \
-			$(EXECUTION_PATH)/start_execution.c \
+EXECUTION_SRC =	$(EXECUTION_PATH)/_cd.c					\
+			$(EXECUTION_PATH)/_echo.c					\
+			$(EXECUTION_PATH)/_env.c					\
+			$(EXECUTION_PATH)/_export.c					\
+			$(EXECUTION_PATH)/_pwd.c					\
+			$(EXECUTION_PATH)/_unset.c					\
+			$(EXECUTION_PATH)/_exit.c					\
+			$(EXECUTION_PATH)/builtin.c					\
+			$(EXECUTION_PATH)/catch_child_exitstatus.c	\
+			$(EXECUTION_PATH)/dup_tools.c				\
+			$(EXECUTION_PATH)/error.c					\
+			$(EXECUTION_PATH)/exec_ve.c					\
+			$(EXECUTION_PATH)/ft_anti_leak_tools.c		\
+			$(EXECUTION_PATH)/ft_check_tools.c			\
+			$(EXECUTION_PATH)/ft_manage_signal_output.c	\
+			$(EXECUTION_PATH)/ft_protect_tools.c		\
+			$(EXECUTION_PATH)/redirections_tools.c		\
+			$(EXECUTION_PATH)/run_infork.c				\
+			$(EXECUTION_PATH)/run_normal.c				\
+			$(EXECUTION_PATH)/start_execution.c			\
 			$(EXECUTION_PATH)/tool.c
 
 SRC = $(EXECUTION_SRC) $(FT_PARSER_SRC) $(FT_LEXER_SRC) $(FT_EXPAND_SRC) \

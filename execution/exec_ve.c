@@ -83,5 +83,5 @@ int	exec_ve(t_scmd *scmd)
 		else
 			return (exec_check_paths(scmd));
 	}
-	return (1);
+	return (0);
 }
