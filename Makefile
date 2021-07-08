@@ -6,7 +6,7 @@
 #    By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 21:04:47 by yarroubi          #+#    #+#              #
-#    Updated: 2021/07/08 13:33:37 by yarroubi         ###   ########.fr        #
+#    Updated: 2021/07/08 16:02:18 by yarroubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,9 @@ FT_PARSER_SRC = $(FT_PARSER_PATH)/ft_cleanup.c \
 				$(FT_PARSER_PATH)/ft_pipeline_finalise.c \
 				$(FT_PARSER_PATH)/ft_pipeline_getargs.c \
 				$(FT_PARSER_PATH)/ft_scmd_extract_redirections.c \
+				$(FT_PARSER_PATH)/ft_scmd_finalise.c \
 				$(FT_PARSER_PATH)/ft_scmd_getargs.c \
+				$(FT_PARSER_PATH)/ft_terminate.c \
 				$(FT_PARSER_PATH)/ft_tokens_to_pipeline.c \
 				$(FT_PARSER_PATH)/ft_tokens_to_scmd.c \
 				$(FT_PARSER_PATH)/main.c
@@ -180,7 +182,7 @@ SRC = $(EXECUTION_SRC) $(FT_PARSER_SRC) $(FT_LEXER_SRC) $(FT_EXPAND_SRC) \
 OBJ = $(SRC:.c=.o)
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS = -Wall -Werror -Wextra #-fsanitize=address -g
 
 LIBS = /Users/$(USER)/.brew/opt/readline/lib
 INCLUDES = /Users/$(USER)/.brew/opt/readline/include

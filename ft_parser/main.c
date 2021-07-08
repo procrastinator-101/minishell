@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 13:03:04 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/08 11:57:06 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/08 15:02:26 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ int	main(int argc, char **argv, char **sys_envp)
 			ft_manage_parsing_error(error);
 		free(line);
 	}
-	ft_cleanup();
-	return (EXIT_SUCCESS);
+	ft_terminate();
+	return (0);
 }

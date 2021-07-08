@@ -6,7 +6,7 @@
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 11:33:39 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/07/08 13:26:39 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/08 16:01:35 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ int		echo_built(t_scmd *scmd);
 int		unset_built(t_scmd *scmd);
 int		export_built(t_scmd *scmd);
 
+int		run_infork(t_scmd *scmd);
+int		run_normal(t_scmd *scmd, int cmd_n);
+int		start_execution(t_pipeline *pipeline);
+
 int		env_size(void);
 int		ft_isenv(char *name);
 int		check_path(char *path);
@@ -42,10 +46,6 @@ char	**listenvp_to_tab(void);
 char	*tab_to_line(char **tabl);
 int		ft_indexchr(const char *s, char a);
 void	sort_table(char **table, int table_size);
-
-int		run_infork(t_scmd *scmd);
-int		run_normal(t_scmd *scmd, int cmd_n);
-void	start_execution(t_pipeline *pipeline);
 
 void	def_in_out(void);
 void	reset_in_out(void);

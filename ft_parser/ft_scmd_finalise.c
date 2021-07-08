@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parser.c                                        :+:      :+:    :+:   */
+/*   ft_scmd_finalise.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/31 21:08:22 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/08 16:10:08 by yarroubi         ###   ########.fr       */
+/*   Created: 2021/07/08 15:55:07 by yarroubi          #+#    #+#             */
+/*   Updated: 2021/07/08 15:59:45 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
-int	ft_parser(char *line, int size)
+int	ft_scmd_finalise(t_scmd *scmd)
 {
-	int			error;
-	t_token		*tokens;
-	t_pipeline	*pipelines;
+	int	error;
 
-	tokens = ft_lexer(line, size, &error);
+	error = ft_expand_scmd(scmd);
 	if (error)
 		return (error);
-	pipelines = ft_get_cmd_tree(tokens, &error);
+	error = ft_scmd_extract_redirections(scmd);
 	if (error)
 		return (error);
-	error = start_execution(pipelines);
-	return (error);
+	return (ft_scmd_getargs(scmd));
 }

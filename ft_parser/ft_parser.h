@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 17:04:54 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/06 17:05:57 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/08 15:59:43 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # include "../execution/execution.h"
 
 void		ft_cleanup(void);
+void		ft_terminate(void);
 void		ft_initialise_shell(char **argv, char **sys_envp);
 
 void		ft_install_child_signal_handlers(void);
@@ -55,6 +56,7 @@ int			ft_parser(char *line, int size);
 int			ft_pipeline_finalise(t_pipeline *pipeline);
 
 int			ft_scmd_getargs(t_scmd *scmd);
+int			ft_scmd_finalise(t_scmd *scmd);
 int			ft_pipeline_getargs(t_pipeline *pipeline);
 
 int			ft_scmd_extract_redirections(t_scmd *scmd);

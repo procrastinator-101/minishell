@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parser.c                                        :+:      :+:    :+:   */
+/*   ft_terminate.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/31 21:08:22 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/08 16:10:08 by yarroubi         ###   ########.fr       */
+/*   Created: 2021/07/08 14:59:25 by yarroubi          #+#    #+#             */
+/*   Updated: 2021/07/08 15:50:53 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
-int	ft_parser(char *line, int size)
+void	ft_terminate(void)
 {
-	int			error;
-	t_token		*tokens;
-	t_pipeline	*pipelines;
-
-	tokens = ft_lexer(line, size, &error);
-	if (error)
-		return (error);
-	pipelines = ft_get_cmd_tree(tokens, &error);
-	if (error)
-		return (error);
-	error = start_execution(pipelines);
-	return (error);
+	rl_redisplay();
+	rl_on_new_line();
+	ft_cleanup();
+	exit(EXIT_SUCCESS);
 }
