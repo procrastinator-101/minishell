@@ -6,34 +6,16 @@
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 18:16:05 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/07/06 18:01:05 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/08 13:43:41 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
 
-void	catch_child_proc_exit_status(int wstatus)
-{
-	int	signal;
-
-	if (WIFEXITED(wstatus))
-		g_shell.scmd_status = WEXITSTATUS(wstatus);
-	else if (WIFSIGNALED(wstatus))
-	{
-		signal = WTERMSIG(wstatus);
-		if (signal == SIGQUIT)
-		{
-			ft_putstr_fd("Quit: ", 2);
-			ft_putnbr_fd(signal, 2);
-			ft_putstr_fd("\n", 2);
-		}
-		g_shell.scmd_status = signal + 128;
-	}
-}
-
 int	run_normal(t_scmd *scmd, int cmd_n)
 {
 	pid_t	f_pid;
+	int		signal;
 	int		status;
 
 	if (redirection_dup(scmd->redirections) == 1)
@@ -62,7 +44,8 @@ int	run_normal(t_scmd *scmd, int cmd_n)
 			g_shell.ischild_signal = 1;
 			waitpid(f_pid, &status, 0);
 			g_shell.ischild_signal = 0;
-			catch_child_proc_exit_status(status);
+			signal = catch_child_exitstatus(status, f_pid, f_pid);
+			ft_manage_signal_output(signal);
 		}
 	}
 	return (0);

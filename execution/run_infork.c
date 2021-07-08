@@ -6,7 +6,7 @@
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 18:30:25 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/07/06 18:01:13 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/08 13:43:43 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	run_infork(t_scmd *scmd)
 	pid_t	f_pid;
 	pid_t	ret;
 	int		ex_st;
+	int		signal;
 
 	pipe(scmd->pipe);
 	ex_st = 0;
@@ -65,12 +66,13 @@ int	run_infork(t_scmd *scmd)
 	{
 		ret = 0;
 		g_shell.ischild_signal = 1;
+		signal = 0;
 		while (ret != -1)
 		{
 			ret = waitpid(-1, &ex_st, 0);
-			if (ret == f_pid)
-				catch_child_proc_exit_status(ex_st);
+			signal = catch_child_exitstatus(ex_st, f_pid, ret);
 		}
+		ft_manage_signal_output(signal);
 		g_shell.ischild_signal = 0;
 	}
 	return (0);

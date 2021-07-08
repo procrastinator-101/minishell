@@ -6,7 +6,7 @@
 #    By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 21:04:47 by yarroubi          #+#    #+#              #
-#    Updated: 2021/07/07 17:22:22 by hhoummad         ###   ########.fr        #
+#    Updated: 2021/07/08 13:33:37 by yarroubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ FT_EXPAND_PATH = ft_expand
 FT_ENVP_PATH = ft_envp
 FT_SCMD_PATH = ft_scmd
 FT_TOKEN_PATH = ft_token
+EXECUTION_PATH = execution
 FT_METADATA_PATH = ft_metadata
 FT_PIPELINE_PATH = ft_pipeline
 FT_REDIRECTION_PATH = ft_redirection
@@ -150,34 +151,36 @@ FT_SUPPORT_FUNCTIONS_SRC = $(FT_SUPPORT_FUNCTIONS_PATH)/ft_append_character.c \
 						   $(FT_SUPPORT_FUNCTIONS_PATH)/ft_strnappend.c \
 						   $(FT_SUPPORT_FUNCTIONS_PATH)/ft_traverse_spaces.c
 
-EXECUTION =	execution/builtin.c				\
-			execution/_env.c				\
-			execution/_cd.c					\
-			execution/_echo.c				\
-			execution/_pwd.c				\
-			execution/_export.c				\
-			execution/_unset.c				\
-			execution/ft_anti_leak_tools.c	\
-			execution/ft_check_tools.c		\
-			execution/ft_protect_tools.c	\
-			execution/tool.c				\
-			execution/exec_ve.c				\
-			execution/start_execution.c		\
-			execution/run_normal.c			\
-			execution/run_infork.c			\
-			execution/error.c				\
-			execution/redirections_tools.c	\
-			execution/dup_tools.c
+EXECUTION_SRC =	$(EXECUTION_PATH)/_cd.c \
+			$(EXECUTION_PATH)/_echo.c \
+			$(EXECUTION_PATH)/_env.c \
+			$(EXECUTION_PATH)/_export.c \
+			$(EXECUTION_PATH)/_pwd.c \
+			$(EXECUTION_PATH)/_unset.c \
+			$(EXECUTION_PATH)/builtin.c \
+			$(EXECUTION_PATH)/catch_child_exitstatus.c \
+			$(EXECUTION_PATH)/dup_tools.c \
+			$(EXECUTION_PATH)/error.c \
+			$(EXECUTION_PATH)/exec_ve.c \
+			$(EXECUTION_PATH)/ft_anti_leak_tools.c \
+			$(EXECUTION_PATH)/ft_check_tools.c \
+			$(EXECUTION_PATH)/ft_manage_signal_output.c \
+			$(EXECUTION_PATH)/ft_protect_tools.c \
+			$(EXECUTION_PATH)/redirections_tools.c \
+			$(EXECUTION_PATH)/run_infork.c \
+			$(EXECUTION_PATH)/run_normal.c \
+			$(EXECUTION_PATH)/start_execution.c \
+			$(EXECUTION_PATH)/tool.c
 
-SRC = $(FT_PARSER_SRC) $(FT_LEXER_SRC) $(FT_EXPAND_SRC) $(FT_ERROR_SRC) \
-	  $(FT_PIPELINE_SRC) \
-	  $(FT_SCMD_SRC) $(FT_TOKEN_SRC) $(FT_METADATA_SRC) $(FT_REDIRECTION_SRC) \
-	  $(FT_ENVP_SRC) $(FT_SUPPORT_FUNCTIONS_SRC) $(EXECUTION)
+SRC = $(EXECUTION_SRC) $(FT_PARSER_SRC) $(FT_LEXER_SRC) $(FT_EXPAND_SRC) \
+	  $(FT_ERROR_SRC) $(FT_PIPELINE_SRC) $(FT_SCMD_SRC) $(FT_TOKEN_SRC) \
+	  $(FT_METADATA_SRC) $(FT_REDIRECTION_SRC) $(FT_ENVP_SRC) \
+	  $(FT_SUPPORT_FUNCTIONS_SRC)
 
 OBJ = $(SRC:.c=.o)
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g
 
 LIBS = /Users/$(USER)/.brew/opt/readline/lib
 INCLUDES = /Users/$(USER)/.brew/opt/readline/include
@@ -185,7 +188,7 @@ INCLUDES = /Users/$(USER)/.brew/opt/readline/include
 all: $(NAME)
 
 $(NAME):$(OBJ) $(LIBFT)
-	@$(CC) -o $@ $(OBJ) $(LIBFT)  -fsanitize=address -g -lreadline -L $(LIBS) -I$(INCLUDES)
+	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(LIBFT) -lreadline -L $(LIBS) -I$(INCLUDES)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -o $@ -c $< -I$(INCLUDES)
