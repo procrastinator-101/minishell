@@ -49,6 +49,7 @@ int	run_infork(t_scmd *scmd)
 
 	pipe(scmd->pipe);
 	ex_st = 0;
+	change_inout(scmd);
 	f_pid = fork();
 	if (f_pid < 0)
 	{
@@ -58,7 +59,6 @@ int	run_infork(t_scmd *scmd)
 	else if (f_pid == 0)
 	{
 		ft_install_child_signal_handlers();
-		change_inout(scmd);
 		ex_st = builtin(scmd);
 		exit(ex_st);
 	}
