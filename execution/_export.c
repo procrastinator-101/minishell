@@ -6,7 +6,7 @@
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 15:10:37 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/07/07 17:18:52 by hhoummad         ###   ########.fr       */
+/*   Updated: 2021/07/08 19:52:35 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static void	export_with_args(t_scmd *scmd)
 			{
 				ft_envp_setvalue(g_shell.envp, scmd->args[i],
 					catch_null_ordup(ft_envp_getvalue(g_shell.envp,
-						scmd->args[i])));
+							scmd->args[i])));
 				ft_set_isenv(scmd->args[i], 1);
 			}
 		}

@@ -6,7 +6,7 @@
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 17:25:47 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/07/03 20:01:38 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/08 19:58:03 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ static int	here_doc_red(t_redirection *redi)
 
 	out = dup(STDOUT_FILENO);
 	dup2(g_shell.def_out, STDOUT_FILENO);
+	dup2(g_shell.def_in, STDIN_FILENO);
 	fd = open("/tmp/tmp_hdoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd < 0)
 		return (print_error("/tmp/tmp_hdoc", strerror(errno), 1));
