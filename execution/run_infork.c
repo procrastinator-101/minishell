@@ -25,12 +25,13 @@ static int	change_inout(t_scmd *scmd)
 	if (scmd->previous)
 	{
 		dup2(scmd->previous->pipe[0], STDIN_FILENO);
-		// close(scmd->previous->pipe[0]);
+		close(scmd->previous->pipe[0]);
 	}
 	if (scmd->next)
 		dup2(scmd->pipe[1], STDOUT_FILENO);
-	// close(scmd->pipe[0]);
-	// close(scmd->pipe[1]);
+	if (!scmd->next)
+		close(scmd->pipe[0]);
+	close(scmd->pipe[1]);
 	if (scmd->redirections)
 	{
 		if (redirection_dup(scmd->redirections) == 1)
@@ -75,7 +76,7 @@ int	run_infork(t_scmd *scmd)
 		exit(ex_st);
 	}
 	close_pipes(scmd);
-	reset_in_out();
+	// reset_in_out();
 	if (!scmd->next)
 	{
 		ret = 0;
