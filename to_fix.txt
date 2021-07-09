@@ -1,7 +1,0 @@
-ls | echo $?
-heredoc
-^D
-^C
-test leak
-norm
-^C should kill all childs pro

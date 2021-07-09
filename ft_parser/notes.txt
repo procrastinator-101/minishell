@@ -1,7 +1,0 @@
-WSTOPSIG :
-	the SIG_DFL would usually not get the right signal. However, the signal would be the
-	status itself.
-	if exit or a customised signal handler that calls exit is used, the WSTOPSIG would
-	reflect the right data.
-
-
