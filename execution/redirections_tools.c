@@ -69,29 +69,36 @@ static int	here_doc_red(t_redirection *redi)
 	char	*line;
 	int		fd;
 	int		out;
+	pid_t	child;
 
 	out = dup(STDOUT_FILENO);
 	dup2(g_shell.def_out, STDOUT_FILENO);
 	dup2(g_shell.def_in, STDIN_FILENO);
-	fd = open("/tmp/tmp_hdoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	if (fd < 0)
-		return (print_error("/tmp/tmp_hdoc", strerror(errno), 1));
-	while (1)
+	child = fork();
+	if (child == 0)
 	{
-		line = readline("> ");
-		if (!line)
-			break ;
-		if (line && !ft_strcmp(line, redi->right_operand))
+		fd = open("/tmp/tmp_hdoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+		if (fd < 0)
+			return (print_error("/tmp/tmp_hdoc", strerror(errno), 1));
+		while (1)
 		{
+			line = readline("> ");
+			if (!line)
+				break ;
+			if (line && !ft_strcmp(line, redi->right_operand))
+			{
+				free(line);
+				break ;
+			}
+			if (!redi->isroperand_quoted)
+				line = check_dollar(line);
+			ft_putendl_fd(line, fd);
 			free(line);
-			break ;
 		}
-		if (!redi->isroperand_quoted)
-			line = check_dollar(line);
-		ft_putendl_fd(line, fd);
-		free(line);
+		close(fd);
+		exit(0);
 	}
-	close(fd);
+	waitpid(child, &fd, 0);
 	fd = open("/tmp/tmp_hdoc", O_RDONLY);
 	if (fd < 0)
 		return (print_error("/tmp/tmp_hdoc", strerror(errno), 1));
@@ -115,14 +122,18 @@ int	redirection_dup(t_redirection *redi)
 		else if (redi->type == RI_RDC)
 			fd = open(redi->right_operand, O_RDONLY);
 		else if (redi->type == HDOC_RDC)
-			return (here_doc_red(redi));
+			if (here_doc_red(redi) == 1)
+				return (1);
 		if (fd < 0)
 		{
 			print_error(redi->right_operand, strerror(errno), 1);
 			return (1);
 		}
-		redi_dup2(redi, fd);
-		close(fd);
+		else if (fd != 0)
+		{
+			redi_dup2(redi, fd);
+			close(fd);
+		}
 		redi = redi->next;
 	}
 	return (0);

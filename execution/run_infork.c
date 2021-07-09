@@ -12,22 +12,31 @@
 
 #include "execution.h"
 
-static void	change_inout(t_scmd *scmd)
+static void	close_inout_child(t_scmd *scmd)
+{
+	if (scmd->previous)
+		close(scmd->previous->pipe[0]);
+	close(scmd->pipe[0]);
+	close(scmd->pipe[1]);
+}
+
+static int	change_inout(t_scmd *scmd)
 {
 	if (scmd->previous)
 	{
 		dup2(scmd->previous->pipe[0], STDIN_FILENO);
-		close(scmd->previous->pipe[0]);
+		// close(scmd->previous->pipe[0]);
 	}
 	if (scmd->next)
 		dup2(scmd->pipe[1], STDOUT_FILENO);
-	close(scmd->pipe[0]);
-	close(scmd->pipe[1]);
+	// close(scmd->pipe[0]);
+	// close(scmd->pipe[1]);
 	if (scmd->redirections)
 	{
 		if (redirection_dup(scmd->redirections) == 1)
-			exit(1);
+			return (1);
 	}
+	return (0);
 }
 
 static void	close_pipes(t_scmd *scmd)
@@ -49,6 +58,8 @@ int	run_infork(t_scmd *scmd)
 
 	pipe(scmd->pipe);
 	ex_st = 0;
+	if (change_inout(scmd) == 1)
+		return (1);
 	f_pid = fork();
 	if (f_pid < 0)
 	{
@@ -58,11 +69,12 @@ int	run_infork(t_scmd *scmd)
 	else if (f_pid == 0)
 	{
 		ft_install_child_signal_handlers();
-		change_inout(scmd);
+		close_inout_child(scmd);
 		ex_st = builtin(scmd);
 		exit(ex_st);
 	}
 	close_pipes(scmd);
+	reset_in_out();
 	if (!scmd->next)
 	{
 		ret = 0;
