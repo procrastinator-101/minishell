@@ -6,7 +6,7 @@
 #    By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 21:04:47 by yarroubi          #+#    #+#              #
-#    Updated: 2021/07/09 11:08:40 by yarroubi         ###   ########.fr        #
+#    Updated: 2021/07/09 13:20:45 by yarroubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ FT_PARSER_SRC = $(FT_PARSER_PATH)/ft_cleanup.c \
 				$(FT_PARSER_PATH)/ft_scmd_extract_redirections.c \
 				$(FT_PARSER_PATH)/ft_scmd_finalise.c \
 				$(FT_PARSER_PATH)/ft_scmd_getargs.c \
+				$(FT_PARSER_PATH)/ft_settermios_attr.c \
 				$(FT_PARSER_PATH)/ft_terminate.c \
 				$(FT_PARSER_PATH)/ft_tokens_to_pipeline.c \
 				$(FT_PARSER_PATH)/ft_tokens_to_scmd.c \
