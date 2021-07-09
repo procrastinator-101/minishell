@@ -6,7 +6,7 @@
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 18:30:25 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/07/09 15:26:14 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/09 20:22:22 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	run_infork(t_scmd *scmd)
 	ex_st = 0;
 	if (change_inout(scmd) == 1)
 		return (1);
+	printf("out\n");
 	f_pid = fork();
 	if (f_pid < 0)
 	{

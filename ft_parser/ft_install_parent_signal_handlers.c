@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 16:05:58 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/09 15:56:16 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/09 20:08:07 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	ft_handle_signal(int signal)
 {
 	if (signal == SIGINT && !g_shell.ischild_signal)
 	{
+		if (g_shell.ishere_signal)
+			g_shell.heredoc_interrupt = 1;
 		g_shell.pipeline_status = 1;
 		rl_replace_line("", 0);
 		write(STDOUT_FILENO, "\n", 1);

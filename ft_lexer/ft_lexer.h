@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 11:49:23 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/09 12:52:45 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/09 20:07:18 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_shell
 	int				scmd_status;
 	int				pipeline_status;
 	int				ischild_signal;
+	int				heredoc_interrupt;
+	int				ishere_signal;
 	int				def_in;
 	int				def_out;
 }					t_shell;

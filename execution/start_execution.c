@@ -6,7 +6,7 @@
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 17:01:35 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/07/08 16:10:59 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/09 20:16:10 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,11 @@ int	start_execution(t_pipeline *pipeline)
 
 	def_in_out();
 	head = pipeline;
+	g_shell.heredoc_interrupt = 0;
 	while (head)
 	{
 		scmd = head->scmd;
-		while (scmd)
+		while (scmd && !g_shell.heredoc_interrupt)
 		{
 			error = ft_scmd_finalise(scmd);
 			if (error)

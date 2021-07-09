@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 16:56:04 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/09 14:08:42 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/09 20:07:31 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	ft_initialise_shell(char **argv, char **sys_envp)
 	}
 	g_shell.argv = argv;
 	g_shell.ifs = "\t \n";
+	g_shell.ishere_signal = 0;
+	g_shell.heredoc_interrupt = 0;
 	g_shell.ischild_signal = 0;
 	g_shell.prompt = "\001\e[32m\033[1m\002Minishell%\001\e[0m\033[0m\002 ";
 	g_shell.rdc_operand = 0;

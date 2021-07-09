@@ -6,7 +6,7 @@
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 17:25:47 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/07/09 16:07:51 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/09 20:36:07 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,27 +64,30 @@ static char	*check_dollar(char *str)
 	return (str);
 }
 
+
+static int out;
 /*
 static void	ft_handle_signal(int signal)
 {
 	if (signal == SIGINT)
 	{
-		write(STDOUT_FILENO, "\n", 1);
+		close(out);
 		exit(EXIT_FAILURE);
 	}
 }
 */
+
 static int	here_doc_red(t_redirection *redi)
 {
 	char	*line;
 	int		fd;
-	int		out;
 	pid_t	child;
 
 	out = dup(STDOUT_FILENO);
 	dup2(g_shell.def_out, STDOUT_FILENO);
 	dup2(g_shell.def_in, STDIN_FILENO);
 	g_shell.ischild_signal = 1;
+	g_shell.ishere_signal = 1;
 	child = fork();
 	if (child == 0)
 	{
@@ -108,23 +111,30 @@ static int	here_doc_red(t_redirection *redi)
 			ft_putendl_fd(line, fd);
 			free(line);
 		}
-		close(fd);
 		exit(0);
 	}
 	waitpid(child, &fd, 0);
+	g_shell.ishere_signal = 0;
 	int signal = 0;
 	if (WIFSIGNALED(fd))
 		signal = WTERMSIG(fd);
+	printf("signal = %d fd = %d isdignaled = %d\n", signal, fd, WIFSIGNALED(fd));
 	ft_manage_signal_output(signal);
 	g_shell.ischild_signal = 0;
+	printf("hh\n");
 	fd = open("/tmp/tmp_hdoc", O_RDONLY);
 	if (fd < 0)
 		return (print_error("/tmp/tmp_hdoc", strerror(errno), 1));
-	dup2(fd, STDIN_FILENO);
-	dup2(out, STDOUT_FILENO);
+	printf("1hh\n");
+	printf("dup = %d\n", dup2(fd, STDIN_FILENO));
+	printf("dup2 = %d\n", dup2(out, STDOUT_FILENO));
+	dup2(g_shell.def_out, STDOUT_FILENO);
+	close(out);
 	close(fd);
+	printf("signal = %d fd = %d isdignaled = %d\n", signal, fd, WIFSIGNALED(fd));
 	if (signal)
 	{
+		printf("2hh\n");
 		g_shell.scmd_status = 1;
 		return (1);
 	}
