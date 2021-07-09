@@ -6,7 +6,7 @@
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 19:09:38 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/07/08 19:09:41 by hhoummad         ###   ########.fr       */
+/*   Updated: 2021/07/09 16:23:41 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static long	ft_atol(char *str, int i)
 	{
 		if (!(str[i] >= '0' && str[i] <= '9'))
 			ft_atol_error(str);
-		else if (r <= ((9223372036854775807 - (str[i] - 48)) / 10)
-			|| (r <= ((9223372036854775807 - (str[i] - 48) + 1) / 10)
+		else if (r <= ((LONG_MAX - (str[i] - 48)) / 10)
+			|| (r <= ((LONG_MAX - (str[i] - 48) + 1) / 10)
 				&& sg == -1))
 			r = r * 10 + (str[i] - 48);
 		else
@@ -50,7 +50,8 @@ int	exit_built(t_scmd *scmd)
 {
 	long	ret;
 
-	ft_putendl_fd("exit", 1);
+	if (!scmd->previous && !scmd->next)
+		ft_putendl_fd("exit", STDOUT_FILENO);
 	if (tablen(scmd->args) <= 2)
 	{
 		if (scmd->args[1])

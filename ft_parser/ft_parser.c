@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/31 21:08:22 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/09 11:13:02 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/09 15:56:14 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	ft_parser(char *line, int size)
 	pipelines = ft_get_cmd_tree(tokens, &error);
 	if (error)
 		return (error);
-	ft_pipeline_print(pipelines);
 	error = start_execution(pipelines);
 	return (error);
 }

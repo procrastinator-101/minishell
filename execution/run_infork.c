@@ -6,7 +6,7 @@
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 18:30:25 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/07/08 14:52:35 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/09 15:26:14 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	run_infork(t_scmd *scmd)
 	}
 	else if (f_pid == 0)
 	{
+		ft_resettermios_attr();
 		ft_install_child_signal_handlers();
 		close_inout_child(scmd);
 		ex_st = builtin(scmd);
@@ -91,6 +92,7 @@ int	run_infork(t_scmd *scmd)
 		}
 		ft_manage_signal_output(signal);
 		g_shell.ischild_signal = 0;
+		ft_settermios_attr();
 	}
 	return (0);
 }

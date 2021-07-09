@@ -6,7 +6,7 @@
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 17:25:47 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/07/09 12:31:58 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/09 16:07:51 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,16 @@ static char	*check_dollar(char *str)
 	return (str);
 }
 
+/*
+static void	ft_handle_signal(int signal)
+{
+	if (signal == SIGINT)
+	{
+		write(STDOUT_FILENO, "\n", 1);
+		exit(EXIT_FAILURE);
+	}
+}
+*/
 static int	here_doc_red(t_redirection *redi)
 {
 	char	*line;
@@ -74,9 +84,12 @@ static int	here_doc_red(t_redirection *redi)
 	out = dup(STDOUT_FILENO);
 	dup2(g_shell.def_out, STDOUT_FILENO);
 	dup2(g_shell.def_in, STDIN_FILENO);
+	g_shell.ischild_signal = 1;
 	child = fork();
 	if (child == 0)
 	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_IGN);
 		fd = open("/tmp/tmp_hdoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
 		if (fd < 0)
 			return (print_error("/tmp/tmp_hdoc", strerror(errno), 1));
@@ -99,12 +112,22 @@ static int	here_doc_red(t_redirection *redi)
 		exit(0);
 	}
 	waitpid(child, &fd, 0);
+	int signal = 0;
+	if (WIFSIGNALED(fd))
+		signal = WTERMSIG(fd);
+	ft_manage_signal_output(signal);
+	g_shell.ischild_signal = 0;
 	fd = open("/tmp/tmp_hdoc", O_RDONLY);
 	if (fd < 0)
 		return (print_error("/tmp/tmp_hdoc", strerror(errno), 1));
 	dup2(fd, STDIN_FILENO);
 	dup2(out, STDOUT_FILENO);
 	close(fd);
+	if (signal)
+	{
+		g_shell.scmd_status = 1;
+		return (1);
+	}
 	return (0);
 }
 
