@@ -43,3 +43,17 @@ int	look_for_equal(char *data)
 	}
 	return (0);
 }
+
+int	look_for_slach(char *data)
+{
+	int	i;
+
+	i = 0;
+	while (data[i])
+	{
+		if (data[i] == '/')
+			return (1);
+		i++;
+	}
+	return (0);
+}

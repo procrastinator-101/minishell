@@ -59,6 +59,7 @@ int		print_error_2(char *path, char *data, char *er, int err_num);
 int		print_error_3(char *path, char *data, char *er, int err_num);
 
 int		look_for_equal(char *data);
+int		look_for_slach(char *data);
 int		check_options(t_scmd *scmd);
 char	*catch_null_ordup(char *str);
 
