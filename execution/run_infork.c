@@ -76,7 +76,7 @@ int	run_infork(t_scmd *scmd)
 		exit(ex_st);
 	}
 	close_pipes(scmd);
-	// reset_in_out();
+	reset_in_out();
 	if (!scmd->next)
 	{
 		ret = 0;
