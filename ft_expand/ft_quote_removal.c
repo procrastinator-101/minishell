@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 13:45:32 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/06/08 14:47:58 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/09 12:04:04 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ t_token	*ft_quote_removal(t_token *token)
 		}
 		i++;
 	}
+	if (j < i)
+		token->hasquotes = 1;
 	token->str[j] = 0;
 	return (token);
 }

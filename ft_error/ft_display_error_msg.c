@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 13:59:48 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/06/07 12:39:42 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/09 12:42:10 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ void	ft_display_error_msg(int error)
 			ft_putendl_fd("`;'", STDERR_FILENO);
 		else if (minor == PIPE)
 			ft_putendl_fd("`|'", STDERR_FILENO);
-		else if (minor == DBR_RDC)
+		else if (minor == ARO_RDC)
 			ft_putendl_fd("`>>'", STDERR_FILENO);
-		else if (minor == L_RDC)
+		else if (minor == HDOC_RDC)
+			ft_putendl_fd("`<<'", STDERR_FILENO);
+		else if (minor == RI_RDC)
 			ft_putendl_fd("`<'", STDERR_FILENO);
-		else if (minor == R_RDC)
+		else if (minor == RO_RDC)
 			ft_putendl_fd("`>'", STDERR_FILENO);
 	}
-	else if (major == EMAF)
-		ft_putendl_fd("the allocation of some block failed", STDERR_FILENO);
 	else if (major == EURDC)
 	{
 		ft_putstr_fd(g_shell.rdc_operand, STDERR_FILENO);

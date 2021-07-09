@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_manage_parsing_error.c                          :+:      :+:    :+:   */
+/*   ft_setrdc_operand_type.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/29 16:39:09 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/09 12:48:16 by yarroubi         ###   ########.fr       */
+/*   Created: 2021/07/09 10:43:02 by yarroubi          #+#    #+#             */
+/*   Updated: 2021/07/09 10:53:50 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_error.h"
+#include "ft_lexer.h"
 
-void	ft_manage_parsing_error(int error)
+void	ft_setrdc_operand_type(t_token *token, int rdc_operator)
 {
-	if (error != EMAF)
-	{
-		ft_display_error_msg(error);
-		return ;
-	}
-	ft_putendl_fd("the allocation of some block failed", STDERR_FILENO);
-	ft_cleanup();
-	exit(EXIT_FAILURE);
+	if (rdc_operator == ARO_RDC)
+		token->type = ARO_ROPERAND;
+	else if (rdc_operator == HDOC_RDC)
+		token->type = HDOC_ROPERAND;
+	else if (rdc_operator == RI_RDC)
+		token->type = RI_ROPERAND;
+	else
+		token->type = RO_ROPERAND;
 }

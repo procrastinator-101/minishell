@@ -6,7 +6,7 @@
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 17:25:47 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/07/08 19:58:03 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/09 12:31:58 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	redi_dup2(t_redirection *redi, int fd)
 {
-	if (redi->type == R_RDC || redi->type == DBR_RDC)
+	if (redi->type == RO_RDC || redi->type == ARO_RDC)
 		dup2(fd, STDOUT_FILENO);
-	else if (redi->type == L_RDC)
+	else if (redi->type == RI_RDC)
 		dup2(fd, STDIN_FILENO);
 }
 
@@ -69,38 +69,29 @@ static int	here_doc_red(t_redirection *redi)
 	char	*line;
 	int		fd;
 	int		out;
-	pid_t	child;
 
 	out = dup(STDOUT_FILENO);
 	dup2(g_shell.def_out, STDOUT_FILENO);
 	dup2(g_shell.def_in, STDIN_FILENO);
-	g_shell.ischild_signal = 1;
-	child = fork();
-	if (child == 0)
+	fd = open("/tmp/tmp_hdoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if (fd < 0)
+		return (print_error("/tmp/tmp_hdoc", strerror(errno), 1));
+	while (1)
 	{
-		ft_install_child_signal_handlers();
-		fd = open("/tmp/tmp_hdoc", O_CREAT | O_WRONLY | O_TRUNC, 0644);
-		if (fd < 0)
-			return (print_error("/tmp/tmp_hdoc", strerror(errno), 1));
-		while (1)
+		line = readline("> ");
+		if (!line)
+			break ;
+		if (line && !ft_strcmp(line, redi->right_operand))
 		{
-			line = readline("> ");
-			if (!line)
-				break ;
-			if (line && !ft_strcmp(line, redi->right_operand))
-			{
-				free(line);
-				break ;
-			}
-			line = check_dollar(line);
-			ft_putendl_fd(line, fd);
 			free(line);
+			break ;
 		}
-		close(fd);
-		exit(0);
+		if (!redi->isroperand_quoted)
+			line = check_dollar(line);
+		ft_putendl_fd(line, fd);
+		free(line);
 	}
-	waitpid(child, &fd, 0);
-	g_shell.ischild_signal = 0;
+	close(fd);
 	fd = open("/tmp/tmp_hdoc", O_RDONLY);
 	if (fd < 0)
 		return (print_error("/tmp/tmp_hdoc", strerror(errno), 1));
@@ -117,25 +108,21 @@ int	redirection_dup(t_redirection *redi)
 	fd = 0;
 	while (redi)
 	{
-		if (redi->type == R_RDC)
+		if (redi->type == RO_RDC)
 			fd = open(redi->right_operand, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-		else if (redi->type == DBR_RDC)
+		else if (redi->type == ARO_RDC)
 			fd = open(redi->right_operand, O_CREAT | O_APPEND | O_WRONLY, 0644);
-		else if (redi->type == L_RDC)
+		else if (redi->type == RI_RDC)
 			fd = open(redi->right_operand, O_RDONLY);
-		else if (redi->type == DBL_RDC)
-			 if (here_doc_red(redi) == 1)
-			 	return (1);
+		else if (redi->type == HDOC_RDC)
+			return (here_doc_red(redi));
 		if (fd < 0)
 		{
 			print_error(redi->right_operand, strerror(errno), 1);
 			return (1);
 		}
-		else if (fd != 0)
-		{
-			redi_dup2(redi, fd);
-			close(fd);
-		}
+		redi_dup2(redi, fd);
+		close(fd);
 		redi = redi->next;
 	}
 	return (0);

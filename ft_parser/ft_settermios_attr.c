@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_manage_parsing_error.c                          :+:      :+:    :+:   */
+/*   ft_settermios_attr.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/29 16:39:09 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/09 12:48:16 by yarroubi         ###   ########.fr       */
+/*   Created: 2021/07/09 12:59:19 by yarroubi          #+#    #+#             */
+/*   Updated: 2021/07/09 13:23:59 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_error.h"
+#include "ft_parser.h"
 
-void	ft_manage_parsing_error(int error)
+void	ft_settermios_attr(void)
 {
-	if (error != EMAF)
-	{
-		ft_display_error_msg(error);
-		return ;
-	}
-	ft_putendl_fd("the allocation of some block failed", STDERR_FILENO);
-	ft_cleanup();
-	exit(EXIT_FAILURE);
+	struct termios	tty;
+
+	tcgetattr(STDIN_FILENO, &tty);
+	tty.c_lflag &= ~ECHOCTL;
 }
