@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 11:49:23 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/06 16:59:08 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/09 12:52:45 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int					ft_isname(char *name);
 char				*ft_get_name(char *str, int *error);
 
 void				ft_identify_rdc_operands(t_token **tokens);
+void				ft_setrdc_operand_type(t_token *token, int rdc_operator);
 
 char				**ft_get_delimiters(void);
 int					ft_find_delimiter(char *str, char **delimiters);
@@ -73,8 +74,8 @@ int					ft_process_cstyle_quoting(char *str, t_metadata *meda, \
 int					ft_process_backslash(char *str, t_metadata *meda, \
 					int index);
 
-t_token				*ft_tokenise(char *str, t_metadata *meda, char **delimiters, \
-					int *error);
+t_token				*ft_tokenise(char *str, t_metadata *meda, \
+					char **delimiters, int *error);
 t_token				*ft_strtok(char *str, t_metadata *meda, char **delimiters, \
 					int *offset);
 

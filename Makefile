@@ -6,7 +6,7 @@
 #    By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 21:04:47 by yarroubi          #+#    #+#              #
-#    Updated: 2021/07/08 16:02:18 by yarroubi         ###   ########.fr        #
+#    Updated: 2021/07/09 11:08:40 by yarroubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ FT_LEXER_SRC = $(FT_LEXER_PATH)/ft_check_syntax.c \
 			   $(FT_LEXER_PATH)/ft_process_double_quotes.c \
 			   $(FT_LEXER_PATH)/ft_process_quotes.c \
 			   $(FT_LEXER_PATH)/ft_process_single_quotes.c \
+			   $(FT_LEXER_PATH)/ft_setrdc_operand_type.c \
 			   $(FT_LEXER_PATH)/ft_strtok.c \
 			   $(FT_LEXER_PATH)/ft_tokenise.c
 

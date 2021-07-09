@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 16:39:09 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/05/31 19:23:30 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/09 12:48:16 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 void	ft_manage_parsing_error(int error)
 {
-	//save the added hsitorty lines
-	ft_display_error_msg(error);
+	if (error != EMAF)
+	{
+		ft_display_error_msg(error);
+		return ;
+	}
+	ft_putendl_fd("the allocation of some block failed", STDERR_FILENO);
 	ft_cleanup();
 	exit(EXIT_FAILURE);
 }

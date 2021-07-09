@@ -1,0 +1,20 @@
+total 152
+-rw-r--r--   1 yarroubi  2019   8123 Jul  9 11:08 Makefile
+-rw-r--r--   1 yarroubi  2019     11 Jul  8 11:33 README.md
+drwxr-xr-x  25 yarroubi  2019    800 Jul  9 11:13 execution
+drwxr-xr-x   8 yarroubi  2019    256 Jul  8 11:33 ft_cmd
+drwxr-xr-x  12 yarroubi  2019    384 Jul  9 11:13 ft_envp
+drwxr-xr-x   5 yarroubi  2019    160 Jul  9 11:13 ft_error
+drwxr-xr-x  29 yarroubi  2019    928 Jul  9 11:13 ft_expand
+drwxr-xr-x  25 yarroubi  2019    800 Jul  9 11:13 ft_lexer
+drwxr-xr-x  11 yarroubi  2019    352 Jul  9 11:13 ft_metadata
+drwxr-xr-x  25 yarroubi  2019    800 Jul  9 11:13 ft_parser
+drwxr-xr-x   9 yarroubi  2019    288 Jul  9 11:13 ft_pipeline
+drwxr-xr-x   8 yarroubi  2019    256 Jul  9 11:13 ft_redirection
+drwxr-xr-x   9 yarroubi  2019    288 Jul  9 11:13 ft_scmd
+drwxr-xr-x   7 yarroubi  2019    224 Jul  9 11:13 ft_support_functions
+drwxr-xr-x  11 yarroubi  2019    352 Jul  9 11:13 ft_token
+-rw-r--r--   1 yarroubi  2019      0 Jul  9 11:14 l
+drwxr-xr-x  16 yarroubi  2019    512 Jul  9 11:13 libft
+-rwxr-xr-x   1 yarroubi  2019  61016 Jul  9 11:13 minishell
+-rw-r--r--   1 yarroubi  2019     42 Jul  8 19:50 to_fix.txt

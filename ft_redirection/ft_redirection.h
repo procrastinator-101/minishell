@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 15:09:19 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/06/07 15:30:02 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/09 12:30:28 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_redirection
 	char					*right_operand;
 	struct s_redirection	*next;
 	int						type;
+	char					isroperand_quoted;
 }							t_redirection;
 
 void						ft_redirection_del(t_redirection *node);

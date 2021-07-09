@@ -6,7 +6,7 @@
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 17:25:47 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/07/08 19:58:03 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/09 12:31:58 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	redi_dup2(t_redirection *redi, int fd)
 {
-	if (redi->type == R_RDC || redi->type == DBR_RDC)
+	if (redi->type == RO_RDC || redi->type == ARO_RDC)
 		dup2(fd, STDOUT_FILENO);
-	else if (redi->type == L_RDC)
+	else if (redi->type == RI_RDC)
 		dup2(fd, STDIN_FILENO);
 }
 
@@ -86,7 +86,8 @@ static int	here_doc_red(t_redirection *redi)
 			free(line);
 			break ;
 		}
-		line = check_dollar(line);
+		if (!redi->isroperand_quoted)
+			line = check_dollar(line);
 		ft_putendl_fd(line, fd);
 		free(line);
 	}
@@ -107,13 +108,13 @@ int	redirection_dup(t_redirection *redi)
 	fd = 0;
 	while (redi)
 	{
-		if (redi->type == R_RDC)
+		if (redi->type == RO_RDC)
 			fd = open(redi->right_operand, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-		else if (redi->type == DBR_RDC)
+		else if (redi->type == ARO_RDC)
 			fd = open(redi->right_operand, O_CREAT | O_APPEND | O_WRONLY, 0644);
-		else if (redi->type == L_RDC)
+		else if (redi->type == RI_RDC)
 			fd = open(redi->right_operand, O_RDONLY);
-		else if (redi->type == DBL_RDC)
+		else if (redi->type == HDOC_RDC)
 			return (here_doc_red(redi));
 		if (fd < 0)
 		{

@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 14:08:15 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/06/08 17:55:57 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/09 10:54:19 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_identify_rdc_operands(t_token **tokens)
 		else
 		{
 			if (ft_isword(token) && previous && ft_isrdc_operator(previous))
-				token->type = RDC_ROPERAND;
+				ft_setrdc_operand_type(token, previous->type);
 			previous = token;
 		}
 		token = next;

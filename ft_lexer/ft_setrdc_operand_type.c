@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isword.c                                        :+:      :+:    :+:   */
+/*   ft_setrdc_operand_type.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/08 17:48:13 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/09 10:58:54 by yarroubi         ###   ########.fr       */
+/*   Created: 2021/07/09 10:43:02 by yarroubi          #+#    #+#             */
+/*   Updated: 2021/07/09 10:53:50 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lexer.h"
 
-int	ft_isword(t_token *token)
+void	ft_setrdc_operand_type(t_token *token, int rdc_operator)
 {
-	if (token->type == WORD)
-		return (1);
-	if (ft_isrdc_operand(token))
-		return (1);
-	return (0);
+	if (rdc_operator == ARO_RDC)
+		token->type = ARO_ROPERAND;
+	else if (rdc_operator == HDOC_RDC)
+		token->type = HDOC_ROPERAND;
+	else if (rdc_operator == RI_RDC)
+		token->type = RI_ROPERAND;
+	else
+		token->type = RO_ROPERAND;
 }

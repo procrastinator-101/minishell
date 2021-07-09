@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 16:05:58 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/06 17:52:55 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/09 12:10:14 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ static void	ft_handle_signal(int signal)
 {
 	if (signal == SIGINT && !g_shell.ischild_signal)
 	{
+		g_shell.pipeline_status = 1;
 		rl_replace_line("", 0);
-		write(1, "\n", STDOUT_FILENO);
+		write(STDOUT_FILENO, "\n", 1);
 		rl_on_new_line();
 		rl_redisplay();
 	}

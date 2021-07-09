@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 11:59:05 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/06/07 11:57:28 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/09 12:51:11 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
 # define EMAF				4		//ERROR MEMORY ALLOCATION FAILURE
 # define EEONF				5		//ERROR EQAUL OPERATOR NOT FOUND
 # define EURDC				6		//ERROR UMBIGUOUS REDIRECT
+# define EINS				7		//ERROR INCORRECT SYNTAX
 
-void    ft_cleanup(void);
+void	ft_cleanup(void);
 void	ft_display_error_msg(int error);
 void	ft_manage_parsing_error(int error);
 

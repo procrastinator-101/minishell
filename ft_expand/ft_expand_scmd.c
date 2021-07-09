@@ -6,14 +6,14 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 14:22:59 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/06/08 18:30:11 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/09 11:43:58 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_expand.h"
 
-static void	ft_update_tokens(t_token **tokens, t_token **previous, t_token *head, \
-			t_token *next)
+static void	ft_update_tokens(t_token **tokens, t_token **previous, t_token \
+			*head, t_token *next)
 {
 	if (!head)
 	{

@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 15:08:40 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/06/08 17:06:11 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/09 12:31:14 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static t_redirection	*ft_extract_rdc(t_token **tokens, t_token **previous, \
 	redirection->type = head->type;
 	head = head->next;
 	redirection->right_operand = head->str;
+	redirection->isroperand_quoted = head->hasquotes;
 	next = head->next;
 	if (*previous)
 		(*previous)->next = next;
