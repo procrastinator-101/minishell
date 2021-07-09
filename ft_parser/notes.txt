@@ -1,0 +1,15 @@
+word :	no expansions
+	quoted	:
+		-	word is the result of quotes removal
+		-	the lines in here-doc are not expanded
+	unquoted	:
+		-	the lines in here-doc are expanded
+	
+
+word :
+	-	special parameters			->	no
+	-	signle_quote_construct		->	yes
+	-	normal construct			->	no
+
+
+
