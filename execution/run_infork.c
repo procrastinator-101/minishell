@@ -61,7 +61,7 @@ int	run_infork(t_scmd *scmd)
 	ex_st = 0;
 	if (change_inout(scmd) == 1)
 		return (1);
-	printf("out\n");
+	printf("out\n");	// wach men nytek || use ft_putstr_fd(......, 2); || fd 1 kaydoz L pipe
 	f_pid = fork();
 	if (f_pid < 0)
 	{
