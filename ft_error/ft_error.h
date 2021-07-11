@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 11:59:05 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/09 12:51:11 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/11 19:28:52 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 # define EEONF				5		//ERROR EQAUL OPERATOR NOT FOUND
 # define EURDC				6		//ERROR UMBIGUOUS REDIRECT
 # define EINS				7		//ERROR INCORRECT SYNTAX
+# define EFPF				8		//ERROR FORKING PROCESS FAILURE
+# define EOFF				9		//ERROR OPENING FILE FAILURE
+
+# define ECSIG				10		//ERROR CHILD WAS SIGNALED
 
 void	ft_cleanup(void);
 void	ft_display_error_msg(int error);

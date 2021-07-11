@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parser.c                                        :+:      :+:    :+:   */
+/*   ft_execute_heredocs.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/31 21:08:22 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/11 19:27:06 by yarroubi         ###   ########.fr       */
+/*   Created: 2021/07/11 18:40:42 by yarroubi          #+#    #+#             */
+/*   Updated: 2021/07/11 19:17:56 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
-int	ft_parser(char *line, int size)
+int	ft_pipeline_execute_heredocs(t_pipeline *pipelines)
 {
-	int			error;
-	t_token		*tokens;
-	t_pipeline	*pipelines;
+	int				id;
+	int				ret;
+	t_pipeline		*head;
 
-	tokens = ft_lexer(line, size, &error);
-	if (error)
-		return (error);
-	pipelines = ft_get_cmd_tree(tokens, &error);
-	if (error)
-		return (error);
-	error = ft_pipeline_execute_heredocs(pipelines);
-	if (error)
-		return (error);
-	error = start_execution(pipelines);
-	return (error);
+	id = -1;
+	ret = 0;
+	head = pipelines;
+	while (head)
+	{
+		ret = ft_scmd_execute_heredocs(head->scmd, &id);
+		if (ret)
+			return (ret);
+		head = head->next;
+	}
+	return (ret);
 }

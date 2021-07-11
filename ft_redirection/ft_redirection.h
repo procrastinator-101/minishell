@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 15:09:19 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/09 12:30:28 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/11 19:31:29 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_redirection
 {
 	char					*left_operand;
 	char					*right_operand;
+	char					*file_name;
 	struct s_redirection	*next;
 	int						type;
 	char					isroperand_quoted;
