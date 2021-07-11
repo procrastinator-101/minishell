@@ -16,20 +16,26 @@ static int	check_if_not_a_directory(char *path)
 {
 	char		*path2;
 	int			ret;
+	int			i;
 	struct stat	st;
 
 	ret = 0;
-	while (path[ret] == '.' || path[ret] == '/')
-		ret++;
-	while (ft_isalnum(path[ret]))
-		ret++;
-	if (path[ret] == '/')
+	i = 0;
+	while (path[i] == '.' || path[i] == '/')
+		i++;
+	while (path[i])
 	{
-		path2 = ft_substr(path, 0, ret);
-		ret = stat(path2, &st);
-		free(path2);
-		if (ret == 0 && st.st_mode / 10000 == 3)
-			return (1);
+		while (path[i] && path[i] != '/')
+			i++;
+		if (path[i] == '/')
+		{
+			path2 = ft_substr(path, 0, i);
+			ret = stat(path2, &st);
+			free(path2);
+			if (ret == 0 && st.st_mode / 10000 == 3)
+				return (1);
+			i++;
+		}
 	}
 	return (0);
 }
