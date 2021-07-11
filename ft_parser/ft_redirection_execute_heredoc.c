@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 19:27:33 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/11 19:44:18 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/11 20:20:38 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ int	ft_redirection_execute_heredoc(t_redirection *redirection, int id)
 		return (EMAF);
 	redirection->file_name = ft_strjoin("/tmp/tmp_hdoc_", str);
 	free(str);
-	printf("name = %s\n", redirection->file_name);
 	if (!redirection->file_name)
 		return (EMAF);
 	pid = fork();

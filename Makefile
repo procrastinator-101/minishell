@@ -6,7 +6,7 @@
 #    By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 21:04:47 by yarroubi          #+#    #+#              #
-#    Updated: 2021/07/11 19:28:48 by yarroubi         ###   ########.fr        #
+#    Updated: 2021/07/11 20:52:51 by yarroubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -189,7 +189,7 @@ SRC = $(EXECUTION_SRC) $(FT_PARSER_SRC) $(FT_LEXER_SRC) $(FT_EXPAND_SRC) \
 OBJ = $(SRC:.c=.o)
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra #-fsanitize=address -g
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g
 
 LIBS = /Users/$(USER)/.brew/opt/readline/lib
 INCLUDES = /Users/$(USER)/.brew/opt/readline/include

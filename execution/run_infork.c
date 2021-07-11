@@ -6,7 +6,7 @@
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 18:30:25 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/07/09 20:22:22 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/11 20:32:45 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int	run_infork(t_scmd *scmd)
 	ex_st = 0;
 	if (change_inout(scmd) == 1)
 		return (1);
-	printf("out\n");	// wach men nytek || use ft_putstr_fd(......, 2); || fd 1 kaydoz L pipe
 	f_pid = fork();
 	if (f_pid < 0)
 	{

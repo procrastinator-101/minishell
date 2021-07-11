@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 18:47:28 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/11 19:46:33 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/11 20:28:59 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	ft_scmd_execute_heredocs(t_scmd *scmd, int *id)
 	head = scmd;
 	while (head)
 	{
-		redirection = scmd->redirections;
+		redirection = head->redirections;
 		while (redirection)
 		{
-			if (redirection->type == HDOC_ROPERAND)
+			if (redirection->type == HDOC_RDC)
 			{
 				(*id)++;
 				ret = ft_redirection_execute_heredoc(redirection, *id);

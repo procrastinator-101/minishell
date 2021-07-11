@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 14:17:13 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/06/07 14:41:04 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/11 20:46:33 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	ft_expand_pipeline(t_pipeline *pipeline)
 	scmd = pipeline->scmd;
 	while (scmd)
 	{
+		if (scmd->previous)
+			g_shell.scmd_status = 0;
 		ret = ft_expand_scmd(scmd);
 		if (ret)
 			return (ret);

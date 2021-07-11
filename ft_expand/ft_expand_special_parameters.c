@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/05 14:53:13 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/06/08 14:41:41 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/11 20:46:54 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_expand_special_parameters(t_token *token, char *str, t_metadata *meda)
 	t_metadata	*tmp;
 
 	if (str[1] == '?')
-		ptr = ft_itoa(g_shell.pipeline_status);
+		ptr = ft_itoa(g_shell.scmd_status);
 	else
 		ptr = ft_strdup(g_shell.argv[0]);
 	if (!ptr)

@@ -6,7 +6,7 @@
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 17:01:35 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/07/11 19:54:11 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/11 20:59:29 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,35 +38,20 @@ static int	which_cmd(t_scmd *scmd)
 
 int	start_execution(t_pipeline *pipeline)
 {
-	//int			error;
 	int			cmd_n;
 	t_scmd		*scmd;
-	t_pipeline	*head;
 
 	def_in_out();
-	head = pipeline;
-	while (head)
+	scmd = pipeline->scmd;
+	while (scmd)
 	{
-		scmd = head->scmd;
-		while (scmd)
-		{
-			/*
-			error = ft_scmd_finalise(scmd);
-			if (error)
-				return (error);
-			*/
-			cmd_n = which_cmd(scmd);
-			if (!scmd->previous && !scmd->next)
-				run_normal(scmd, cmd_n);
-			else
-				run_infork(scmd);
-			scmd = scmd->next;
-			reset_in_out();
-			g_shell.pipeline_status = 0;
-		}
-		head = head->next;
-		g_shell.pipeline_status = g_shell.scmd_status;
+		cmd_n = which_cmd(scmd);
+		if (!scmd->previous && !scmd->next)
+			run_normal(scmd, cmd_n);
+		else
+			run_infork(scmd);
+		scmd = scmd->next;
+		reset_in_out();
 	}
-	ft_pipeline_clear(&pipeline);
 	return (0);
 }
