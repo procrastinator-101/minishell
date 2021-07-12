@@ -33,7 +33,7 @@ int		start_execution(t_pipeline *pipeline);
 
 int		env_size(void);
 int		ft_isenv(char *name);
-int		check_path(char *path);
+int		check_path(char *path, int ret);
 char	*get_env_value(char *name);
 void	ft_set_isenv(char *name, int isenv);
 
