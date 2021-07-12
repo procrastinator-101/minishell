@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 14:59:25 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/08 15:50:53 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/12 15:01:39 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	ft_terminate(void)
 {
-	rl_redisplay();
-	rl_on_new_line();
+	//
+	ft_resetcursor_position(g_shell.offset + ft_strlen("Minishell% "));
+	ft_putstr_fd("exit\n", STDOUT_FILENO);
 	ft_cleanup();
 	exit(EXIT_SUCCESS);
 }

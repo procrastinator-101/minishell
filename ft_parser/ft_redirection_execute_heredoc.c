@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 19:27:33 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/11 20:20:38 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/12 15:30:31 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ static char	*check_dollar(char *str)
 	return (str);
 }
 
+void	ft_heredoc_terminate(int fd)
+{
+	ft_resetcursor_position(g_shell.offset + ft_strlen("> "));
+	close(fd);
+	exit(1);
+}
+
 static int	ft_execute_heredoc(t_redirection *redirection)
 {
 	int		fd;
@@ -70,7 +77,7 @@ static int	ft_execute_heredoc(t_redirection *redirection)
 	{
 		line = readline("> ");
 		if (!line)
-			break ;
+			ft_heredoc_terminate(fd);
 		if (line && !ft_strcmp(line, redirection->right_operand))
 		{
 			free(line);
@@ -106,6 +113,7 @@ int	ft_redirection_execute_heredoc(t_redirection *redirection, int id)
 	if (!pid)
 		ft_execute_heredoc(redirection);
 	waitpid(pid, &status, 0);
+	g_shell.ischild_signal = 0;
 	signal = 0;
 	if (WIFSIGNALED(status))
 		signal = WTERMSIG(status);

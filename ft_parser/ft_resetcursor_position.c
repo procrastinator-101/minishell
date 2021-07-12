@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parser.c                                        :+:      :+:    :+:   */
+/*   ft_resetcursor_position.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/31 21:08:22 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/12 15:04:53 by yarroubi         ###   ########.fr       */
+/*   Created: 2021/07/12 13:20:32 by yarroubi          #+#    #+#             */
+/*   Updated: 2021/07/12 15:13:57 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
-int	ft_parser(char *line, int size)
+void	ft_resetcursor_position(int offset)
 {
-	int			error;
-	t_token		*tokens;
-	t_pipeline	*pipelines;
+	int		ret;
+	char	*termcap;
 
-	tokens = ft_lexer(line, size, &error);
-	if (error)
-		return (error);
-	pipelines = ft_get_cmd_tree(tokens, &error);
-	if (error)
-		return (error);
-	g_shell.offset = 0;
-	return (ft_execute(pipelines));
+	ret = tgetent(NULL, g_shell.terminal);
+	if (ret < 1)
+		exit(EXIT_FAILURE);//to eliminate
+	termcap = tgetstr("up", NULL);
+	write(STDOUT_FILENO, termcap, ft_strlen(termcap));
+	termcap = tgetstr("nd", NULL);
+	printf("offset = %d\n", offset);
+	while (offset--)
+		write(STDOUT_FILENO, termcap, ft_strlen(termcap));
 }

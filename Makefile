@@ -6,7 +6,7 @@
 #    By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 21:04:47 by yarroubi          #+#    #+#              #
-#    Updated: 2021/07/11 20:52:51 by yarroubi         ###   ########.fr        #
+#    Updated: 2021/07/12 13:40:46 by yarroubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,8 @@ FT_REDIRECTION_PATH = ft_redirection
 FT_SUPPORT_FUNCTIONS_PATH = ft_support_functions
 
 
-
 FT_PARSER_SRC = $(FT_PARSER_PATH)/ft_cleanup.c \
+				$(FT_PARSER_PATH)/ft_execute.c \
 				$(FT_PARSER_PATH)/ft_get_cmd_tree.c \
 				$(FT_PARSER_PATH)/ft_initialise_shell.c \
 				$(FT_PARSER_PATH)/ft_install_child_signal_handlers.c \
@@ -42,6 +42,7 @@ FT_PARSER_SRC = $(FT_PARSER_PATH)/ft_cleanup.c \
 				$(FT_PARSER_PATH)/ft_pipeline_extract_redirections.c \
 				$(FT_PARSER_PATH)/ft_pipeline_finalise.c \
 				$(FT_PARSER_PATH)/ft_pipeline_getargs.c \
+				$(FT_PARSER_PATH)/ft_resetcursor_position.c \
 				$(FT_PARSER_PATH)/ft_redirection_execute_heredoc.c \
 				$(FT_PARSER_PATH)/ft_resettermios_attr.c \
 				$(FT_PARSER_PATH)/ft_scmd_execute_heredocs.c \
@@ -197,7 +198,7 @@ INCLUDES = /Users/$(USER)/.brew/opt/readline/include
 all: $(NAME)
 
 $(NAME):$(OBJ) $(LIBFT)
-	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(LIBFT) -lreadline -L $(LIBS) -I$(INCLUDES)
+	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(LIBFT) -lreadline -lncurses -L $(LIBS) -I$(INCLUDES)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -o $@ -c $< -I$(INCLUDES)

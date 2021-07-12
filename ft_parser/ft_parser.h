@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 17:04:54 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/11 19:42:06 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/12 15:14:23 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void		ft_cleanup(void);
 void		ft_terminate(void);
 void		ft_settermios_attr(void);
 void		ft_resettermios_attr(void);
+void		ft_resetcursor_position(int offset);
 void		ft_initialise_shell(char **argv, char **sys_envp);
 
 void		ft_install_child_signal_handlers(void);
@@ -57,6 +58,8 @@ void		ft_install_parent_signal_handlers(void);
 
 int			ft_parser(char *line, int size);
 int			ft_pipeline_finalise(t_pipeline *pipeline);
+
+int			ft_execute(t_pipeline *pipelines);
 
 int			ft_scmd_execute_heredocs(t_scmd *scmd, int *id);
 int			ft_pipeline_execute_heredocs(t_pipeline *pipelines);

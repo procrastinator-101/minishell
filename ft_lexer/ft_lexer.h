@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 11:49:23 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/11 19:18:16 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/12 15:13:14 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_shell
 	char			*prompt;
 	t_envp			*envp;
 	char			**argv;
+	char			*terminal;
 	char			**delimiters;
 	char			*rdc_operand;
 	int				scmd_status;
@@ -39,6 +40,7 @@ typedef struct s_shell
 	int				ischild_signal;
 	int				def_in;
 	int				def_out;
+	int				offset;
 }					t_shell;
 
 int					ft_isrdc_operator(t_token *token);

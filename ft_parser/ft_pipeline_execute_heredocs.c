@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 18:40:42 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/11 21:14:08 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/12 13:06:30 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ int	ft_pipeline_execute_heredocs(t_pipeline *pipelines)
 	{
 		ret = ft_scmd_execute_heredocs(head->scmd, &id);
 		if (ret)
-			break ;
+			return (ret);
 		head = head->next;
 	}
-	if (ret)
-		ft_pipeline_clear(&pipelines);
 	return (ret);
 }

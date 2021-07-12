@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parser.c                                        :+:      :+:    :+:   */
+/*   ft_execute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/31 21:08:22 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/12 15:04:53 by yarroubi         ###   ########.fr       */
+/*   Created: 2021/07/12 12:52:36 by yarroubi          #+#    #+#             */
+/*   Updated: 2021/07/12 13:07:44 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
 
-int	ft_parser(char *line, int size)
+int	ft_execute(t_pipeline *pipelines)
 {
 	int			error;
-	t_token		*tokens;
-	t_pipeline	*pipelines;
+	t_pipeline	*head;
 
-	tokens = ft_lexer(line, size, &error);
+	error = 0;
+	head = pipelines;
+	while (head)
+	{
+		error = ft_pipeline_finalise(head);
+		if (error)
+			break ;
+		error = ft_pipeline_execute_heredocs(pipelines);
+		if (error)
+			return (error);
+		error = start_execution(head);
+		if (error)
+			break ;
+		head = head->next;
+	}
 	if (error)
-		return (error);
-	pipelines = ft_get_cmd_tree(tokens, &error);
-	if (error)
-		return (error);
-	g_shell.offset = 0;
-	return (ft_execute(pipelines));
+		ft_pipeline_clear(&pipelines);
+	return (error);
 }

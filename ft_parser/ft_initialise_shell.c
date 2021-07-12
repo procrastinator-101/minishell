@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 16:56:04 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/11 19:39:09 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/12 15:03:47 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,19 @@ void	ft_initialise_shell(char **argv, char **sys_envp)
 		free(g_shell.delimiters);
 		exit(EXIT_FAILURE);
 	}
+	g_shell.offset = 0;
 	g_shell.argv = argv;
 	g_shell.ifs = "\t \n";
 	g_shell.ischild_signal = 0;
+	g_shell.terminal = ft_envp_getvalue(g_shell.envp, "TERM");
+	//
+	if (!g_shell.terminal)
+	{
+		ft_display_error_msg(EMAF);
+		ft_envp_clear(&(g_shell.envp));
+		free(g_shell.delimiters);
+		exit(EXIT_FAILURE);
+	}
 	g_shell.prompt = "\001\e[32m\033[1m\002Minishell%\001\e[0m\033[0m\002 ";
 	g_shell.rdc_operand = 0;
 }
