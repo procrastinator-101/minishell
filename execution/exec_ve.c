@@ -48,19 +48,22 @@ int	check_path(char *path)
 	ret = stat(path, &st);
 	if (ret == 0 && st.st_mode / 10000 != 3)
 	{
-		if (look_for_slach(path) == 1 || path[0] == '.')
+		if (look_for_slach(path) == 1 || path[0] == '.' \
+			|| !ft_envp_getvalue(g_shell.envp, "PATH"))
 			ret = -2;
 		else
 			ret = -3;
 	}
 	if (ret == 0 && st.st_mode / 10000 == 3)
 	{
-		if (look_for_slach(path) == 1 || path[0] == '.')
+		if (look_for_slach(path) == 1 || path[0] == '.' \
+			|| !ft_envp_getvalue(g_shell.envp, "PATH"))
 			ret = 0;
 		else
 			ret = -3;
 	}
-	if (ret == -1 && path && look_for_slach(path) == 0)
+	if (ret == -1 && path && look_for_slach(path) == 0 \
+		&& ft_envp_getvalue(g_shell.envp, "PATH"))
 		ret = -3;
 	if ((ret == -3 || ret == -1) && check_if_not_a_directory(path) == 1)
 		ret = -4;

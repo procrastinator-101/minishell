@@ -49,10 +49,7 @@ int	redirection_dup(t_redirection *redi)
 			if (here_doc_red(redi) == 1)
 				return (1);
 		if (fd < 0)
-		{
-			print_error(redi->right_operand, strerror(errno), 1);
-			return (1);
-		}
+			return (print_error(redi->right_operand, strerror(errno), 1));
 		else if (fd != 0)
 		{
 			redi_dup2(redi, fd);

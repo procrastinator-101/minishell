@@ -1,6 +1,17 @@
-ls | echo $?
-heredoc
+
+(ft_install_herdoc_signal_handlers)     unused file
+(ft_cmd)                                unused directory
+ft_parser/  wtmp && .print_argc.c.swp   ???
+ft_metadata/ft_get_unimetadat.o         ???
+
+
+protect fork and pipes and fonc that use malloc
+
+heredoc (\ ;)
 ^D
-^C
+^C in and after herdoc
+
 test leak
 norm
+
+check all return value of builtins
