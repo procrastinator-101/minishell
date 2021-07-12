@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 19:27:33 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/12 20:53:52 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/12 19:35:56 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,12 @@ static char	*check_dollar(char *str)
 	return (str);
 }
 
-void	ft_heredoc_terminate(int fd)
+int	ft_heredoc_terminate(int fd)
 {
-	int ret = ft_resetcursor_position(g_shell.offset + ft_strlen("> "));
+	g_shell.offset += ft_strlen("> ");
+	ft_resetcursor_position(g_shell.offset);
 	close(fd);
-	if (ret)
-		exit(2);
-	exit(1);
+	return (0);
 }
 
 static int	ft_execute_heredoc(t_redirection *redirection)
@@ -70,16 +69,15 @@ static int	ft_execute_heredoc(t_redirection *redirection)
 	int		fd;
 	char	*line;
 
-	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_IGN);
 	fd = open(redirection->file_name, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd < 0)
 		return (EOFF);
+	g_shell.isheredoc = 1;
 	while (1)
 	{
 		line = readline("> ");
 		if (!line)
-			ft_heredoc_terminate(fd);
+			return (ft_heredoc_terminate(fd));
 		if (line && !ft_strcmp(line, redirection->right_operand))
 		{
 			free(line);
@@ -91,14 +89,12 @@ static int	ft_execute_heredoc(t_redirection *redirection)
 		free(line);
 	}
 	close(fd);
-	exit(EXIT_SUCCESS);
+	return (0);
 }
 
 int	ft_redirection_execute_heredoc(t_redirection *redirection, int id)
 {
-	int		pid;
-	int		signal;
-	int		status;
+	int		ret;
 	char	*str;
 
 	str = ft_itoa(id);
@@ -108,35 +104,8 @@ int	ft_redirection_execute_heredoc(t_redirection *redirection, int id)
 	free(str);
 	if (!redirection->file_name)
 		return (EMAF);
-	pid = fork();
-	if (pid < 0)
-		return (EFPF);
-	g_shell.ischild_signal = 1;
-	if (!pid)
-		ft_execute_heredoc(redirection);
-	waitpid(pid, &status, 0);
-	g_shell.ischild_signal = 0;
-	if (WIFSIGNALED(status))
-	{
-		signal = WTERMSIG(status);
-		ft_manage_signal_output(signal);
-		if (signal)
-		{
-			g_shell.scmd_status = 1;
-			return (ECSIG);
-		}
-	}
-	else if (WIFEXITED(status))
-	{
-		signal = WEXITSTATUS(status);
-		if (signal)
-		{
-			tgetent(NULL, g_shell.terminal);
-			int col = col = tgetnum("co");
-			if (signal == 2)
-				g_shell.offset -= col;
-			g_shell.offset += ft_strlen("> ");
-		}
-	}
-	return (0);
+	ret = ft_execute_heredoc(redirection);
+	g_shell.isheredoc = 0;
+	dup2(g_shell.standin, STDIN_FILENO);
+	return (ret);
 }

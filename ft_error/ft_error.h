@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 11:59:05 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/11 19:28:52 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/12 16:10:05 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@
 # define EINS				7		//ERROR INCORRECT SYNTAX
 # define EFPF				8		//ERROR FORKING PROCESS FAILURE
 # define EOFF				9		//ERROR OPENING FILE FAILURE
+# define EUTERM				10		//ERROR UNRECOGNISED TERMINAL
+# define ETERMINFO			11		//ERROR TERMINFO DATABASE NOT FOUND
 
-# define ECSIG				10		//ERROR CHILD WAS SIGNALED
+# define ECSIG				12		//ERROR CHILD WAS SIGNALED
 
 void	ft_cleanup(void);
 void	ft_display_error_msg(int error);
