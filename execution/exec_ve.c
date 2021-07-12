@@ -40,10 +40,9 @@ static int	check_if_not_a_directory(char *path)
 	return (0);
 }
 
-int	check_path(char *path)
+int	check_path(char *path, int ret)
 {
 	struct stat	st;
-	int			ret;
 
 	ret = stat(path, &st);
 	if (ret == 0 && st.st_mode / 10000 != 3)
@@ -74,7 +73,7 @@ static int	exec_check_slash(char *path, char **args)
 {
 	int	ret;
 
-	ret = check_path(path);
+	ret = check_path(path, 0);
 	if (ret == 0)
 	{
 		execve(path, args, listenvp_to_tab());
@@ -105,7 +104,7 @@ static int	exec_check_paths(t_scmd *scmd)
 	{
 		paths[i] = join_free_s1(paths[i], "/");
 		paths[i] = join_free_s1(paths[i], scmd->args[0]);
-		if (check_path(paths[i]) == 0)
+		if (check_path(paths[i], 0) == 0)
 			break ;
 	}
 	if (i > -1 && paths[i])

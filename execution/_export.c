@@ -46,7 +46,7 @@ static void	export_only(int env_size)
 
 	i = 0;
 	envp = g_shell.envp;
-	env_sorted = malloc(sizeof(char *) * env_size + 1);
+	env_sorted = malloc(sizeof(char *) * (env_size + 1));  // to check 
 	while (i < env_size)
 	{
 		env_sorted[i] = envp->name;
