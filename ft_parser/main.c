@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 13:03:04 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/13 16:01:06 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/13 17:20:15 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,16 @@ int	main(int argc, char **argv, char **sys_envp)
 	ft_settermios_attr();
 	while (1)
 	{
-		g_shell.issignal = 0;
-		ft_updatecursor_position();
+		g_shell.issignal = 0;//
+		ft_updatecursor_position();//
 		line = readline(g_shell.prompt);
+		if (g_shell.issignal)
+		{
+			dup2(g_shell.standin, STDIN_FILENO);
+			g_shell.issignal = 0;
+			continue ;
+		}
+		g_shell.issignal = 0;
 		if (!line)
 			break ;
 		if (*line)
@@ -37,6 +44,7 @@ int	main(int argc, char **argv, char **sys_envp)
 		if (error)
 			ft_manage_parsing_error(error);
 		free(line);
+		g_shell.ischild_signal = 0;
 	}
 	ft_terminate();
 	return (0);

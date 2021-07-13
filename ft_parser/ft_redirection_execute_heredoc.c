@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 19:27:33 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/13 16:02:30 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/13 16:56:40 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ static char	*check_dollar(char *str)
 
 void	ft_heredoc_terminate(int fd)
 {
-	int ret = ft_resetcursor_position(ft_strlen("> "));
 	close(fd);
-	if (ret)
-		exit(2);
 	exit(1);
 }
 
@@ -125,18 +122,6 @@ int	ft_redirection_execute_heredoc(t_redirection *redirection, int id)
 		{
 			g_shell.scmd_status = 1;
 			return (ECSIG);
-		}
-	}
-	else if (WIFEXITED(status))
-	{
-		signal = WEXITSTATUS(status);
-		if (signal)
-		{
-			tgetent(NULL, g_shell.terminal);
-			int col = col = tgetnum("co");
-			if (signal == 2)
-				g_shell.offset -= col;
-			g_shell.offset += ft_strlen("> ");
 		}
 	}
 	return (0);

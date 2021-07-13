@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 19:27:33 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/13 13:31:21 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/13 17:19:08 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ static void ft_handle_signal(int signal)
     {
         g_shell.scmd_status = 1;
         g_shell.standin = dup(STDIN_FILENO);
+		//ft_updatecursor_position();
 		write(STDOUT_FILENO, "\n", 1);
         close(STDIN_FILENO);
         g_shell.issignal = 1;
@@ -84,13 +85,12 @@ static int	ft_execute_heredoc(t_redirection *redirection)
 	fd = open(redirection->file_name, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd < 0)
 		return (EOFF);
-	g_shell.issignal = 1;
+	g_shell.issignal = 0;
 	signal(SIGINT, ft_handle_signal);
 	while (1)
 	{
 		ft_updatecursor_position();//
 		line = readline("> ");
-		dup2(g_shell.standin, STDIN_FILENO);
 		if (g_shell.issignal)
 			return (ECSIG);
 		if (!line)
@@ -105,6 +105,7 @@ static int	ft_execute_heredoc(t_redirection *redirection)
 		ft_putendl_fd(line, fd);
 		free(line);
 	}
+	ft_updatecursor_position();//
 	close(fd);
 	return (0);
 }
@@ -122,7 +123,6 @@ int	ft_redirection_execute_heredoc(t_redirection *redirection, int id)
 	if (!redirection->file_name)
 		return (EMAF);
 	ret = ft_execute_heredoc(redirection);
-	g_shell.isheredoc = 0;
 	dup2(g_shell.standin, STDIN_FILENO);
 	ft_install_parent_signal_handlers();
 	return (ret);
