@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 19:27:33 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/13 18:24:50 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/13 20:35:39 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,10 @@ static int	ft_execute_heredoc(t_redirection *redirection)
 	}
 	close(fd);
 	if (!line)
+	{
 		ft_resetcursor_position(ft_strlen("> "));
+		ft_updatecursor_position();
+	}
 	return (0);
 }
 

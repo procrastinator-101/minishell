@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 11:49:23 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/13 19:10:57 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/13 20:24:09 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,12 @@ typedef struct s_shell
 	int				ischild_signal;
 	int				def_in;
 	int				def_out;
-	//
 	int				isheredoc;
 	int				issignal;
 	int				standin;
 	int				count;
 	int				x;
 	int				y;
-	int				offset;
 }					t_shell;
 
 int					ft_isrdc_operator(t_token *token);

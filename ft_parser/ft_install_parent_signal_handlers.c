@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 16:05:58 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/13 19:12:13 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/13 20:22:11 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static void	ft_handle_signal(int signal)
 	if (signal == SIGINT && !g_shell.ischild_signal)
 	{
 		g_shell.scmd_status = 1;
-        g_shell.standin = dup(STDIN_FILENO);
-        ft_updatecursor_position();
+		g_shell.standin = dup(STDIN_FILENO);
+		ft_updatecursor_position();
 		if (g_shell.isheredoc || !g_shell.count)
 			write(STDOUT_FILENO, "\n", 1);
-        close(STDIN_FILENO);
+		close(STDIN_FILENO);
 		g_shell.issignal = 1;
 	}
 }
