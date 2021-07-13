@@ -24,11 +24,11 @@ static char	*found_dollar(char *str, char *tmp, int i, int j)
 		while (str && str[i] && str[i] != ' ' && str[i] != '$' && str[i] != '"'
 			&& str[i] != '\'')
 			i++;
-		tmp = ft_substr(str, j, i - j);
-		tmp = free_return(ft_strdup(get_env_value(tmp)), tmp);
+		tmp = checkalloc(ft_substr(str, j, i - j));
+		tmp = free_return(checkalloc(ft_strdup(get_env_value(tmp))), tmp);
 	}
-	tmp = join_free_all(ft_substr(str, 0, j - 1), tmp);
-	tmp = join_free_all(tmp, ft_substr(str, i, ft_strlen(str)));
+	tmp = join_free_all(checkalloc(ft_substr(str, 0, j - 1)), tmp);
+	tmp = join_free_all(tmp, checkalloc(ft_substr(str, i, ft_strlen(str))));
 	return (tmp);
 }
 

@@ -16,15 +16,3 @@ norm
 // check all return value of builtins //
 
 
-ft_redirection_execute_heredoc.c    protect ft_substr
-
-
-cat << l << e
-> sdf
-> eds
-> $USER
-> l
-> $USER
-> dg
-> $ dfg
-> $gsdf
