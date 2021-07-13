@@ -49,6 +49,8 @@ static char	*check_dollar(char *str)
 			j = i;
 			tmp = found_dollar(str, tmp, i, j);
 			str = free_return(tmp, str);
+			if (str[i - 1] == '\0')
+				i--;
 			continue ;
 		}
 		i++;

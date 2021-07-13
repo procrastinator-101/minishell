@@ -6,7 +6,6 @@ ft_parser/  wtmp && .print_argc.c.swp    ???
 ft_metadata/ft_get_unimetadat.o          ???
 
 
-heredoc (\ ;)
 ^D
 ^C in and after herdoc
 
@@ -15,4 +14,6 @@ norm
 
 // check all return value of builtins //
 
+
+unset all and lance minishell
 
