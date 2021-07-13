@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/25 13:03:04 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/13 14:03:20 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/13 16:01:06 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv, char **sys_envp)
 	while (1)
 	{
 		g_shell.issignal = 0;
-		ft_updatecursor_position();//
+		ft_updatecursor_position();
 		line = readline(g_shell.prompt);
 		if (!line)
 			break ;

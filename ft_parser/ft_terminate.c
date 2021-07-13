@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 14:59:25 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/13 13:49:48 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/13 16:01:11 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_terminate(void)
 {
-	//
 	ft_resetcursor_position(ft_strlen("Minishell% "));
 	ft_putstr_fd("exit\n", STDOUT_FILENO);
 	ft_cleanup();
