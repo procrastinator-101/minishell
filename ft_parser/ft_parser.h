@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 17:04:54 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/13 12:13:51 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/13 18:51:04 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,20 @@
 # include "../ft_pipeline/ft_pipeline.h"
 # include "../ft_support_functions/ft_support_functions.h"
 # include "../execution/execution.h"
+
+
+/*
+//--------------------------------------------------------------
+#define dup(x) wrap_dup(x, #x, __FILE__, __LINE__)
+//#define dup2(x, y) wrap_dup2(x, y, #x, #y, __FILE__, __LINE__)
+#define close(x) wrap_close(x, #x, __FILE__, __LINE__)
+
+int wrap_dup(int x, char *xx, char *f, int l);
+int wrap_dup2(int x, int y, char *xx, char *yy, char *f, int l);
+int wrap_close(int x, char *xx, char *f, int l);
+//--------------------------------------------------------------
+*/
+
 
 void		ft_cleanup(void);
 void		ft_terminate(void);

@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 20:15:45 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/13 15:33:36 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/13 18:09:15 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	ft_getcursor_position(int *x, int *y)
 	ret = ft_fetchcursor_position(x, y);
 	dup2(fd1, STDIN_FILENO);
 	dup2(fd2, STDOUT_FILENO);
+	close(fd1);
+	close(fd2);
 	if (ret)
 		return (ret);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 13:20:32 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/13 17:04:16 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/13 19:21:37 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	ft_resetcursor_position(int offset)
 	}
 	x = g_shell.x;
 	y = g_shell.y;
+	//printf("x = %d y = %d\n", x, y);
 
 	//printf("x = %d y = %d\n", x, y);
 	right = tgetstr("cm", 0);
@@ -48,6 +49,13 @@ int	ft_resetcursor_position(int offset)
 	//printf("x = %d y = %d\n row = %d col = %d", x, y, row, col);
 	if (y >= row - 1)
 		y = row - 2;
+	if (x < 1)
+		x = 1;
+	if (y < 1)
+		y = 1;
+	printf("x = %d y = %d\n", x, y);
+	x += 2;
+
 	right = tgoto(right, x, y);
 	write(STDOUT_FILENO, right, ft_strlen(right));
 	return (0);

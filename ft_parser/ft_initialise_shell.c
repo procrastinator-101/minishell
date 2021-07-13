@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 16:56:04 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/13 13:26:49 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/13 19:11:25 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ void	ft_initialise_shell(char **argv, char **sys_envp)
 		free(g_shell.delimiters);
 		exit(EXIT_FAILURE);
 	}
-	//g_shell.offset = 0;
 	g_shell.x = 0;
 	g_shell.y = 0;
-	g_shell.def_in = dup(STDIN_FILENO);
-	g_shell.def_out = dup(STDOUT_FILENO);
+	def_in_out();
 	g_shell.argv = argv;
 	g_shell.ifs = "\t \n";
+	g_shell.isheredoc = 0;
+	g_shell.count = 0;
 	g_shell.ischild_signal = 0;
 	g_shell.terminal = ft_envp_getvalue(g_shell.envp, "TERM");
 	//

@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 12:52:36 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/12 13:07:44 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/13 19:03:19 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	ft_execute(t_pipeline *pipelines)
 			break ;
 		head = head->next;
 	}
-	if (error)
-		ft_pipeline_clear(&pipelines);
+	ft_pipeline_clear(&pipelines);
 	return (error);
 }

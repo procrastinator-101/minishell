@@ -6,7 +6,7 @@
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 17:01:35 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/07/11 20:59:29 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/13 18:50:31 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	start_execution(t_pipeline *pipeline)
 	int			cmd_n;
 	t_scmd		*scmd;
 
-	def_in_out();
 	scmd = pipeline->scmd;
 	while (scmd)
 	{

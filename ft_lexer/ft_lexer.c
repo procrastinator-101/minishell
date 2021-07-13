@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 16:14:08 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/09 12:34:38 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/13 18:59:20 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_token	*ft_lexer(char *line, int size, int *error)
 	*error = ft_check_syntax(tokens);
 	if (*error)
 	{
+		g_shell.scmd_status = 258;
 		ft_token_clear(&tokens);
 		return (0);
 	}
