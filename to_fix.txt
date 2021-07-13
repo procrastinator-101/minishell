@@ -1,11 +1,10 @@
 
-(ft_install_herdoc_signal_handlers)     unused file
-(ft_cmd)                                unused directory
-ft_parser/  wtmp && .print_argc.c.swp   ???
-ft_metadata/ft_get_unimetadat.o         ???
+(ft_install_herdoc_signal_handlers)      unused file
+(ft_redirection_execute_heredoc_parent)  unused file
+(ft_cmd)                                 unused directory
+ft_parser/  wtmp && .print_argc.c.swp    ???
+ft_metadata/ft_get_unimetadat.o          ???
 
-
-protect fork and pipes and fonc that use malloc
 
 heredoc (\ ;)
 ^D
@@ -14,6 +13,6 @@ heredoc (\ ;)
 test leak
 norm
 
-check all return value of builtins
+// check all return value of builtins //
 
-export_only protect malloc
+

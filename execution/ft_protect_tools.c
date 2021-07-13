@@ -12,10 +12,18 @@
 
 #include "execution.h"
 
+char	*checkalloc(char *str)
+{
+	if (str)
+		return (str);
+	print_error("MALLOC", strerror(errno), 1);
+	exit(1);
+}
+
 char	*catch_null_ordup(char *str)
 {
 	if (str)
-		return (ft_strdup2(str));
+		return (checkalloc(ft_strdup2(str)));
 	return (str);
 }
 
@@ -26,7 +34,7 @@ char	*ft_strdup2(const char *src)
 	int		i;
 
 	if (src == NULL)
-		return (ft_strdup2(""));
+		return (checkalloc(ft_strdup2("")));
 	i = 0;
 	s = 0;
 	while (src[s] != '\0')

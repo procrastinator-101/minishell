@@ -45,3 +45,9 @@ int	print_error_3(char *path, char *data, char *er, int err_num)
 	g_shell.scmd_status = err_num;
 	return (1);
 }
+
+void	exit_failure(char *fonc)
+{
+	print_error(fonc, strerror(errno), 1);
+	exit(1);
+}

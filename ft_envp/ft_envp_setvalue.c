@@ -12,6 +12,17 @@
 
 #include "ft_envp.h"
 
+static char	*checkalloc(char *str)
+{
+	if (str)
+		return (str);
+	ft_display_error_msg(0);
+	ft_putstr_fd("MALLOC", 2);
+	ft_putstr_fd(": ", 2);
+	ft_putendl_fd(strerror(errno), 2);
+	exit(1);
+}
+
 void	ft_envp_setvalue(t_envp *envp, char *name, char *value)
 {
 	t_envp	*head;
@@ -30,7 +41,7 @@ void	ft_envp_setvalue(t_envp *envp, char *name, char *value)
 	}
 	if (!head)
 	{
-		node = ft_envp_create(ft_strdup(name), value, 1);
+		node = ft_envp_create(checkalloc(ft_strdup(name)), value, 1);
 		ft_envp_addback(&envp, node);
 	}
 }

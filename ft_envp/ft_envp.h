@@ -17,6 +17,8 @@
 # include <stdlib.h>
 
 # include "../ft_error/ft_error.h"
+# include <sys/errno.h>
+# include <string.h>
 
 typedef struct s_envp
 {

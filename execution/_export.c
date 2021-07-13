@@ -46,7 +46,9 @@ static void	export_only(int env_size)
 
 	i = 0;
 	envp = g_shell.envp;
-	env_sorted = malloc(sizeof(char *) * (env_size + 1));  // to check 
+	env_sorted = malloc(sizeof(char *) * (env_size + 1));
+	if (!env_sorted)
+		checkalloc(NULL);
 	while (i < env_size)
 	{
 		env_sorted[i] = envp->name;
@@ -63,13 +65,14 @@ static void	export_add(char *data, int index)
 {
 	char	*tmp;
 
-	tmp = ft_substr(data, 0, index);
+	tmp = checkalloc(ft_substr(data, 0, index));
 	if (ft_isname(tmp) == 0)
 	{
 		print_error_2("export", tmp, "not a valid identifier", 1);
 		return ;
 	}
-	ft_envp_setvalue(g_shell.envp, tmp, ft_strdup2(data + index + 1));
+	ft_envp_setvalue(g_shell.envp, tmp,
+		checkalloc(ft_strdup2(data + index + 1)));
 	free(tmp);
 }
 

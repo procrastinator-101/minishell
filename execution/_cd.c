@@ -19,7 +19,7 @@ static char	*safe_dup(char *value)
 		ft_display_error_msg(0);
 		ft_putstr_fd("cd: error retrieving current directory: getcwd: cannot \
 access parent directories: No such file or directory\n", 2);
-		return (ft_strjoin(get_env_value("PWD"), "/."));
+		return (checkalloc(ft_strjoin(get_env_value("PWD"), "/.")));
 	}
 	return (value);
 }
@@ -54,7 +54,7 @@ static int	only_cd(char *path)
 			closedir(dd);
 			chdir(path);
 			ft_envp_setvalue(g_shell.envp, "OLDPWD",
-				ft_strdup2(get_env_value("PWD")));
+				checkalloc(ft_strdup2(get_env_value("PWD"))));
 			ft_envp_setvalue(g_shell.envp, "PWD", safe_dup(getcwd(NULL, 0)));
 		}
 	}
@@ -77,7 +77,7 @@ int	cd_built(t_scmd *scmd)
 			closedir(dd);
 			chdir(scmd->args[1]);
 			ft_envp_setvalue(g_shell.envp, "OLDPWD",
-				ft_strdup2(get_env_value("PWD")));
+				checkalloc(ft_strdup2(get_env_value("PWD"))));
 			ft_envp_setvalue(g_shell.envp, "PWD", safe_dup(getcwd(NULL, 0)));
 		}
 	}
