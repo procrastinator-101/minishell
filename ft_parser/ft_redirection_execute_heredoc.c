@@ -22,7 +22,7 @@ static char	*found_dollar(char *str, char *tmp, int i, int j)
 	else
 	{
 		while (str && str[i] && str[i] != ' ' && str[i] != '$' && str[i] != '"'
-			&& str[i] != '\'' && str[i] != ';')
+			&& str[i] != '\'')
 			i++;
 		tmp = ft_substr(str, j, i - j);
 		tmp = free_return(ft_strdup(get_env_value(tmp)), tmp);
@@ -43,12 +43,13 @@ static char	*check_dollar(char *str)
 	{
 		if (str[i] == '$' && str[i + 1] && str[i + 1] != ' ' \
 				&& str[i + 1] != '$' && str[i + 1] != '"' \
-				&& str[i + 1] != '\'' && str[i + 1] != ';')
+				&& str[i + 1] != '\'')
 		{
 			i++;
 			j = i;
 			tmp = found_dollar(str, tmp, i, j);
 			str = free_return(tmp, str);
+			i--;
 			continue ;
 		}
 		i++;

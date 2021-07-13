@@ -73,7 +73,7 @@ int	unset_built(t_scmd *scmd)
 			{
 				g_shell.envp->isenv = 0;
 				free(g_shell.envp->value);
-				g_shell.envp->value = ft_strdup("");
+				g_shell.envp->value = checkalloc(ft_strdup(""));
 				g_shell.envp = g_shell.envp->next;
 			}
 			else

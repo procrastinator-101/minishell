@@ -19,7 +19,7 @@ char	**listenvp_to_tab(void)
 	char	**envp;
 
 	tmp_env = g_shell.envp;
-	line = ft_strdup("");
+	line = checkalloc(ft_strdup(""));
 	while (tmp_env)
 	{
 		if (tmp_env->value)
@@ -32,6 +32,8 @@ char	**listenvp_to_tab(void)
 		tmp_env = tmp_env->next;
 	}
 	envp = ft_split(line, '\n');
+	if (!envp)
+		checkalloc(NULL);
 	free(line);
 	return (envp);
 }

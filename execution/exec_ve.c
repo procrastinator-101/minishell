@@ -29,7 +29,7 @@ static int	check_if_not_a_directory(char *path)
 			i++;
 		if (path[i] == '/')
 		{
-			path2 = ft_substr(path, 0, i);
+			path2 = checkalloc(ft_substr(path, 0, i));
 			ret = stat(path2, &st);
 			free(path2);
 			if (ret == 0 && st.st_mode / 10000 == 3)
@@ -99,6 +99,8 @@ static int	exec_check_paths(t_scmd *scmd)
 	int		i;
 
 	paths = ft_split(get_env_value("PATH"), ':');
+	if (!paths)
+		checkalloc(NULL);
 	i = -1;
 	while (paths && paths[++i])
 	{

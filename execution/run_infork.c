@@ -49,32 +49,13 @@ static void	close_pipes(t_scmd *scmd)
 	close(scmd->pipe[1]);
 }
 
-int	run_infork(t_scmd *scmd)
+static void	parent_work(t_scmd *scmd, pid_t f_pid)
 {
-	pid_t	f_pid;
 	pid_t	ret;
+	int		signal;
 	int		tmp;
 	int		ex_st;
-	int		signal;
 
-	pipe(scmd->pipe);
-	ex_st = 0;
-	if (change_inout(scmd) == 1)
-		return (1);
-	f_pid = fork();
-	if (f_pid < 0)
-	{
-		print_error("fork", "Resource temporarily unavailable", 1);
-		ft_manage_parsing_error(0);
-	}
-	else if (f_pid == 0)
-	{
-		ft_resettermios_attr();
-		ft_install_child_signal_handlers();
-		close_inout_child(scmd);
-		ex_st = builtin(scmd);
-		exit(ex_st);
-	}
 	close_pipes(scmd);
 	reset_in_out();
 	if (!scmd->next)
@@ -95,5 +76,52 @@ int	run_infork(t_scmd *scmd)
 		g_shell.ischild_signal = 0;
 		ft_settermios_attr();
 	}
+}
+
+int	run_infork(t_scmd *scmd)
+{
+	pid_t	f_pid;
+	// pid_t	ret;
+	// int		tmp;
+	int		ex_st;
+	// int		signal;
+
+	if (pipe(scmd->pipe) < 0)
+		exit_failure("pipe");
+	ex_st = 0;
+	if (change_inout(scmd) == 1)
+		return (1);
+	f_pid = fork();
+	if (f_pid < 0)
+		exit_failure("fork");
+	else if (f_pid == 0)
+	{
+		ft_resettermios_attr();
+		ft_install_child_signal_handlers();
+		close_inout_child(scmd);
+		ex_st = builtin(scmd);
+		exit(ex_st);
+	}
+	parent_work(scmd, f_pid);
+	// close_pipes(scmd);
+	// reset_in_out();
+	// if (!scmd->next)
+	// {
+	// 	ret = 0;
+	// 	g_shell.ischild_signal = 1;
+	// 	signal = 0;
+	// 	while (1)
+	// 	{
+	// 		ret = waitpid(-1, &ex_st, 0);
+	// 		if (ret == -1)
+	// 			break ;
+	// 		tmp = catch_child_exitstatus(ex_st, f_pid, ret);
+	// 		if (tmp)
+	// 			signal = tmp;
+	// 	}
+	// 	ft_manage_signal_output(signal);
+	// 	g_shell.ischild_signal = 0;
+	// 	ft_settermios_attr();
+	// }
 	return (0);
 }

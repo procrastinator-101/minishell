@@ -37,6 +37,7 @@ int		check_path(char *path, int ret);
 char	*get_env_value(char *name);
 void	ft_set_isenv(char *name, int isenv);
 
+char	*checkalloc(char *str);
 void	free_2d(char **tabl);
 char	*join_free_s1(char *s1, char *s2);
 char	*join_free_all(char *s1, char *s2);
@@ -57,6 +58,7 @@ char	*ft_strdup2(const char *src);
 int		print_error(char *path, char *er, int err_num);
 int		print_error_2(char *path, char *data, char *er, int err_num);
 int		print_error_3(char *path, char *data, char *er, int err_num);
+void	exit_failure(char *fonc);
 
 int		look_for_equal(char *data);
 int		look_for_slach(char *data);
