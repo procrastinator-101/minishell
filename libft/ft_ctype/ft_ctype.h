@@ -6,7 +6,7 @@
 /*   By: youness <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 16:46:49 by youness           #+#    #+#             */
-/*   Updated: 2021/05/04 16:52:56 by youness          ###   ########.fr       */
+/*   Updated: 2021/07/01 16:36:03 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ int	ft_isnumber(char *num);
 
 int	ft_tolower(int c);
 int	ft_toupper(int c);
-
 
 #endif

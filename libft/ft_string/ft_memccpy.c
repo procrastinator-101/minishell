@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 17:45:20 by yarroubi          #+#    #+#             */
-/*   Updated: 2019/10/21 16:07:23 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/01 16:31:25 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 		str[i] = ptr[i];
 	if (ptr[i] == a)
 		str[i] = a;
-	return (ptr[i] == a ? (void *)(str + i + 1) : NULL);
+	if (ptr[i] == a)
+		return ((void *)(str + i + 1));
+	return (0);
 }

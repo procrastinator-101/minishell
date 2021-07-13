@@ -6,7 +6,7 @@
 #    By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 21:04:47 by yarroubi          #+#    #+#              #
-#    Updated: 2021/05/25 14:52:49 by yarroubi         ###   ########.fr        #
+#    Updated: 2021/07/13 10:27:25 by yarroubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ SRC = ft_bzero.c \
 	  ft_memcpy.c \
 	  ft_memmove.c \
 	  ft_memset.c \
-	  ft_split.c \
 	  ft_strchr.c \
 	  ft_strcmp.c \
 	  ft_strdup.c \
@@ -33,7 +32,6 @@ SRC = ft_bzero.c \
 	  ft_strnstr.c \
 	  ft_strrchr.c \
 	  ft_strrstr.c \
-	  ft_strtrim.c \
 	  ft_substr.c
 
 OBJ = $(SRC:.c=.o)

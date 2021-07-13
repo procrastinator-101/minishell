@@ -6,7 +6,7 @@
 /*   By: youness <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 00:37:20 by youness           #+#    #+#             */
-/*   Updated: 2021/05/05 13:51:36 by youness          ###   ########.fr       */
+/*   Updated: 2021/07/01 16:37:11 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	ft_partition(int *arr, int size)
 	return (h);
 }
 
-void		ft_quick_sort(int *arr, int size)
+void	ft_quick_sort(int *arr, int size)
 {
 	int	p;
 

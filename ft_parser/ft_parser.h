@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 17:04:54 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/12 16:10:07 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/13 10:44:56 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void		ft_install_child_signal_handlers(void);
 void		ft_install_parent_signal_handlers(void);
 
 int			ft_resetcursor_position(int offset);
+int			ft_getcursor_position(int *x, int *y);
 
 int			ft_parser(char *line, int size);
 int			ft_pipeline_finalise(t_pipeline *pipeline);

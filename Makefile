@@ -6,7 +6,7 @@
 #    By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 21:04:47 by yarroubi          #+#    #+#              #
-#    Updated: 2021/07/12 19:35:44 by yarroubi         ###   ########.fr        #
+#    Updated: 2021/07/13 10:44:13 by yarroubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ FT_SUPPORT_FUNCTIONS_PATH = ft_support_functions
 FT_PARSER_SRC = $(FT_PARSER_PATH)/ft_cleanup.c \
 				$(FT_PARSER_PATH)/ft_execute.c \
 				$(FT_PARSER_PATH)/ft_get_cmd_tree.c \
+				$(FT_PARSER_PATH)/ft_getcursor_position.c \
 				$(FT_PARSER_PATH)/ft_initialise_shell.c \
 				$(FT_PARSER_PATH)/ft_install_child_signal_handlers.c \
 				$(FT_PARSER_PATH)/ft_install_parent_signal_handlers.c \
@@ -156,6 +157,8 @@ FT_REDIRECTION_SRC = $(FT_REDIRECTION_PATH)/ft_redirection_addback.c \
 					 $(FT_REDIRECTION_PATH)/ft_redirection_print.c
 
 FT_SUPPORT_FUNCTIONS_SRC = $(FT_SUPPORT_FUNCTIONS_PATH)/ft_append_character.c \
+						   $(FT_SUPPORT_FUNCTIONS_PATH)/ft_atoi_length.c \
+						   $(FT_SUPPORT_FUNCTIONS_PATH)/ft_split.c \
 						   $(FT_SUPPORT_FUNCTIONS_PATH)/ft_strichr.c \
 						   $(FT_SUPPORT_FUNCTIONS_PATH)/ft_strnappend.c \
 						   $(FT_SUPPORT_FUNCTIONS_PATH)/ft_traverse_spaces.c

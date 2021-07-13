@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 19:27:33 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/12 20:53:52 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/13 11:25:24 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char	*check_dollar(char *str)
 
 void	ft_heredoc_terminate(int fd)
 {
-	int ret = ft_resetcursor_position(g_shell.offset + ft_strlen("> "));
+	int ret = ft_resetcursor_position(ft_strlen("> "));
 	close(fd);
 	if (ret)
 		exit(2);

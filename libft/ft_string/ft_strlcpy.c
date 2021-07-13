@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 12:46:07 by yarroubi          #+#    #+#             */
-/*   Updated: 2019/10/21 14:14:57 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/01 16:29:43 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	size_t i;
+	size_t	i;
 
 	i = -1;
 	if (size > 0)

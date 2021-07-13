@@ -6,7 +6,7 @@
 #    By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 21:04:47 by yarroubi          #+#    #+#              #
-#    Updated: 2021/06/04 15:56:13 by yarroubi         ###   ########.fr        #
+#    Updated: 2021/07/13 10:28:13 by yarroubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,6 @@ FT_STRING_SRC = $(FT_STRING_PATH)/ft_bzero.c \
 				$(FT_STRING_PATH)/ft_memcpy.c \
 				$(FT_STRING_PATH)/ft_memmove.c \
 				$(FT_STRING_PATH)/ft_memset.c \
-				$(FT_STRING_PATH)/ft_split.c \
 				$(FT_STRING_PATH)/ft_strchr.c \
 				$(FT_STRING_PATH)/ft_strcmp.c \
 				$(FT_STRING_PATH)/ft_strdup.c \
@@ -92,7 +91,6 @@ FT_STRING_SRC = $(FT_STRING_PATH)/ft_bzero.c \
 				$(FT_STRING_PATH)/ft_strnstr.c \
 				$(FT_STRING_PATH)/ft_strrchr.c \
 				$(FT_STRING_PATH)/ft_strrstr.c \
-				$(FT_STRING_PATH)/ft_strtrim.c \
 				$(FT_STRING_PATH)/ft_substr.c
 
 FT_ALGORITHMS_SRC = $(FT_ALGORITHMS_PATH)/ft_quick_sort.c

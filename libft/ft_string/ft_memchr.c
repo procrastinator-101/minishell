@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 20:16:44 by yarroubi          #+#    #+#             */
-/*   Updated: 2019/10/21 13:47:26 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/01 16:32:08 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	a = c;
 	i = -1;
 	while (++i < n)
+	{
 		if (str[i] == a)
 			break ;
-	return (i == n ? NULL : (void *)(str + i));
+	}
+	if (i == n)
+		return (0);
+	return ((void *)(str + i));
 }

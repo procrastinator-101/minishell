@@ -6,7 +6,7 @@
 /*   By: youness <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 23:24:51 by youness           #+#    #+#             */
-/*   Updated: 2021/05/04 23:24:51 by youness          ###   ########.fr       */
+/*   Updated: 2021/07/01 16:38:51 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstadd_back(t_list **tail, t_list *new)
 {
-	t_list *head;
+	t_list	*head;
 
 	if (!new)
 		return ;

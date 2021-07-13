@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 16:28:10 by yarroubi          #+#    #+#             */
-/*   Updated: 2019/10/20 14:07:42 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/01 16:30:27 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,27 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	unsigned int	i;
-	char			*str;
-	char			*ptr;
+	char				*b_ptr;
+	char				*b_ptr2;
+	unsigned long long	*qw_ptr;
+	unsigned long long	*qw_ptr2;
 
-	if (!dst && !src)
-		return (dst);
-	str = (char *)dst;
-	ptr = (char *)src;
-	i = -1;
-	while (++i < n)
-		str[i] = ptr[i];
+	qw_ptr = (unsigned long long *)dst;
+	qw_ptr2 = (unsigned long long *)src;
+	while (n >= sizeof(unsigned long long))
+	{
+		*qw_ptr = *qw_ptr2;
+		qw_ptr++;
+		qw_ptr2++;
+		n -= sizeof(unsigned long long);
+	}
+	b_ptr = (char *)qw_ptr;
+	b_ptr2 = (char *)qw_ptr2;
+	while (n--)
+	{
+		*b_ptr = *b_ptr2;
+		b_ptr++;
+		b_ptr2++;
+	}
 	return (dst);
 }
