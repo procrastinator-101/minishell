@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 19:27:33 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/12 19:35:56 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/13 13:31:21 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,21 @@ static char	*check_dollar(char *str)
 int	ft_heredoc_terminate(int fd)
 {
 	g_shell.offset += ft_strlen("> ");
-	ft_resetcursor_position(g_shell.offset);
+	//ft_resetcursor_position(g_shell.offset);
 	close(fd);
 	return (0);
+}
+
+static void ft_handle_signal(int signal)
+{
+    if (signal == SIGINT)
+    {
+        g_shell.scmd_status = 1;
+        g_shell.standin = dup(STDIN_FILENO);
+		write(STDOUT_FILENO, "\n", 1);
+        close(STDIN_FILENO);
+        g_shell.issignal = 1;
+    }
 }
 
 static int	ft_execute_heredoc(t_redirection *redirection)
@@ -72,12 +84,17 @@ static int	ft_execute_heredoc(t_redirection *redirection)
 	fd = open(redirection->file_name, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd < 0)
 		return (EOFF);
-	g_shell.isheredoc = 1;
+	g_shell.issignal = 1;
+	signal(SIGINT, ft_handle_signal);
 	while (1)
 	{
+		ft_updatecursor_position();//
 		line = readline("> ");
+		dup2(g_shell.standin, STDIN_FILENO);
+		if (g_shell.issignal)
+			return (ECSIG);
 		if (!line)
-			return (ft_heredoc_terminate(fd));
+			break ;
 		if (line && !ft_strcmp(line, redirection->right_operand))
 		{
 			free(line);
@@ -107,5 +124,6 @@ int	ft_redirection_execute_heredoc(t_redirection *redirection, int id)
 	ret = ft_execute_heredoc(redirection);
 	g_shell.isheredoc = 0;
 	dup2(g_shell.standin, STDIN_FILENO);
+	ft_install_parent_signal_handlers();
 	return (ret);
 }

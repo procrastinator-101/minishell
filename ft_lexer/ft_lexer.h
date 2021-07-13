@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 11:49:23 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/12 19:35:51 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/13 13:46:52 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ typedef struct s_shell
 	int				ischild_signal;
 	int				def_in;
 	int				def_out;
+	//
+	int				isheredoc;
+	int				issignal;
+	int				standin;
+	int				x;
+	int				y;
 	int				offset;
 }					t_shell;
 

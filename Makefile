@@ -6,7 +6,7 @@
 #    By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 21:04:47 by yarroubi          #+#    #+#              #
-#    Updated: 2021/07/13 10:44:13 by yarroubi         ###   ########.fr        #
+#    Updated: 2021/07/13 13:25:38 by yarroubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ FT_PARSER_SRC = $(FT_PARSER_PATH)/ft_cleanup.c \
 				$(FT_PARSER_PATH)/ft_terminate.c \
 				$(FT_PARSER_PATH)/ft_tokens_to_pipeline.c \
 				$(FT_PARSER_PATH)/ft_tokens_to_scmd.c \
+				$(FT_PARSER_PATH)/ft_updatecursor_position.c \
 				$(FT_PARSER_PATH)/main.c
 
 FT_LEXER_SRC = $(FT_LEXER_PATH)/ft_check_syntax.c \

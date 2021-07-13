@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 19:27:33 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/13 11:25:24 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/13 12:28:17 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ static char	*found_dollar(char *str, char *tmp, int i, int j)
 	else
 	{
 		while (str && str[i] && str[i] != ' ' && str[i] != '$' && str[i] != '"'
-			&& str[i] != '\'')
+			&& str[i] != '\'' && str[i] != ';')
 			i++;
-		tmp = checkalloc(ft_substr(str, j, i - j));
-		tmp = free_return(checkalloc(ft_strdup(get_env_value(tmp))), tmp);
+		tmp = ft_substr(str, j, i - j);
+		tmp = free_return(ft_strdup(get_env_value(tmp)), tmp);
 	}
-	tmp = join_free_all(checkalloc(ft_substr(str, 0, j - 1)), tmp);
-	tmp = join_free_all(tmp, checkalloc(ft_substr(str, i, ft_strlen(str))));
+	tmp = join_free_all(ft_substr(str, 0, j - 1), tmp);
+	tmp = join_free_all(tmp, ft_substr(str, i, ft_strlen(str)));
 	return (tmp);
 }
 
@@ -43,13 +43,12 @@ static char	*check_dollar(char *str)
 	{
 		if (str[i] == '$' && str[i + 1] && str[i + 1] != ' ' \
 				&& str[i + 1] != '$' && str[i + 1] != '"' \
-				&& str[i + 1] != '\'')
+				&& str[i + 1] != '\'' && str[i + 1] != ';')
 		{
 			i++;
 			j = i;
 			tmp = found_dollar(str, tmp, i, j);
 			str = free_return(tmp, str);
-			i--;
 			continue ;
 		}
 		i++;
@@ -90,6 +89,7 @@ static int	ft_execute_heredoc(t_redirection *redirection)
 			line = check_dollar(line);
 		ft_putendl_fd(line, fd);
 		free(line);
+		ft_updatecursor_position();
 	}
 	close(fd);
 	exit(EXIT_SUCCESS);
