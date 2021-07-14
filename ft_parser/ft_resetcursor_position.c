@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 13:20:32 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/13 20:52:16 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/14 11:25:51 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ int	ft_resetcursor_position(int offset)
 
 	//printf("x = %d y = %d\n", x, y);
 	right = tgetstr("cm", 0);
+	/*
 	x += offset % col - 1;
 	y += offset / col - 1 + g_shell.issignal;
-	/*
-	y = x;
-	x = (x + offset) % col - 1;
-	y = (y + offset) / col - 1 + g_shell.issignal;
 	*/
+	int tmp = x;
+	x = (x + offset) % col - 1;
+	y += (tmp + offset) / col - 1 + g_shell.issignal;
 	//printf("x = %d y = %d\n row = %d col = %d", x, y, row, col);
 	if (y >= row - 1)
 		y = row - 2;

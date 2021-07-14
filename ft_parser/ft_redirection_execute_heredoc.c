@@ -6,11 +6,15 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 19:27:33 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/13 20:35:39 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/14 11:24:17 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
+
+/*
+**	heredoc is now executed in the parent
+*/
 
 static char	*found_dollar(char *str, char *tmp, int i, int j)
 {
@@ -58,6 +62,15 @@ static char	*check_dollar(char *str)
 	return (str);
 }
 
+static int	ft_heredoc_terminate(int fd)
+{
+	close(fd);
+	ft_resetcursor_position(ft_strlen("> "));
+	ft_updatecursor_position();
+	g_shell.count = 1;
+	return (0);
+}
+
 static int	ft_execute_heredoc(t_redirection *redirection)
 {
 	int		fd;
@@ -76,7 +89,7 @@ static int	ft_execute_heredoc(t_redirection *redirection)
 			return (ECSIG);
 		}
 		if (!line)
-			break ;
+			return (ft_heredoc_terminate(fd));
 		if (line && !ft_strcmp(line, redirection->right_operand))
 		{
 			free(line);
@@ -88,11 +101,6 @@ static int	ft_execute_heredoc(t_redirection *redirection)
 		free(line);
 	}
 	close(fd);
-	if (!line)
-	{
-		ft_resetcursor_position(ft_strlen("> "));
-		ft_updatecursor_position();
-	}
 	return (0);
 }
 
@@ -116,7 +124,7 @@ int	ft_redirection_execute_heredoc(t_redirection *redirection, int id)
 	{
 		dup2(g_shell.standin, STDIN_FILENO);
 		close(g_shell.standin);
+		g_shell.issignal = 0;
 	}
-	g_shell.issignal = 0;
 	return (ret);
 }

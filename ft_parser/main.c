@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quotes.c                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/25 13:03:04 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/13 20:41:02 by yarroubi         ###   ########.fr       */
+/*   Created: 2021/07/14 11:13:32 by yarroubi          #+#    #+#             */
+/*   Updated: 2021/07/14 11:21:24 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,15 @@ t_shell	g_shell;
 
 static int	ft_handle_miscellaneous(void)
 {
-	g_shell.count++;
-	if (g_shell.count > 1000)
-		g_shell.count = 1;
 	if (g_shell.issignal)
 	{
 		dup2(g_shell.standin, STDIN_FILENO);
 		close(g_shell.standin);
+		g_shell.issignal = 0;
 		return (1);
 	}
-	g_shell.issignal = 0;
+	if (g_shell.scmd_status)
+		g_shell.count = 0;
 	return (0);
 }
 
@@ -39,7 +38,6 @@ int	main(int argc, char **argv, char **sys_envp)
 	ft_initialise_shell(argv, sys_envp);
 	while (1)
 	{
-		g_shell.issignal = 0;
 		ft_updatecursor_position();
 		line = readline(g_shell.prompt);
 		error = ft_handle_miscellaneous();
@@ -49,6 +47,12 @@ int	main(int argc, char **argv, char **sys_envp)
 			break ;
 		if (*line)
 			add_history(line);
+		else
+		{
+			g_shell.scmd_status = 0;
+			free(line);
+			continue ;
+		}
 		error = ft_parser(line, ft_strlen(line) + 1);
 		if (error)
 			ft_manage_parsing_error(error);
