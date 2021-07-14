@@ -47,4 +47,8 @@ void	ft_initialise_shell(char **argv, char **sys_envp)
 	g_shell.prompt = "\001\e[32m\033[1m\002Minishell%\001\e[0m\033[0m\002 ";
 	ft_install_parent_signal_handlers();
 	ft_settermios_attr();
+	g_shell.pwd = getcwd(NULL, 0);
+	if (!g_shell.pwd)
+		ft_putstr_fd("minishell-init: error retrieving current directory: \
+getcwd: cannot access parent directories: No such file or directory\n", 2);
 }

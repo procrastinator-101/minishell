@@ -81,10 +81,7 @@ static void	parent_work(t_scmd *scmd, pid_t f_pid)
 int	run_infork(t_scmd *scmd)
 {
 	pid_t	f_pid;
-	// pid_t	ret;
-	// int		tmp;
 	int		ex_st;
-	// int		signal;
 
 	if (pipe(scmd->pipe) < 0)
 		exit_failure("pipe");
@@ -103,25 +100,5 @@ int	run_infork(t_scmd *scmd)
 		exit(ex_st);
 	}
 	parent_work(scmd, f_pid);
-	// close_pipes(scmd);
-	// reset_in_out();
-	// if (!scmd->next)
-	// {
-	// 	ret = 0;
-	// 	g_shell.ischild_signal = 1;
-	// 	signal = 0;
-	// 	while (1)
-	// 	{
-	// 		ret = waitpid(-1, &ex_st, 0);
-	// 		if (ret == -1)
-	// 			break ;
-	// 		tmp = catch_child_exitstatus(ex_st, f_pid, ret);
-	// 		if (tmp)
-	// 			signal = tmp;
-	// 	}
-	// 	ft_manage_signal_output(signal);
-	// 	g_shell.ischild_signal = 0;
-	// 	ft_settermios_attr();
-	// }
 	return (0);
 }

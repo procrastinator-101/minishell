@@ -57,3 +57,10 @@ int	look_for_slach(char *data)
 	}
 	return (0);
 }
+
+char	*null_if_mt(char *data)
+{
+	if (!ft_strcmp(data, ""))
+		return (NULL);
+	return (data);
+}

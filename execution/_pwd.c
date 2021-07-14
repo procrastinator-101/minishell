@@ -21,7 +21,14 @@ int	pwd_built(t_scmd *scmd)
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
 	{
-		pwd = checkalloc(ft_strdup2(get_env_value("PWD")));
+		pwd = null_if_mt(checkalloc(ft_strdup2(g_shell.pwd)));
+		if (!pwd)
+		{
+			ft_putstr_fd("pwd: error retrieving current directory: getcwd: cannot \
+access parent directories: No such file or directory\n", 2);
+			g_shell.scmd_status = 1;
+			return (1);
+		}
 	}
 	ft_putstr_fd(pwd, 1);
 	ft_putstr_fd("\n", 1);
