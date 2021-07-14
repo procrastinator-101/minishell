@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/14 11:13:32 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/14 11:21:24 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/14 13:43:43 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ int	main(int argc, char **argv, char **sys_envp)
 	ft_initialise_shell(argv, sys_envp);
 	while (1)
 	{
-		ft_updatecursor_position();
+		error = ft_updatecursor_position();
+		if (error)
+			ft_manage_parsing_error(ETERCAP);
 		line = readline(g_shell.prompt);
 		error = ft_handle_miscellaneous();
 		if (error)
@@ -55,6 +57,7 @@ int	main(int argc, char **argv, char **sys_envp)
 		}
 		error = ft_parser(line, ft_strlen(line) + 1);
 		if (error)
+			//ft_manage_execution_error(error);
 			ft_manage_parsing_error(error);
 		free(line);
 	}

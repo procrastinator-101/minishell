@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 19:27:33 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/14 11:24:17 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/14 13:57:00 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,24 +64,38 @@ static char	*check_dollar(char *str)
 
 static int	ft_heredoc_terminate(int fd)
 {
+	int	ret;
+
 	close(fd);
-	ft_resetcursor_position(ft_strlen("> "));
-	ft_updatecursor_position();
+	ret = ft_resetcursor_position(ft_strlen("> "));
+	if (ret)
+		return (ETERCAP);
+	ret = ft_updatecursor_position();
+	if (ret)
+		return (ETERCAP);
 	g_shell.count = 1;
 	return (0);
 }
 
-static int	ft_execute_heredoc(t_redirection *redirection)
+static int	ft_execute_heredoc(t_redirection *redirection, int id)
 {
 	int		fd;
+	int		ret;
 	char	*line;
 
+	printf("id = %d count  = %d\n", id, g_shell.count);
 	fd = open(redirection->file_name, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd < 0)
 		return (EOFF);
 	while (1)
 	{
-		ft_updatecursor_position();//
+		ret = ft_updatecursor_position();//
+		if (ret)
+		{
+			
+			close(fd);
+			return (ETERCAP);
+		}
 		line = readline("> ");
 		if (g_shell.issignal)
 		{
@@ -118,7 +132,7 @@ int	ft_redirection_execute_heredoc(t_redirection *redirection, int id)
 		return (EMAF);
 	g_shell.issignal = 0;
 	g_shell.isheredoc = 1;
-	ret = ft_execute_heredoc(redirection);
+	ret = ft_execute_heredoc(redirection, id);
 	g_shell.isheredoc = 0;
 	if (g_shell.issignal)
 	{
@@ -126,5 +140,6 @@ int	ft_redirection_execute_heredoc(t_redirection *redirection, int id)
 		close(g_shell.standin);
 		g_shell.issignal = 0;
 	}
+	//printf("id = %d count  = %d\n", id, g_shell.count);
 	return (ret);
 }

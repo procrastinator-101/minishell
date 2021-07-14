@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 13:59:48 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/14 10:01:11 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/14 13:26:29 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,24 @@ static void	ft_display_syntax_error_msg(int major, int minor)
 		ft_putendl_fd("`>'", STDERR_FILENO);
 }
 
+static void	ft_display_fatal_error_msg(int major)
+{
+	if (major == EMAF)
+		ft_putendl_fd("the allocation of some block failed", STDERR_FILENO);
+	else if (major == EFPF)
+		ft_putendl_fd(": forking process failure", STDERR_FILENO);
+	else if (major == EOFF)
+		ft_putendl_fd(": opening file failure", STDERR_FILENO);
+	else if (major == EUTERM)
+		ft_putendl_fd(": unrecognised terminal", STDERR_FILENO);
+	else if (major == ETERMINFO)
+		ft_putendl_fd(": terminal database not found", STDERR_FILENO);
+	else if (major == ETCID)
+		ft_putendl_fd(": terminal could not be identified", STDERR_FILENO);
+	else if (major == ETERCAP)
+		ft_putendl_fd(": a termcap related problem occured", STDERR_FILENO);
+}
+
 void	ft_display_error_msg(int error)
 {
 	int	major;
@@ -46,4 +64,6 @@ void	ft_display_error_msg(int error)
 	}
 	else if (major == ECCO || major == ENCQ)
 		ft_display_syntax_error_msg(major, minor);
+	else
+		ft_display_fatal_error_msg(major);
 }
