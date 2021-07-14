@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 16:05:58 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/14 13:52:36 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/14 15:01:27 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void	ft_handle_signal(int signal)
 		g_shell.scmd_status = 1;
 		g_shell.standin = dup(STDIN_FILENO);
 		ft_updatecursor_position();
-		//if (g_shell.isheredoc || !g_shell.count)
 		if (!g_shell.count)
 		{
 			write(STDOUT_FILENO, "\n", 1);

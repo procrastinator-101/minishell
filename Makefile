@@ -6,7 +6,7 @@
 #    By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 21:04:47 by yarroubi          #+#    #+#              #
-#    Updated: 2021/07/14 09:33:16 by yarroubi         ###   ########.fr        #
+#    Updated: 2021/07/14 15:34:11 by yarroubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ FT_PARSER_SRC = $(FT_PARSER_PATH)/ft_cleanup.c \
 				$(FT_PARSER_PATH)/ft_pipeline_getargs.c \
 				$(FT_PARSER_PATH)/ft_resetcursor_position.c \
 				$(FT_PARSER_PATH)/ft_redirection_execute_heredoc.c \
+				$(FT_PARSER_PATH)/ft_redirection_execute_heredoc_utils.c \
 				$(FT_PARSER_PATH)/ft_resettermios_attr.c \
 				$(FT_PARSER_PATH)/ft_scmd_execute_heredocs.c \
 				$(FT_PARSER_PATH)/ft_scmd_extract_redirections.c \

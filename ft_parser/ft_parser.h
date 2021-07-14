@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 17:04:54 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/14 13:15:30 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/14 15:33:18 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int			ft_execute(t_pipeline *pipelines);
 int			ft_scmd_execute_heredocs(t_scmd *scmd, int *id);
 int			ft_pipeline_execute_heredocs(t_pipeline *pipelines);
 int			ft_redirection_execute_heredoc(t_redirection *redirection, int id);
+
+int			ft_handle_heredoc(t_redirection *redirection, char *line, int fd);
 
 int			ft_scmd_getargs(t_scmd *scmd);
 int			ft_scmd_finalise(t_scmd *scmd);

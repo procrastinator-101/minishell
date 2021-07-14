@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 11:49:23 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/14 12:07:18 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/14 14:50:56 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ typedef struct s_shell
 	int				def_in;
 	int				def_out;
 	int				issignal;
-	int				isheredoc;
 	int				standin;
+	int				heredoc_status;
 	int				count;
 	int				x;
 	int				y;

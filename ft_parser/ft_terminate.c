@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 14:59:25 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/13 20:28:59 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/14 14:52:10 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ void	ft_terminate(void)
 	ft_putstr_fd("exit\n", STDOUT_FILENO);
 	ft_cleanup();
 	ft_resettermios_attr();
-	exit(EXIT_SUCCESS);
+	exit(g_shell.pipeline_status);
 }
