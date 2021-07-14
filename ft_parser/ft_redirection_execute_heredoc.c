@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 19:27:33 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/14 15:34:25 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/14 16:03:11 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 int	ft_heredoc_terminate(int fd)
 {
-<<<<<<< HEAD
 	int	ret;
 
 	close(fd);
@@ -31,24 +30,6 @@ int	ft_heredoc_terminate(int fd)
 	g_shell.heredoc_status = 1;
 	g_shell.count = 1;
 	return (0);
-=======
-	if (str[i] == '?')
-	{
-		tmp = checkalloc(ft_itoa(g_shell.scmd_status));
-		i++;
-	}
-	else
-	{
-		while (str && str[i] && str[i] != ' ' && str[i] != '$' && str[i] != '"'
-			&& str[i] != '\'')
-			i++;
-		tmp = ft_substr(str, j, i - j);
-		tmp = free_return(ft_strdup(get_env_value(tmp)), tmp);
-	}
-	tmp = join_free_all(ft_substr(str, 0, j - 1), tmp);
-	tmp = join_free_all(tmp, ft_substr(str, i, ft_strlen(str)));
-	return (tmp);
->>>>>>> 1827abb63a8035d0136c9b6424c49b2c65ea1bbc
 }
 
 int	ft_manage_heredoc_signal(int fd, int id)

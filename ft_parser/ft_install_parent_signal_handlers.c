@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 16:05:58 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/14 15:01:27 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/14 16:08:42 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	ft_handle_signal(int signal)
 	if (!g_shell.ischild_signal)
 	{
 		g_shell.scmd_status = 1;
+		g_shell.pipeline_status = 1;
 		g_shell.standin = dup(STDIN_FILENO);
 		ft_updatecursor_position();
 		if (!g_shell.count)

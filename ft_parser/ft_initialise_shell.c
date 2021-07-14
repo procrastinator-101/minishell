@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 16:56:04 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/13 20:45:07 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/14 16:26:16 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ void	ft_initialise_shell(char **argv, char **sys_envp)
 	g_shell.pwd = getcwd(NULL, 0);
 	if (!g_shell.pwd)
 		ft_putstr_fd("minishell-init: error retrieving current directory: \
-getcwd: cannot access parent directories: No such file or directory\n", 2);
+			getcwd: cannot access parent directories: No such file or \
+			directory\n", 2);
 }

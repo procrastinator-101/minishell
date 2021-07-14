@@ -6,7 +6,7 @@
 /*   By: yarroubi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/29 17:31:02 by yarroubi          #+#    #+#             */
-/*   Updated: 2021/07/13 20:13:58 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/14 16:42:59 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,5 @@ void	ft_cleanup(void)
 	close(g_shell.def_in);
 	close(g_shell.def_out);
 	free(g_shell.terminal);
+	free(g_shell.pwd);
 }

@@ -6,7 +6,7 @@
 /*   By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 19:09:38 by hhoummad          #+#    #+#             */
-/*   Updated: 2021/07/09 16:23:41 by yarroubi         ###   ########.fr       */
+/*   Updated: 2021/07/14 16:42:19 by yarroubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	exit_built(t_scmd *scmd)
 	{
 		if (scmd->args[1])
 		{
+			if (!ft_isnumber(scmd->args[1]))
+				ft_atol_error(scmd->args[1]);
 			ret = ft_atol(scmd->args[1], 0);
 			exit(ret);
 		}
@@ -64,6 +66,8 @@ int	exit_built(t_scmd *scmd)
 	}
 	else
 	{
+		if (!ft_isnumber(scmd->args[1]))
+			ft_atol_error(scmd->args[1]);
 		ret = ft_atol(scmd->args[1], 0);
 		print_error("exit", "too many arguments", 1);
 	}
