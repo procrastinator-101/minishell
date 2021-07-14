@@ -6,7 +6,7 @@
 #    By: hhoummad <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/13 21:04:47 by yarroubi          #+#    #+#              #
-#    Updated: 2021/07/14 15:34:11 by yarroubi         ###   ########.fr        #
+#    Updated: 2021/07/14 16:55:41 by yarroubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,8 +56,7 @@ FT_PARSER_SRC = $(FT_PARSER_PATH)/ft_cleanup.c \
 				$(FT_PARSER_PATH)/ft_tokens_to_pipeline.c \
 				$(FT_PARSER_PATH)/ft_tokens_to_scmd.c \
 				$(FT_PARSER_PATH)/ft_updatecursor_position.c \
-				$(FT_PARSER_PATH)/main.c \
-				#$(FT_PARSER_PATH)/tmp.c
+				$(FT_PARSER_PATH)/main.c
 
 
 FT_LEXER_SRC = $(FT_LEXER_PATH)/ft_check_syntax.c \
@@ -197,7 +196,7 @@ SRC = $(EXECUTION_SRC) $(FT_PARSER_SRC) $(FT_LEXER_SRC) $(FT_EXPAND_SRC) \
 OBJ = $(SRC:.c=.o)
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra #-fsanitize=address -g
+CFLAGS = -Wall -Werror -Wextra
 
 LIBS = /Users/$(USER)/.brew/opt/readline/lib
 INCLUDES = /Users/$(USER)/.brew/opt/readline/include
