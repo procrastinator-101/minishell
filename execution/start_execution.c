@@ -52,5 +52,6 @@ int	start_execution(t_pipeline *pipeline)
 		scmd = scmd->next;
 		reset_in_out();
 	}
+	g_shell.pipeline_status = g_shell.scmd_status;
 	return (0);
 }

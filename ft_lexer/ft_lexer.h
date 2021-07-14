@@ -37,6 +37,7 @@ typedef struct s_shell
 	char			*rdc_operand;
 	int				scmd_status;
 	int				pipeline_status;
+	char			*pwd;
 	int				ischild_signal;
 	int				def_in;
 	int				def_out;

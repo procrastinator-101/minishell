@@ -22,7 +22,7 @@ char	**listenvp_to_tab(void)
 	line = checkalloc(ft_strdup(""));
 	while (tmp_env)
 	{
-		if (tmp_env->value)
+		if (tmp_env->value && tmp_env->isenv == 1)
 		{
 			line = join_free_s1(line, tmp_env->name);
 			line = join_free_s1(line, "=");

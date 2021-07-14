@@ -20,7 +20,7 @@ static char	*found_dollar(char *str, char *tmp, int i, int j)
 {
 	if (str[i] == '?')
 	{
-		tmp = ft_itoa(g_shell.scmd_status);
+		tmp = checkalloc(ft_itoa(g_shell.scmd_status));
 		i++;
 	}
 	else

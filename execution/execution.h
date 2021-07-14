@@ -64,6 +64,7 @@ int		look_for_equal(char *data);
 int		look_for_slach(char *data);
 int		check_options(t_scmd *scmd);
 char	*catch_null_ordup(char *str);
+char	*null_if_mt(char *data);
 
 int		catch_child_exitstatus(int wstatus, int lastpid, int pid);
 
