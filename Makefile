@@ -92,9 +92,11 @@ FT_EXPAND_SRC = $(FT_EXPAND_PATH)/ft_append_escape_sequence.c \
 				$(FT_EXPAND_PATH)/ft_expand_singlequote_construct.c \
 				$(FT_EXPAND_PATH)/ft_expand_special_parameters.c \
 				$(FT_EXPAND_PATH)/ft_expand_token.c \
+				$(FT_EXPAND_PATH)/ft_filename_expansion.c \
 				$(FT_EXPAND_PATH)/ft_handle_character_escape_sequence.c \
 				$(FT_EXPAND_PATH)/ft_handle_control_escape_sequence.c \
 				$(FT_EXPAND_PATH)/ft_handle_hex_escape_sequence.c \
+				$(FT_EXPAND_PATH)/ft_handle_filename_expansion.c \
 				$(FT_EXPAND_PATH)/ft_handle_octal_escape_sequence.c \
 				$(FT_EXPAND_PATH)/ft_identify_variable_assignments.c \
 				$(FT_EXPAND_PATH)/ft_is_special_parameter.c \
@@ -104,7 +106,6 @@ FT_EXPAND_SRC = $(FT_EXPAND_PATH)/ft_append_escape_sequence.c \
 				$(FT_EXPAND_PATH)/ft_manage_active_expansion.c \
 				$(FT_EXPAND_PATH)/ft_manage_passive_expansion.c \
 				$(FT_EXPAND_PATH)/ft_parameter_expansion.c \
-				$(FT_EXPAND_PATH)/ft_quote_removal.c \
 				$(FT_EXPAND_PATH)/ft_substitute_parameter.c \
 				$(FT_EXPAND_PATH)/ft_traverse_ifs.c \
 				$(FT_EXPAND_PATH)/ft_word_spliting.c

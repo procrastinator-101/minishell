@@ -28,9 +28,6 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 
-# include <term.h>
-# include <curses.h>
-
 # include "../ft_error/ft_error.h"
 # include "../ft_lexer/ft_lexer.h"
 

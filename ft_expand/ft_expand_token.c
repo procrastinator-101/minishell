@@ -66,5 +66,6 @@ t_token	*ft_expand_token(t_token *token, int *error)
 				*error = EURDC;
 		}
 	}
-	return (ft_quote_removal(token));
+	*error = ft_handle_filename_expansion(&token);
+	return (token);
 }

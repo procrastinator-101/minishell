@@ -32,8 +32,12 @@ int		ft_manage_active_expansion(t_token *token, char *str, \
 int		ft_manage_passive_expansion(t_token *token, char *str, \
 		t_metadata *meda);
 
-t_token	*ft_quote_removal(t_token *token);
+t_token	*ft_quote_removal(t_token *token);						//to remove
+
 t_token	*ft_word_spliting(t_token *token, int *error);
+t_token	*ft_filename_expansion(t_token *token, int *error);
+
+int		ft_handle_filename_expansion(t_token **tokens);
 
 int		ft_iscmd_varassignable(t_token *token);
 void	ft_identify_variable_assignments(t_token *tokens);

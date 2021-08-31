@@ -13,10 +13,14 @@
 #ifndef EXECUTION_H
 # define EXECUTION_H
 
-# include "../ft_parser/ft_parser.h"
+# include <sys/wait.h>
+# include <sys/types.h>
+
+# include <dirent.h>
 # include <sys/stat.h>
 # include <readline/readline.h>
-# include <dirent.h>
+
+# include "../ft_parser/ft_parser.h"
 
 int		builtin(t_scmd *scmd);
 int		cd_built(t_scmd *scmd);
